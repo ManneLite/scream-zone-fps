@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bj1j62vojkfln"]
+
+[ext_resource type="MeshLibrary" uid="uid://d3ig8eiqhpcbv" path="res://layer_0_terrain.meshlib" id="1_mh2b6"]
+[ext_resource type="Script" uid="uid://j8yvoajpob4u" path="res://player_controller.cs" id="1_s4jgn"]
+[ext_resource type="Script" uid="uid://57kedusm2buj" path="res://layer_0_grid_map_world_gen.cs" id="2_rr31j"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rr31j"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rr31j"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_s4jgn"]
+
+[node name="Node3D" type="Node3D" unique_id=1669213060]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1097115132]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.600836, 0)
+script = ExtResource("1_s4jgn")
+Sensitivity = 0.003
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=939289229]
+shape = SubResource("CapsuleShape3D_rr31j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=1365217279]
+mesh = SubResource("CapsuleMesh_rr31j")
+
+[node name="Head3D" type="Node3D" parent="CharacterBody3D" unique_id=1043310470]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Head3D" unique_id=1753429686]
+
+[node name="GridMap" type="GridMap" parent="." unique_id=588873899]
+mesh_library = ExtResource("1_mh2b6")
+physics_material = SubResource("PhysicsMaterial_s4jgn")
+cell_size = Vector3(1, 1, 1)
+script = ExtResource("2_rr31j")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=302860162]
+transform = Transform3D(0.9890719, 0.059279133, -0.13499157, 0.08612866, 0.51080793, 0.8553696, 0.119660325, -0.85764873, 0.5001201, -0.58075714, 6.1517158, 2.3238013)
