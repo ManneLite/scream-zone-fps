@@ -62,6 +62,9 @@ Lust - Rose Quartz
 - Lava bubbling noise
 - Explosion sounds?
 - Impact sound when attacks hit
+- Have the monsters speak like in system shock
+- Some monsters just chase you wanting to die
+- Others are trying to kill you
 
 ### Code wise
 - Settings menu

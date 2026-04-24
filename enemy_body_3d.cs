@@ -19,7 +19,6 @@ public partial class enemy_body_3d : CharacterBody3D
 	{
 		Vector3 velocity = Velocity;
 
-
 		nav_agent.SetTargetPosition(player.GlobalPosition);
 		Vector3 nav_point_next = nav_agent.GetNextPathPosition();
 		velocity = (nav_point_next - GlobalPosition).Normalized() * Speed;

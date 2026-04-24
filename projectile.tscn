@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://bmfwyan0rwqs"]
+
+[ext_resource type="Script" uid="uid://dbkd87e5toa0n" path="res://projectile_basic.cs" id="1_a85iw"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_akgne"]
+radius = 0.1
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a85iw"]
+lifetime_randomness = 1.0
+radial_velocity_min = -5.1000223
+radial_velocity_max = 18.029978
+gravity = Vector3(0, 0, 500)
+scale_min = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qxf0c"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.69411767, 0, 0, 1)
+emission_energy_multiplier = 12.74
+
+[sub_resource type="BoxMesh" id="BoxMesh_dgwo2"]
+material = SubResource("StandardMaterial3D_qxf0c")
+size = Vector3(0.4, 0.4, 0.4)
+
+[node name="Projectile" type="Area3D" unique_id=1662159385]
+script = ExtResource("1_a85iw")
+Speed = 50.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=669932772]
+shape = SubResource("SphereShape3D_akgne")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=724153490]
+amount = 100
+lifetime = 0.09999999999999999
+process_material = SubResource("ParticleProcessMaterial_a85iw")
+draw_pass_1 = SubResource("BoxMesh_dgwo2")

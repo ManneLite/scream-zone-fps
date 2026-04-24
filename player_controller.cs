@@ -6,6 +6,7 @@ public partial class player_controller : CharacterBody3D
 	[Export] public float Base_Speed = 5.0f;
 	[Export] public float JumpVelocity = 4.5f;
 	[Export] public float Sensitivity = 0.1f;
+    [Export] public PackedScene Projectile;
 	Node3D Head;
 
 	public override void _Ready()
@@ -16,6 +17,7 @@ public partial class player_controller : CharacterBody3D
 
 	public override void _UnhandledInput(InputEvent @event)
 	{
+
 		if(@event is InputEventMouseMotion motion)
 		{
 			RotateY(-motion.Relative.X * Sensitivity);
@@ -26,7 +28,22 @@ public partial class player_controller : CharacterBody3D
 				Head.RotateX(head_rotation); // input here is relative
 			}
 		}
+
+		if(Input.IsActionJustPressed("Action_Attack"))
+		{
+            shoot();
+		}
 	}
+
+    public void shoot()
+    {
+        if(Projectile.Instantiate() is projectile_basic p)
+        {
+            Owner.AddChild(p);
+            p.GlobalPosition = GlobalPosition;
+            p.Direction = -Head.GlobalTransform.Basis.Z;
+        }
+    }
 
 	public override void _PhysicsProcess(double delta)
 	{
