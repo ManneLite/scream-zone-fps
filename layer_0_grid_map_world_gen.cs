@@ -18,7 +18,7 @@ public partial class layer_0_grid_map_world_gen : GridMap
 		noise.FractalLacunarity = 2.0f;
 		noise.FractalGain = 0.5f;
 
-        var start = Time.GetTicksUsec();
+		var start = Time.GetTicksUsec();
 		GD.Print("Beginning world generation");
 		for(int x = -WorldRadius; x < WorldRadius; ++x)
 		{
@@ -39,7 +39,7 @@ public partial class layer_0_grid_map_world_gen : GridMap
 				}
 			}
 		}
-        var end = Time.GetTicksUsec();
+		var end = Time.GetTicksUsec();
 		GD.Print("World generation complete, It took " + ((float)(end - start)/1000000f));
 	}
 
