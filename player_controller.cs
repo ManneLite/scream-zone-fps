@@ -41,7 +41,13 @@ public partial class player_controller : CharacterBody3D
 		}
 
 		// Handle Jump.
+		/*
 		if (Input.IsActionJustPressed("Move_Jump") && IsOnFloor())
+		{
+			velocity.Y = JumpVelocity;
+		}
+		*/
+		if (Input.IsActionJustPressed("Move_Jump"))
 		{
 			velocity.Y = JumpVelocity;
 		}

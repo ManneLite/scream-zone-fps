@@ -7,9 +7,9 @@ public partial class navigation_region_3d : NavigationRegion3D
 	public override void _Ready()
 	{
 		GD.Print("Baking Navigation Mesh");
-        var start = Time.GetTicksUsec();
-		BakeNavigationMesh();
-        var end = Time.GetTicksUsec();
+		var start = Time.GetTicksUsec();
+		BakeNavigationMesh(true);
+		var end = Time.GetTicksUsec();
 		GD.Print("Finished baking Navigation Mesh, it took " + ((float)(end - start) / 1000000f));
 	}
 
