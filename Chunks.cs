@@ -22,7 +22,7 @@ public partial class Chunks : Node3D
 	private Dictionary<Vector2I, chunk_mesh_3d> chunks = new();
 	private Dictionary<int, StandardMaterial3D> biomeShaders = new();
 	private RayCast3d Raycast;
-	
+
 	public Node3d BiomeShaders;
 
 	public override void _Ready()
@@ -40,8 +40,9 @@ public partial class Chunks : Node3D
 
 		Raycast = GetTree().GetFirstNodeInGroup("PlayerRaycast") as RayCast3d;
 		Raycast.PlayerChangedChunk += OnPlayerChangedChunk;
-		
+
 		BiomeShaders = GetNode<Node3d>("BiomeShaders");
+
 		biomeShaders[0] = BiomeShaders.Greed;
 		biomeShaders[1] = BiomeShaders.Pride;
 		biomeShaders[2] = BiomeShaders.Sloth;
@@ -56,6 +57,15 @@ public partial class Chunks : Node3D
 	private void OnPlayerChangedChunk(Vector2 local)
 	{
 		Load3x3Chunks((int)local.X, (int)local.Y);
+	}
+
+	private float GetBiomeValue(int x, int z)
+	{
+		float scale = 0.02f;
+		float n1 = Noise.GetNoise2D(x * scale, z * scale);
+		float n2 = Noise.GetNoise2D((x + 10000) * scale, (z - 10000) * scale);
+		float value = n1 * 0.5f + n2 * 0.5f;
+		return (value + 1f) * 0.5f;
 	}
 
 	public void Load3x3Chunks(int x, int z)
@@ -111,16 +121,16 @@ public partial class Chunks : Node3D
 			chunk.LocalPosX = x;
 			chunk.LocalPosZ = z;
 			chunk.Noise = Noise;
-			
-			float noiseValue = Noise.GetNoise2D(x, z);
 
-			float normalized = (noiseValue + 1f) * 0.5f;
+			float worldX = x * ChunkWidth;
+			float worldZ = z * ChunkHeight;
 
-			int step = (int)MathF.Floor(normalized * 7f);
+			float t = GetBiomeValue((int)worldX, (int)worldZ);
 
-			step = Mathf.Clamp(step, 0, 6);
+			int biomeIndex = (int)MathF.Floor(t * 7f);
+			biomeIndex = Mathf.Clamp(biomeIndex, 0, 6);
 
-			chunk.MaterialOverride = biomeShaders[step];
+			chunk.MaterialOverride = biomeShaders[biomeIndex];
 
 			AddChild(chunk);
 			chunks[new Vector2I(x, z)] = chunk;
