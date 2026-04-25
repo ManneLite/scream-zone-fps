@@ -6,6 +6,7 @@
 [ext_resource type="ArrayMesh" uid="uid://b0r6r8a7mt3ee" path="res://Group.obj" id="4_ky0du"]
 [ext_resource type="PackedScene" uid="uid://dqvgnremrjxyn" path="res://Chunk.tscn" id="6_kuye5"]
 [ext_resource type="PackedScene" uid="uid://bmfwyan0rwqs" path="res://projectile.tscn" id="7_xum1i"]
+[ext_resource type="Script" uid="uid://cyxbh8n51mt1" path="res://Node3d.cs" id="8_qsntj"]
 [ext_resource type="Script" uid="uid://daquo7mt5sg1s" path="res://Chunks.cs" id="8_utuek"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rr31j"]
@@ -40,6 +41,42 @@ cell_height = 0.5
 agent_height = 2.0
 agent_max_climb = 0.5
 agent_max_slope = 90.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_utuek"]
+albedo_color = Color(0.8073277, 0.5527501, 1.92523e-07, 1)
+metallic = 0.36
+metallic_specular = 0.0
+roughness = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qsntj"]
+albedo_color = Color(0.6698756, 0.0016730248, 0.8393171, 1)
+metallic = 0.33
+roughness = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ay10"]
+albedo_color = Color(6.545782e-06, 0.6233775, 0.8687526, 1)
+metallic = 0.3
+roughness = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2i1yp"]
+albedo_color = Color(0.9950941, 0, 0.047957584, 1)
+metallic = 0.3
+roughness = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mj3mb"]
+albedo_color = Color(0.8557094, 0.34329855, 0, 1)
+metallic = 0.3
+roughness = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qtg8i"]
+albedo_color = Color(0.29191437, 0.73334223, 1.347661e-06, 1)
+metallic = 0.3
+roughness = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p1urb"]
+albedo_color = Color(0.9999997, 0.08609884, 0.69303477, 1)
+metallic = 0.3
+roughness = 0.1
 
 [node name="Node3D" type="Node3D" unique_id=1669213060]
 
@@ -97,8 +134,18 @@ script = ExtResource("3_oi352")
 [node name="Chunks" type="Node3D" parent="NavigationRegion3D" unique_id=1996889961]
 script = ExtResource("8_utuek")
 ChunkInstance = ExtResource("6_kuye5")
-ChunkWidth = 32
-ChunkHeight = 32
+ChunkWidth = 40
+ChunkHeight = 40
 ChunkHeightMultiplier = 50.0
 NoiseFrequency = 0.013
 NoiseOctaves = 15
+
+[node name="BiomeShaders" type="Node3D" parent="NavigationRegion3D/Chunks" unique_id=757638306]
+script = ExtResource("8_qsntj")
+Greed = SubResource("StandardMaterial3D_utuek")
+Pride = SubResource("StandardMaterial3D_qsntj")
+Sloth = SubResource("StandardMaterial3D_1ay10")
+Wrath = SubResource("StandardMaterial3D_2i1yp")
+Gluttony = SubResource("StandardMaterial3D_mj3mb")
+Envy = SubResource("StandardMaterial3D_qtg8i")
+Lust = SubResource("StandardMaterial3D_p1urb")
