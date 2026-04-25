@@ -6,8 +6,11 @@ public partial class enemy_body_3d : CharacterBody3D, IDamagable
 	[Export] public float Speed = 5.0f;
 	[Export] public float RotationSpeed = 5.0f;
 	[Export] public CharacterBody3D Target;
-	[Export] public int hp = 1;
+	[Export] public int HP = 1;
     [Export] public bool SmoothRotation = false;
+    public Sprite3D eye_open;
+    public Sprite3D eye_half;
+    public Sprite3D eye_closed;
 
     Timer attack_timer;
     bool attack_has_target = false;
@@ -23,6 +26,10 @@ public partial class enemy_body_3d : CharacterBody3D, IDamagable
 	{
 		nav_agent = GetNode<NavigationAgent3D>("NavigationAgent3D");
         attack_timer = GetNode<Timer>("Timer");
+        Node3D eyes = GetNode<Node3D>("Eyes");
+        eye_open = eyes.GetNode<Sprite3D>("Sprite3D_Eye_Open");
+        eye_half = eyes.GetNode<Sprite3D>("Sprite3D_Eye_Half");
+        eye_closed = eyes.GetNode<Sprite3D>("Sprite3D_Eye_Closed");
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -81,9 +88,20 @@ public partial class enemy_body_3d : CharacterBody3D, IDamagable
 
 	public void take_damage()
 	{
-        --hp;
-        GD.Print("Took damage, hp left: " + hp);
-		if(hp <= 0 && active)
+        --HP;
+        GD.Print("Took damage, HP left: " + HP);
+        if(HP == 2)
+        {
+            eye_open.Visible = false;
+            eye_half.Visible = true;
+        }
+        else if(HP == 1)
+        {
+            eye_half.Visible = false;
+            eye_closed.Visible = true;
+        }
+        
+		if(HP <= 0 && active)
 		{
 			active = false;
 			
@@ -128,4 +146,5 @@ public partial class enemy_body_3d : CharacterBody3D, IDamagable
             attack_timer.Start();
         }
     }
+
 }

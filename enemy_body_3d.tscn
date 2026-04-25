@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://v03bhgpilacx"]
 
 [ext_resource type="Texture2D" uid="uid://weygtol8fhk7" path="res://assets_2d/eyee.png" id="2_oxlo2"]
+[ext_resource type="Texture2D" uid="uid://c0bod6rruo5ob" path="res://assets_2d/eye2.png" id="3_6wjcn"]
+[ext_resource type="Texture2D" uid="uid://l3e1ol6r1f4x" path="res://assets_2d/eye3.png" id="4_2o74j"]
 [ext_resource type="Script" uid="uid://b8cia6aw2vt4m" path="res://enemy_body_3d.cs" id="5_lr5mn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kuye5"]
@@ -21,9 +23,19 @@ mesh = SubResource("CapsuleMesh_xum1i")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1822202308]
 
-[node name="Sprite3D" type="Sprite3D" parent="." unique_id=308649090]
-transform = Transform3D(-4.371139e-09, -0.1, 0, 0.1, -4.371139e-09, 0, 0, 0, 0.1, 0, 0.5001121, -0.5)
+[node name="Eyes" type="Node3D" parent="." unique_id=1170008391]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.5, -0.5)
+
+[node name="Sprite3D_Eye_Open" type="Sprite3D" parent="Eyes" unique_id=308649090]
 texture = ExtResource("2_oxlo2")
+
+[node name="Sprite3D_Eye_Half" type="Sprite3D" parent="Eyes" unique_id=802454825]
+visible = false
+texture = ExtResource("3_6wjcn")
+
+[node name="Sprite3D_Eye_Closed" type="Sprite3D" parent="Eyes" unique_id=1400859957]
+visible = false
+texture = ExtResource("4_2o74j")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1741640657]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3476327, -0.574822)
