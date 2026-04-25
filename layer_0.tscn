@@ -90,5 +90,5 @@ script = ExtResource("3_oi352")
 [node name="Chunks" type="Node3D" parent="NavigationRegion3D" unique_id=1996889961]
 script = ExtResource("8_utuek")
 ChunkInstance = ExtResource("6_kuye5")
-ChunkWidth = 25
-ChunkHeight = 25
+ChunkWidth = 64
+ChunkHeight = 64

@@ -35,19 +35,23 @@ public partial class Chunks : Node3D
 		Noise.Seed = Seed;
 		
 		loadChunk(0,0);
+		loadChunk(1,0);
 		loadChunk(1,1);
+		loadChunk(0,1);
 	}
 	
 	public void loadChunk(int x,int y)
 	{
+        int offset_x = (x * ChunkWidth)-(x);
+        int offset_z = (y * ChunkHeight)-(y);
 		if(ChunkInstance.Instantiate() is chunk_mesh_3d chunk)
 		{
 			chunk.Width = ChunkWidth;
 			chunk.Height = ChunkHeight;
 			chunk.HeightMultiplier = ChunkHeightMultiplier;
 			chunk.CellSize = ChunkCellSize;
-			chunk.OffsetX = x;
-			chunk.OffsetY = y;
+			chunk.OffsetX = offset_x;
+			chunk.OffsetZ = offset_z;
 			chunk.Noise = Noise;
 			
 			AddChild(chunk);
