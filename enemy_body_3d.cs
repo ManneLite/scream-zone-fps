@@ -21,10 +21,13 @@ public partial class enemy_body_3d : CharacterBody3D, IDamagable
 
         if(Target is not null)
         {
-		    nav_agent.SetTargetPosition(Target.GlobalPosition);
+            Vector3 target_pos = Target.GlobalPosition;
+		    nav_agent.SetTargetPosition(target_pos);
 		    Vector3 nav_point_next = nav_agent.GetNextPathPosition();
-		    velocity = (nav_point_next - GlobalPosition).Normalized() * Speed;
 
+            LookAt(nav_point_next with {Y = GlobalPosition.Y}, Vector3.Up);
+
+            velocity = (nav_point_next - GlobalPosition).Normalized() * Speed;
 		    Velocity = velocity;
 		    MoveAndSlide();
         }

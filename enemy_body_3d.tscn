@@ -1,10 +1,20 @@
 [gd_scene format=3 uid="uid://v03bhgpilacx"]
 
+[ext_resource type="Texture2D" uid="uid://cvt3otdgag1hf" path="res://assets_2d/eyee.png" id="2_oxlo2"]
 [ext_resource type="Script" uid="uid://b8cia6aw2vt4m" path="res://enemy_body_3d.cs" id="5_lr5mn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kuye5"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xum1i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5750q"]
+transparency = 1
+albedo_texture = ExtResource("2_oxlo2")
+
+[sub_resource type="QuadMesh" id="QuadMesh_sobmb"]
+material = SubResource("StandardMaterial3D_5750q")
+flip_faces = true
+size = Vector2(0.75, 0.75)
 
 [node name="EnemyBody3D" type="CharacterBody3D" unique_id=750495923]
 collision_layer = 5
@@ -17,3 +27,7 @@ shape = SubResource("CapsuleShape3D_kuye5")
 mesh = SubResource("CapsuleMesh_xum1i")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1822202308]
+
+[node name="Eye" type="MeshInstance3D" parent="." unique_id=1476772108]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0.5, -0.5)
+mesh = SubResource("QuadMesh_sobmb")

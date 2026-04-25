@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dyje8x1tkjuql"]
 
-[ext_resource type="Texture2D" uid="uid://dkeyjwsxuwsir" path="res://fleshy_texture_32.png" id="1_qcyme"]
+[ext_resource type="Texture2D" uid="uid://dkeyjwsxuwsir" path="res://assets_2d/fleshy_texture_32.png" id="1_qcyme"]
 [ext_resource type="Material" uid="uid://r3tngi6i75gx" path="res://fleshy_blob.material" id="1_xkwht"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_bhf8t"]

@@ -1,18 +1,11 @@
 [gd_scene format=3 uid="uid://bj1j62vojkfln"]
 
-[ext_resource type="Script" uid="uid://j8yvoajpob4u" path="res://player_controller.cs" id="1_s4jgn"]
+[ext_resource type="PackedScene" uid="uid://b0o3si3dayji3" path="res://player_body_3d.tscn" id="1_kuye5"]
 [ext_resource type="PackedScene" uid="uid://v03bhgpilacx" path="res://enemy_body_3d.tscn" id="2_kuye5"]
 [ext_resource type="Script" uid="uid://brlfd7g8nlcb4" path="res://navigation_region_3d.cs" id="3_oi352"]
 [ext_resource type="ArrayMesh" uid="uid://b0r6r8a7mt3ee" path="res://Group.obj" id="4_ky0du"]
 [ext_resource type="Script" uid="uid://6p7rf46m3wby" path="res://chunk_mesh_3d.cs" id="4_oi352"]
 [ext_resource type="Material" uid="uid://bib4ou0j48btl" path="res://fleshy_ground.material" id="6_xum1i"]
-[ext_resource type="PackedScene" uid="uid://bmfwyan0rwqs" path="res://projectile.tscn" id="7_xum1i"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rr31j"]
-height = 3.0
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_rr31j"]
-height = 3.0
 
 [sub_resource type="Sky" id="Sky_ky0du"]
 
@@ -44,36 +37,7 @@ agent_max_slope = 90.0
 
 [node name="Node3D" type="Node3D" unique_id=1669213060]
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1097115132]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.836693, 46.01274, 23.823765)
-script = ExtResource("1_s4jgn")
-Base_Speed = 7.0
-JumpVelocity = 9.0
-Sensitivity = 0.003
-Projectile = ExtResource("7_xum1i")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=939289229]
-shape = SubResource("CapsuleShape3D_rr31j")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=1365217279]
-mesh = SubResource("CapsuleMesh_rr31j")
-
-[node name="Head3D" type="Node3D" parent="CharacterBody3D" unique_id=1043310470]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Head3D" unique_id=1753429686]
-
-[node name="SpotLight3D" type="SpotLight3D" parent="CharacterBody3D/Head3D/Camera3D" unique_id=747409916]
-visible = false
-light_energy = 4.0
-light_volumetric_fog_energy = 2.0
-distance_fade_enabled = true
-distance_fade_length = 40.0
-spot_range = 10.0
-spot_angle = 35.91
-
-[node name="FiringPosition" type="Node3D" parent="CharacterBody3D" unique_id=1538641034]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6797142, -0.76109505)
+[node name="PlayerBody3D" parent="." unique_id=2069006518 instance=ExtResource("1_kuye5")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=302860162]
 transform = Transform3D(0.90968513, -0.39042845, 0.1415575, 0.17397693, 0.6677704, 0.7237506, -0.37710065, -0.6337575, 0.67538637, -0.58075714, 6.1517158, 2.3238013)
@@ -98,7 +62,7 @@ script = ExtResource("4_oi352")
 HeightMultiplier = 50.0
 NoiseOctaves = 5
 Enemy_Default = ExtResource("2_kuye5")
-Player = NodePath("../../CharacterBody3D")
+Player = NodePath("../../PlayerBody3D")
 
 [node name="Timer" type="Timer" parent="NavigationRegion3D/MeshInstance3D" unique_id=1879009131]
 autostart = true
