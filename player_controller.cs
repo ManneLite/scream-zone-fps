@@ -1,12 +1,12 @@
 using Godot;
 using System;
 
-public partial class player_controller : CharacterBody3D
+public partial class player_controller : CharacterBody3D, IDamagable
 {
 	[Export] public float Base_Speed = 5.0f;
 	[Export] public float JumpVelocity = 4.5f;
 	[Export] public float Sensitivity = 0.1f;
-    [Export] public PackedScene Projectile;
+	[Export] public PackedScene Projectile;
 	Node3D Head;
 
 	public override void _Ready()
@@ -31,19 +31,20 @@ public partial class player_controller : CharacterBody3D
 
 		if(Input.IsActionJustPressed("Action_Attack"))
 		{
-            shoot();
+			shoot();
 		}
 	}
 
-    public void shoot()
-    {
-        if(Projectile.Instantiate() is projectile_basic p)
-        {
-            Owner.AddChild(p);
-            p.GlobalPosition = GlobalPosition;
-            p.Direction = -Head.GlobalTransform.Basis.Z;
-        }
-    }
+	public void shoot()
+	{
+		if(Projectile.Instantiate() is projectile_basic p)
+		{
+			Owner.AddChild(p);
+			p.GlobalPosition = GlobalPosition;
+			p.Direction = -Head.GlobalTransform.Basis.Z;
+			p.SetCollisionMaskValue(3, true);
+		}
+	}
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -90,5 +91,10 @@ public partial class player_controller : CharacterBody3D
 
 		Velocity = velocity;
 		MoveAndSlide();
+	}
+
+	public void take_damage()
+	{
+		GD.Print("Player took damage");
 	}
 }

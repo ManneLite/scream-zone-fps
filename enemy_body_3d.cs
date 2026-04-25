@@ -1,10 +1,12 @@
 using Godot;
 using System;
 
-public partial class enemy_body_3d : CharacterBody3D
+public partial class enemy_body_3d : CharacterBody3D, IDamagable
 {
 	[Export] public float Speed = 5.0f;
 	[Export] public NodePath PlayerPath;
+	[Export] public int hp = 1;
+	bool active = true;
 
 	CharacterBody3D player;
 	NavigationAgent3D nav_agent;
@@ -25,5 +27,17 @@ public partial class enemy_body_3d : CharacterBody3D
 
 		Velocity = velocity;
 		MoveAndSlide();
+	}
+
+	public void take_damage()
+	{
+		if(--hp <= 0 && active)
+		{
+			active = false;
+			
+			// play death animation here
+
+			QueueFree();
+		}
 	}
 }

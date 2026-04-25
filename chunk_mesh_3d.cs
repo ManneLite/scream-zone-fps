@@ -96,6 +96,7 @@ public partial class chunk_mesh_3d : MeshInstance3D
 
 		var body = new StaticBody3D();
 		var collider = new CollisionShape3D();
+		body.SetCollisionLayerValue(4, true);
 
 		collider.Shape = Mesh.CreateTrimeshShape();
 
