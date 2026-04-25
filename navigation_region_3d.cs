@@ -11,6 +11,7 @@ public partial class navigation_region_3d : NavigationRegion3D
 		BakeNavigationMesh(true);
 		var end = Time.GetTicksUsec();
 		GD.Print("Finished baking Navigation Mesh, it took " + ((float)(end - start) / 1000000f));
+		GD.Print("Seed:", GetNode<Chunks>("Chunks").Seed);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

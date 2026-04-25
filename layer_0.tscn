@@ -1,12 +1,11 @@
 [gd_scene format=3 uid="uid://bj1j62vojkfln"]
 
 [ext_resource type="Script" uid="uid://j8yvoajpob4u" path="res://player_controller.cs" id="1_s4jgn"]
-[ext_resource type="PackedScene" uid="uid://v03bhgpilacx" path="res://enemy_body_3d.tscn" id="2_kuye5"]
 [ext_resource type="Script" uid="uid://brlfd7g8nlcb4" path="res://navigation_region_3d.cs" id="3_oi352"]
 [ext_resource type="ArrayMesh" uid="uid://b0r6r8a7mt3ee" path="res://Group.obj" id="4_ky0du"]
-[ext_resource type="Script" uid="uid://6p7rf46m3wby" path="res://chunk_mesh_3d.cs" id="4_oi352"]
-[ext_resource type="Material" uid="uid://bib4ou0j48btl" path="res://fleshy_ground.material" id="6_xum1i"]
+[ext_resource type="PackedScene" uid="uid://dqvgnremrjxyn" path="res://Chunk.tscn" id="6_kuye5"]
 [ext_resource type="PackedScene" uid="uid://bmfwyan0rwqs" path="res://projectile.tscn" id="7_xum1i"]
+[ext_resource type="Script" uid="uid://daquo7mt5sg1s" path="res://Chunks.cs" id="8_utuek"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rr31j"]
 height = 3.0
@@ -27,7 +26,6 @@ glow_levels/6 = 0.09
 glow_levels/7 = 0.09
 glow_intensity = 0.55
 glow_strength = 1.22
-volumetric_fog_enabled = true
 volumetric_fog_density = 0.2871
 volumetric_fog_albedo = Color(0.12225223, 0.12225223, 0.12225223, 1)
 
@@ -39,8 +37,6 @@ cell_height = 0.5
 agent_height = 2.0
 agent_max_climb = 0.5
 agent_max_slope = 90.0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_kuye5"]
 
 [node name="Node3D" type="Node3D" unique_id=1669213060]
 
@@ -91,16 +87,8 @@ camera_attributes = SubResource("CameraAttributesPhysical_oi352")
 navigation_mesh = SubResource("NavigationMesh_ky0du")
 script = ExtResource("3_oi352")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D" unique_id=247033225 node_paths=PackedStringArray("Player")]
-material_override = ExtResource("6_xum1i")
-mesh = SubResource("ArrayMesh_kuye5")
-script = ExtResource("4_oi352")
-HeightMultiplier = 50.0
-NoiseOctaves = 5
-Enemy_Default = ExtResource("2_kuye5")
-Player = NodePath("../../CharacterBody3D")
-
-[node name="Timer" type="Timer" parent="NavigationRegion3D/MeshInstance3D" unique_id=1879009131]
-autostart = true
-
-[connection signal="timeout" from="NavigationRegion3D/MeshInstance3D/Timer" to="NavigationRegion3D/MeshInstance3D" method="_on_spawn_enemy_timer"]
+[node name="Chunks" type="Node3D" parent="NavigationRegion3D" unique_id=1996889961]
+script = ExtResource("8_utuek")
+ChunkInstance = ExtResource("6_kuye5")
+ChunkWidth = 25
+ChunkHeight = 25
