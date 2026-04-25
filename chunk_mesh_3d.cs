@@ -11,6 +11,9 @@ public partial class chunk_mesh_3d : MeshInstance3D
 	public int OffsetX;
 	public int OffsetZ;
 	
+	public int LocalPosX;
+	public int LocalPosZ;
+	
 	public FastNoiseLite Noise;
 	
 	public override void _Ready()
