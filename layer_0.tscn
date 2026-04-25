@@ -1,11 +1,7 @@
 [gd_scene format=3 uid="uid://bj1j62vojkfln"]
 
-[ext_resource type="PackedScene" uid="uid://b0o3si3dayji3" path="res://player_body_3d.tscn" id="1_kuye5"]
-[ext_resource type="PackedScene" uid="uid://v03bhgpilacx" path="res://enemy_body_3d.tscn" id="2_kuye5"]
-[ext_resource type="Script" uid="uid://brlfd7g8nlcb4" path="res://navigation_region_3d.cs" id="3_oi352"]
+[ext_resource type="PackedScene" path="res://player_body_3d.tscn" id="1_kuye5"]
 [ext_resource type="ArrayMesh" uid="uid://b0r6r8a7mt3ee" path="res://Group.obj" id="4_ky0du"]
-[ext_resource type="Script" uid="uid://6p7rf46m3wby" path="res://chunk_mesh_3d.cs" id="4_oi352"]
-[ext_resource type="Material" uid="uid://bib4ou0j48btl" path="res://fleshy_ground.material" id="6_xum1i"]
 
 [sub_resource type="Sky" id="Sky_ky0du"]
 
@@ -26,15 +22,6 @@ volumetric_fog_albedo = Color(0.12225223, 0.12225223, 0.12225223, 1)
 
 [sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_oi352"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_ky0du"]
-cell_size = 0.75
-cell_height = 0.5
-agent_height = 2.0
-agent_max_climb = 0.5
-agent_max_slope = 90.0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_kuye5"]
-
 [node name="Node3D" type="Node3D" unique_id=1669213060]
 
 [node name="PlayerBody3D" parent="." unique_id=2069006518 instance=ExtResource("1_kuye5")]
@@ -50,21 +37,3 @@ mesh = ExtResource("4_ky0du")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=717812520]
 environment = SubResource("Environment_ky0du")
 camera_attributes = SubResource("CameraAttributesPhysical_oi352")
-
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=954722719]
-navigation_mesh = SubResource("NavigationMesh_ky0du")
-script = ExtResource("3_oi352")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D" unique_id=247033225 node_paths=PackedStringArray("Player")]
-material_override = ExtResource("6_xum1i")
-mesh = SubResource("ArrayMesh_kuye5")
-script = ExtResource("4_oi352")
-HeightMultiplier = 50.0
-NoiseOctaves = 5
-Enemy_Default = ExtResource("2_kuye5")
-Player = NodePath("../../PlayerBody3D")
-
-[node name="Timer" type="Timer" parent="NavigationRegion3D/MeshInstance3D" unique_id=1879009131]
-autostart = true
-
-[connection signal="timeout" from="NavigationRegion3D/MeshInstance3D/Timer" to="NavigationRegion3D/MeshInstance3D" method="_on_spawn_enemy_timer"]
