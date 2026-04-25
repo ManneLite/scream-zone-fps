@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public partial class chunk_mesh_3d : MeshInstance3D
 {
@@ -7,67 +8,76 @@ public partial class chunk_mesh_3d : MeshInstance3D
 	public int Height;
 	public float HeightMultiplier;
 	public float CellSize;
-	
+
 	public int OffsetX;
 	public int OffsetZ;
-	
+
 	public int LocalPosX;
 	public int LocalPosZ;
-	
+
 	public FastNoiseLite Noise;
-	
+
 	public override void _Ready()
 	{
-		Generate();
+		GenerateAsync();
 	}
 
-	public void Generate()
+	private async Task GenerateAsync()
 	{
+		var data = await Task.Run(() =>
+		{
+			Vector3[] vertices = new Vector3[Width * Height];
+			Vector2[] uvs = new Vector2[Width * Height];
+			int[] indices = new int[(Width - 1) * (Height - 1) * 6];
 
+			for (int z = 0; z < Height; z++)
+			{
+				for (int x = 0; x < Width; x++)
+				{
+					float n = Noise.GetNoise2D(x + OffsetX, z + OffsetZ);
+					n = (n + 1f) * 0.5f;
+					float y = n * HeightMultiplier;
+
+					int i = x + z * Width;
+
+					vertices[i] = new Vector3((x * CellSize) + OffsetX, y, (z * CellSize) + OffsetZ);
+					uvs[i] = new Vector2((float)x / (Width - 1), (float)z / (Height - 1));
+				}
+			}
+
+			int index = 0;
+
+			for (int z = 0; z < Height - 1; z++)
+			{
+				for (int x = 0; x < Width - 1; x++)
+				{
+					int i = x + z * Width;
+
+					int a = i;
+					int b = i + 1;
+					int c = i + Width;
+					int d = i + Width + 1;
+
+					indices[index++] = b;
+					indices[index++] = c;
+					indices[index++] = a;
+
+					indices[index++] = b;
+					indices[index++] = d;
+					indices[index++] = c;
+				}
+			}
+
+			return (vertices, uvs, indices);
+		});
+
+		CallDeferred(nameof(ApplyMesh), data.vertices, data.uvs, data.indices);
+	}
+
+	private void ApplyMesh(Vector3[] vertices, Vector2[] uvs, int[] indices)
+	{
 		var arrays = new Godot.Collections.Array();
 		arrays.Resize((int)Mesh.ArrayType.Max);
-
-		Vector3[] vertices = new Vector3[Width * Height];
-		Vector2[] uvs = new Vector2[Width * Height];
-		int[] indices = new int[(Width - 1) * (Height - 1) * 6];
-
-		for (int z = 0; z < Height; z++)
-		{
-			for (int x = 0; x < Width; x++)
-			{
-				float n = Noise.GetNoise2D(x + OffsetX, z + OffsetZ);
-				n = (n + 1f) * 0.5f;
-				float y = n * HeightMultiplier;
-
-				int i = x + z * Width;
-
-				vertices[i] = new Vector3((x * CellSize)+OffsetX, y, (z * CellSize)+OffsetZ);
-				uvs[i] = new Vector2((float)x / (Width - 1), (float)z / (Height - 1));
-			}
-		}
-
-		int index = 0;
-
-		for (int z = 0; z < Height - 1; z++)
-		{
-			for (int x = 0; x < Width - 1; x++)
-			{
-				int i = x + z * Width;
-
-				int a = i;
-				int b = i + 1;
-				int c = i + Width;
-				int d = i + Width + 1;
-
-				indices[index++] = b;
-				indices[index++] = c;
-				indices[index++] = a;
-
-				indices[index++] = b;
-				indices[index++] = d;
-				indices[index++] = c;
-			}
-		}
 
 		arrays[(int)Mesh.ArrayType.Vertex] = vertices;
 		arrays[(int)Mesh.ArrayType.TexUV] = uvs;
@@ -78,20 +88,18 @@ public partial class chunk_mesh_3d : MeshInstance3D
 
 		Mesh = mesh;
 
-		GenerateCollision();
+		CallDeferred(nameof(GenerateCollision));
 	}
 
 	private void GenerateCollision()
 	{
-		if (Mesh == null) {
-			GD.Print("No Mesh");
+		if (Mesh == null)
 			return;
-		}
 
 		var body = new StaticBody3D();
-		var collider = new CollisionShape3D();
 		body.SetCollisionLayerValue(4, true);
 
+		var collider = new CollisionShape3D();
 		collider.Shape = Mesh.CreateTrimeshShape();
 
 		body.AddChild(collider);
