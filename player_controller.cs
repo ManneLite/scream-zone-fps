@@ -56,7 +56,11 @@ public partial class player_controller : CharacterBody3D
 		{
 			speed *= 1.5f;
 		}
-
+		if (Input.IsActionPressed("menu_button"))
+		{
+			PackedScene gameScene = GD.Load<PackedScene>("res://Menu_UI.tscn");
+			GetTree().ChangeSceneToPacked(gameScene);
+		}
 		// Get the input direction and handle the movement/deceleration.
 		Vector2 inputDir = Input.GetVector("Move_Left", "Move_Right", "Move_Forward", "Move_Backward");
 		Vector3 direction = (Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
