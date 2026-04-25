@@ -42,8 +42,8 @@ public partial class Chunks : Node3D
 	
 	public void loadChunk(int x,int y)
 	{
-        int offset_x = (x * ChunkWidth)-(x);
-        int offset_z = (y * ChunkHeight)-(y);
+		int offset_x = (x * ChunkWidth)-(x);
+		int offset_z = (y * ChunkHeight)-(y);
 		if(ChunkInstance.Instantiate() is chunk_mesh_3d chunk)
 		{
 			chunk.Width = ChunkWidth;

@@ -24,14 +24,15 @@ glow_levels/4 = 0.36
 glow_levels/5 = 0.17
 glow_levels/6 = 0.09
 glow_levels/7 = 0.09
-glow_intensity = 0.55
-glow_strength = 1.22
-volumetric_fog_density = 0.2871
+glow_intensity = 1.44
+glow_strength = 0.78
+volumetric_fog_density = 0.159
 volumetric_fog_albedo = Color(0.12225223, 0.12225223, 0.12225223, 1)
 
 [sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_oi352"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ky0du"]
+geometry_parsed_geometry_type = 1
 cell_size = 0.75
 cell_height = 0.5
 agent_height = 2.0
@@ -92,3 +93,5 @@ script = ExtResource("8_utuek")
 ChunkInstance = ExtResource("6_kuye5")
 ChunkWidth = 64
 ChunkHeight = 64
+ChunkHeightMultiplier = 30.0
+NoiseOctaves = 6
