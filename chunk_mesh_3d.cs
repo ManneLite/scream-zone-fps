@@ -3,32 +3,19 @@ using System;
 
 public partial class chunk_mesh_3d : MeshInstance3D
 {
-	[Export] public int Width = 256;
-	[Export] public int Height = 256;
-	[Export] public float HeightMultiplier = 10f;
-	[Export] public float CellSize = 1f;
-
-	[Export] public float NoiseFrequency = 0.01f;
-	[Export] public int NoiseOctaves = 4;
-	[Export] public float NoiseGain = 0.5f;
-	[Export] public float NoiseLacunarity = 2.0f;
-
-	[Export] public bool GenerateOnReady = true;
-
-	[Export] public PackedScene Enemy_Default;
-    [Export] public CharacterBody3D Player;
-    public FastNoiseLite Noise;
-
+	public int Width;
+	public int Height;
+	public float HeightMultiplier;
+	public float CellSize;
+	
+	public int OffsetX;
+	public int OffsetZ;
+	
+	public FastNoiseLite Noise;
+	
 	public override void _Ready()
 	{
-		Noise = new FastNoiseLite();
-		Noise.NoiseType = FastNoiseLite.NoiseTypeEnum.Perlin;
-		Noise.Frequency = NoiseFrequency;
-		Noise.FractalOctaves = NoiseOctaves;
-		Noise.FractalGain = NoiseGain;
-		Noise.FractalLacunarity = NoiseLacunarity;
-		if (GenerateOnReady)
-			Generate();
+		Generate();
 	}
 
 	public void Generate()
@@ -45,13 +32,13 @@ public partial class chunk_mesh_3d : MeshInstance3D
 		{
 			for (int x = 0; x < Width; x++)
 			{
-				float n = Noise.GetNoise2D(x, z);
+				float n = Noise.GetNoise2D(x + OffsetX, z + OffsetZ);
 				n = (n + 1f) * 0.5f;
 				float y = n * HeightMultiplier;
 
 				int i = x + z * Width;
 
-				vertices[i] = new Vector3(x * CellSize, y, z * CellSize);
+				vertices[i] = new Vector3((x * CellSize)+OffsetX, y, (z * CellSize)+OffsetZ);
 				uvs[i] = new Vector2((float)x / (Width - 1), (float)z / (Height - 1));
 			}
 		}
@@ -107,21 +94,4 @@ public partial class chunk_mesh_3d : MeshInstance3D
 		body.AddChild(collider);
 		AddChild(body);
 	}
-
-    public void _on_spawn_enemy_timer()
-    {
-        if(Enemy_Default.Instantiate() is enemy_body_3d enemy)
-        {
-            float enemy_pos_x = (float)GD.RandRange(10.0f, Width-10.0f);
-            float enemy_pos_z = (float)GD.RandRange(10.0f, Height-10.0f);
-			float n = Noise.GetNoise2D(enemy_pos_x, enemy_pos_z);
-			n = (n + 1f) * 0.5f;
-			float enemy_pos_y = (n * HeightMultiplier) + 2;
-
-            enemy.Target = Player;
-            GetTree().CurrentScene.AddChild(enemy);
-            enemy.GlobalPosition = new Vector3(enemy_pos_x, enemy_pos_y, enemy_pos_z);
-            GD.Print("Enemy spawned at: " + enemy.GlobalPosition);
-        }
-    }
 }
