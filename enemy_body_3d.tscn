@@ -1,20 +1,13 @@
 [gd_scene format=3 uid="uid://v03bhgpilacx"]
 
-[ext_resource type="Texture2D" uid="uid://cvt3otdgag1hf" path="res://assets_2d/eyee.png" id="2_oxlo2"]
+[ext_resource type="Texture2D" uid="uid://weygtol8fhk7" path="res://assets_2d/eyee.png" id="2_oxlo2"]
 [ext_resource type="Script" uid="uid://b8cia6aw2vt4m" path="res://enemy_body_3d.cs" id="5_lr5mn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kuye5"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xum1i"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5750q"]
-transparency = 1
-albedo_texture = ExtResource("2_oxlo2")
-
-[sub_resource type="QuadMesh" id="QuadMesh_sobmb"]
-material = SubResource("StandardMaterial3D_5750q")
-flip_faces = true
-size = Vector2(0.75, 0.75)
+[sub_resource type="BoxShape3D" id="BoxShape3D_oxlo2"]
 
 [node name="EnemyBody3D" type="CharacterBody3D" unique_id=750495923]
 collision_layer = 5
@@ -28,6 +21,20 @@ mesh = SubResource("CapsuleMesh_xum1i")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1822202308]
 
-[node name="Eye" type="MeshInstance3D" parent="." unique_id=1476772108]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0.5, -0.5)
-mesh = SubResource("QuadMesh_sobmb")
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=308649090]
+transform = Transform3D(-4.371139e-09, -0.1, 0, 0.1, -4.371139e-09, 0, 0, 0, 0.1, 0, 0.5001121, -0.5)
+texture = ExtResource("2_oxlo2")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1741640657]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3476327, -0.574822)
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=441236964]
+shape = SubResource("BoxShape3D_oxlo2")
+
+[node name="Timer" type="Timer" parent="." unique_id=1140199754]
+autostart = true
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_body_entered_damage_box"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_body_exited_damage_box"]
+[connection signal="timeout" from="Timer" to="." method="_on_attack_timer_timeout"]

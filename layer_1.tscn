@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://c4thxqtm2ay4s"]
+
+[ext_resource type="PackedScene" uid="uid://b0o3si3dayji3" path="res://player_body_3d.tscn" id="1_muqm3"]
+[ext_resource type="PackedScene" uid="uid://v03bhgpilacx" path="res://enemy_body_3d.tscn" id="2_pmddd"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_amlsm"]
+vertices = PackedVector3Array(-49.5, 1, -49.5, -49.5, 1, 49.5, 49.5, 1, 49.5, 49.5, 1, -49.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="BoxMesh" id="BoxMesh_gqj7s"]
+size = Vector3(100, 1, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_muqm3"]
+size = Vector3(100, 1, 100)
+
+[node name="Node3D" type="Node3D" unique_id=1566549864]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=239425926]
+navigation_mesh = SubResource("NavigationMesh_amlsm")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="NavigationRegion3D" unique_id=97005883]
+mesh = SubResource("BoxMesh_gqj7s")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/CSGMesh3D" unique_id=1851449781]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/CSGMesh3D/StaticBody3D" unique_id=1257412372]
+shape = SubResource("BoxShape3D_muqm3")
+
+[node name="PlayerBody3D" parent="." unique_id=2069006518 instance=ExtResource("1_muqm3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.9176397, 0)
+
+[node name="EnemyBody3D" parent="." unique_id=750495923 node_paths=PackedStringArray("Target") instance=ExtResource("2_pmddd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2948036, -21.049356)
+Target = NodePath("../PlayerBody3D")
+hp = 3

@@ -10,6 +10,7 @@ height = 3.0
 height = 3.0
 
 [node name="PlayerBody3D" type="CharacterBody3D" unique_id=2069006518]
+collision_layer = 3
 script = ExtResource("1_xv8y8")
 Base_Speed = 7.0
 JumpVelocity = 9.0
