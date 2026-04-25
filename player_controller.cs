@@ -104,6 +104,8 @@ public partial class player_controller : CharacterBody3D, IDamagable
             if(!alive)
             {
                 GD.Print("You Died");
+		        Input.MouseMode = Godot.Input.MouseModeEnum.Visible;
+	            GetTree().ChangeSceneToFile("res://Menu_UI.tscn");
             }
         }
 	}
