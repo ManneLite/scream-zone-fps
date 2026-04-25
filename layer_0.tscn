@@ -87,17 +87,20 @@ mesh = ExtResource("4_ky0du")
 environment = SubResource("Environment_ky0du")
 camera_attributes = SubResource("CameraAttributesPhysical_oi352")
 
-[node name="EnemyBody3D" parent="." unique_id=750495923 instance=ExtResource("2_kuye5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 41.602783, 5.287656)
-PlayerPath = NodePath("../CharacterBody3D")
-
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=954722719]
 navigation_mesh = SubResource("NavigationMesh_ky0du")
 script = ExtResource("3_oi352")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D" unique_id=247033225]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D" unique_id=247033225 node_paths=PackedStringArray("Player")]
 material_override = ExtResource("6_xum1i")
 mesh = SubResource("ArrayMesh_kuye5")
 script = ExtResource("4_oi352")
 HeightMultiplier = 50.0
 NoiseOctaves = 5
+Enemy_Default = ExtResource("2_kuye5")
+Player = NodePath("../../CharacterBody3D")
+
+[node name="Timer" type="Timer" parent="NavigationRegion3D/MeshInstance3D" unique_id=1879009131]
+autostart = true
+
+[connection signal="timeout" from="NavigationRegion3D/MeshInstance3D/Timer" to="NavigationRegion3D/MeshInstance3D" method="_on_spawn_enemy_timer"]
