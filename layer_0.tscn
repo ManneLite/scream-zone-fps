@@ -8,8 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://dqvgnremrjxyn" path="res://Chunk.tscn" id="6_kuye5"]
 [ext_resource type="Script" uid="uid://cyxbh8n51mt1" path="res://Node3d.cs" id="8_qsntj"]
 [ext_resource type="Script" uid="uid://daquo7mt5sg1s" path="res://Chunks.cs" id="8_utuek"]
-[ext_resource type="ArrayMesh" uid="uid://d0t72f0mr5xty" path="res://throne.obj" id="9_1ay10"]
-[ext_resource type="Texture2D" uid="uid://bifw0i6u3yes5" path="res://Sphere Base Color.png" id="10_2i1yp"]
 
 [sub_resource type="Sky" id="Sky_ky0du"]
 
@@ -83,22 +81,6 @@ roughness = 0.1
 metallic = 0.3
 roughness = 0.1
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a538i"]
-metallic = 1.0
-metallic_specular = 0.0
-emission = Color(1, 1, 1, 1)
-emission_energy_multiplier = 3.15
-normal_enabled = true
-normal_texture = ExtResource("10_2i1yp")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ioqrc"]
-albedo_color = Color(0, 0, 0, 1)
-metallic = 1.0
-metallic_specular = 0.0
-roughness = 0.0
-clearcoat_enabled = true
-clearcoat_roughness = 0.0
-
 [node name="Node3D" type="Node3D" unique_id=1669213060 node_paths=PackedStringArray("Player")]
 script = ExtResource("1_utuek")
 Enemy = ExtResource("2_qsntj")
@@ -138,9 +120,3 @@ EndGameActivated = SubResource("StandardMaterial3D_jgy2h")
 
 [node name="PlayerBody3D" parent="." unique_id=2069006518 instance=ExtResource("5_oi352")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.028074, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=454147808]
-transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, 0, 827.7422, 0)
-mesh = ExtResource("9_1ay10")
-surface_material_override/0 = SubResource("StandardMaterial3D_a538i")
-surface_material_override/1 = SubResource("StandardMaterial3D_ioqrc")

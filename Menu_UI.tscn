@@ -42,7 +42,7 @@ offset_right = 1117.0
 offset_bottom = 620.0
 mouse_filter = 2
 texture = ExtResource("2_ckdgi")
-expand_mode = 1
+expand_mode = 5
 stretch_mode = 6
 
 [connection signal="pressed" from="Panel/VBoxContainer/Button" to="." method="_on_button_pressed"]
