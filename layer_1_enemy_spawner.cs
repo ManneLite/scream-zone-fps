@@ -23,7 +23,7 @@ public partial class layer_1_enemy_spawner : Node3D
             float pos_z = (float)GD.RandRange(-40f, 40f);
             enemy.Target = Player;
             AddChild(enemy);
-            enemy.GlobalPosition = new(pos_x, 10, pos_z);
+            enemy.GlobalPosition = new(pos_x, 60, pos_z);
             enemy.SmoothRotation = true;
             enemy.HP = 3;
         }

@@ -4,12 +4,12 @@ using System.Collections.Generic;
 
 public partial class Chunks : Node3D
 {
+    [Signal] public delegate void ChunksLoadedEventHandler();
+
 	[Export] public PackedScene ChunkInstance;
 
-	[Export] public int ChunkWidth = 256;
-	[Export] public int ChunkHeight = 256;
-	[Export] public float ChunkHeightMultiplier = 10f;
-	[Export] public float ChunkCellSize = 1f;
+	[Export] public int ChunkSize = 40;
+	[Export] public float ChunkHeight = 30f;
 
 	[Export] public float NoiseFrequency = 0.01f;
 	[Export] public int NoiseOctaves = 4;
@@ -61,6 +61,8 @@ public partial class Chunks : Node3D
 
 	public void Load3x3Chunks(int x, int z)
 	{
+        bool should_rebake = false;
+
 		HashSet<Vector2I> desired = new();
 
 		for (int ax = -1; ax <= 1; ax++)
@@ -91,32 +93,36 @@ public partial class Chunks : Node3D
 		{
 			if (!chunks.ContainsKey(pos))
 			{
-				LoadChunk(pos.X, pos.Y);
+				LoadChunk(pos);
+                GD.Print("setting bake to true");
+                should_rebake = true;
 			}
 		}
+
+        if(should_rebake)
+        {
+            GD.Print("sending bake signal");
+            EmitSignal(SignalName.ChunksLoaded);
+        }
 	}
 
-	public void LoadChunk(int x, int z)
+	public void LoadChunk(Vector2I pos)
 	{
-		int offsetX = (x * ChunkWidth) - x;
-		int offsetZ = (z * ChunkHeight) - z;
-
 		if (ChunkInstance.Instantiate() is chunk_mesh_3d chunk)
 		{
-			chunk.Width = ChunkWidth;
+			chunk.Size = ChunkSize;
 			chunk.Height = ChunkHeight;
-			chunk.HeightMultiplier = ChunkHeightMultiplier;
-			chunk.CellSize = ChunkCellSize;
-			chunk.OffsetX = offsetX;
-			chunk.OffsetZ = offsetZ;
-			chunk.LocalPosX = x;
-			chunk.LocalPosZ = z;
+			chunk.Pos = pos;
 			chunk.Noise = Noise;
 
-			float worldX = x * ChunkWidth;
-			float worldZ = z * ChunkHeight;
+            int x = pos.X;
+            int z = pos.Y;
 
-            if(-1 <= x && 1 >= x && -1 <= z && 1 >= z)
+            if(x == 0 && z == 0)
+            {
+			    chunk.MaterialOverride = BiomeShaders.biomeShaders[new(1,1)];
+            }
+            else if(-1 <= x && 1 >= x && -1 <= z && 1 >= z)
             {
 			    chunk.MaterialOverride = BiomeShaders.biomeShaders[Vector2.Zero];
             }
