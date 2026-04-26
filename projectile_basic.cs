@@ -9,6 +9,10 @@ public partial class projectile_basic : Area3D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		var sfx = GetNode<AudioStreamPlayer3D>("ExplodingSFX");
+		var sfx2 = GetNode<AudioStreamPlayer3D>("FlyingSFX");
+		sfx.Play(0.5f);
+		sfx2.Play(3.0f);
 		var particle_system = GetNode<GpuParticles3D>("GPUParticles3D");
 		var mat = particle_system.ProcessMaterial as ParticleProcessMaterial;
 		if (mat != null)

@@ -15,19 +15,19 @@ public partial class RayCast3d : RayCast3D
 
 	public override void _PhysicsProcess(double delta)
 	{
-        if(IsColliding())
-        {
-            if(GetCollider() is Node collider && 
-               collider.GetParent() is chunk_mesh_3d chunk)
-            {
-                Vector2 a = chunk.Pos;
-                if(OldLocal != a)
-                {
-				    GD.Print("Updating chunks!");
-				    EmitSignal(SignalName.PlayerChangedChunk, a);
-				    OldLocal = a;
-                }
-            }
-        }
+		if(IsColliding())
+		{
+			if(GetCollider() is Node collider && 
+			   collider.GetParent() is chunk_mesh_3d chunk)
+			{
+				Vector2 a = chunk.Pos;
+				if(OldLocal != a)
+				{
+					GD.Print("Updating chunks!");
+					EmitSignal(SignalName.PlayerChangedChunk, a);
+					OldLocal = a;
+				}
+			}
+		}
 	}
 }

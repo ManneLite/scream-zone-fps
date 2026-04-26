@@ -1,8 +1,9 @@
-[gd_scene format=3 uid="uid://dl5h63tpvb7m"]
+[gd_scene format=3 uid="uid://cl4cvmkxr02yl"]
 
 [ext_resource type="Script" uid="uid://j8yvoajpob4u" path="res://player_controller.cs" id="1_xv8y8"]
 [ext_resource type="PackedScene" uid="uid://bmfwyan0rwqs" path="res://projectile.tscn" id="2_a7feo"]
 [ext_resource type="Script" uid="uid://b43dmqbdv03om" path="res://RayCast3d.cs" id="3_a7feo"]
+[ext_resource type="AudioStream" uid="uid://ckn24tm3t8nr0" path="res://verytuffmusic.mp3" id="4_22gqc"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rr31j"]
 height = 3.0
@@ -44,3 +45,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6797142, -0.76109505)
 [node name="RayCast3D" type="RayCast3D" parent="." unique_id=1322166784 groups=["PlayerRaycast"]]
 target_position = Vector3(0, -100, 0)
 script = ExtResource("3_a7feo")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=673702321]
+stream = ExtResource("4_22gqc")
+volume_db = -5.0
+unit_size = 1.0
+max_db = 6.0
+pitch_scale = 0.78
+autoplay = true
