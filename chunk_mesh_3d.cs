@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 public partial class chunk_mesh_3d : MeshInstance3D
 {
 	public int Size;
-    public Vector2I Pos;
+	public Vector2I Pos;
 	public float Height;
 
 	public FastNoiseLite Noise;
@@ -15,31 +15,31 @@ public partial class chunk_mesh_3d : MeshInstance3D
 		Generate();
 	}
 
-    // .-.-0-.-.
-    //
-    // 0-.-.-.
-    // 0-.-.-.-.
-    //
-    // .---.---.---.---.
-    // |
-    // .
-    // |
-    // .
-    // |
-    // .
-    // |
-    // .
+	// .-.-0-.-.
+	//
+	// 0-.-.-.
+	// 0-.-.-.-.
+	//
+	// .---.---.---.---.
+	// |
+	// .
+	// |
+	// .
+	// |
+	// .
+	// |
+	// .
 
-    // 2 x 2
-    // 1 x 1 * 6
-    // 3 x 3
-    // 2 x 2 * 6
+	// 2 x 2
+	// 1 x 1 * 6
+	// 3 x 3
+	// 2 x 2 * 6
 
 
 	private void Generate()
 	{
-        // offset is now actually where our center should be
-        Vector2 offset = Pos * (Size);
+		// offset is now actually where our center should be
+		Vector2 offset = Pos * (Size);
 		Vector3[] vertices = new Vector3[(Size + 1) * (Size + 1)];
 		Vector2[] uvs = new Vector2[(Size + 1) * (Size + 1)];
 		int[] indices = new int[Size * Size * 6];
@@ -47,7 +47,7 @@ public partial class chunk_mesh_3d : MeshInstance3D
 		{
 			for (int x = 0; x <= Size; x++)
 			{
-                Vector2 pos_with_offset = offset + new Vector2I(x,z);
+				Vector2 pos_with_offset = offset + new Vector2I(x,z);
 				float n = Noise.GetNoise2Dv(pos_with_offset);
 				n = (n + 1f) * 0.5f;
 				float y = n * Height;
@@ -94,7 +94,7 @@ public partial class chunk_mesh_3d : MeshInstance3D
 
 		Mesh = mesh;
 
-        GenerateCollision();
+		GenerateCollision();
 	}
 
 	private void GenerateCollision()

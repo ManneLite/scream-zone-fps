@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public partial class Chunks : Node3D
 {
-    [Signal] public delegate void ChunksLoadedEventHandler();
+	[Signal] public delegate void ChunksLoadedEventHandler();
 
 	[Export] public PackedScene ChunkInstance;
 
@@ -61,7 +61,7 @@ public partial class Chunks : Node3D
 
 	public void Load3x3Chunks(int x, int z)
 	{
-        bool should_rebake = false;
+		bool should_rebake = false;
 
 		HashSet<Vector2I> desired = new();
 
@@ -94,16 +94,16 @@ public partial class Chunks : Node3D
 			if (!chunks.ContainsKey(pos))
 			{
 				LoadChunk(pos);
-                GD.Print("setting bake to true");
-                should_rebake = true;
+				GD.Print("setting bake to true");
+				should_rebake = true;
 			}
 		}
 
-        if(should_rebake)
-        {
-            GD.Print("sending bake signal");
-            EmitSignal(SignalName.ChunksLoaded);
-        }
+		if(should_rebake)
+		{
+			GD.Print("sending bake signal");
+			EmitSignal(SignalName.ChunksLoaded);
+		}
 	}
 
 	public void LoadChunk(Vector2I pos)
@@ -115,24 +115,24 @@ public partial class Chunks : Node3D
 			chunk.Pos = pos;
 			chunk.Noise = Noise;
 
-            int x = pos.X;
-            int z = pos.Y;
+			int x = pos.X;
+			int z = pos.Y;
 
-            if(x == 0 && z == 0)
-            {
-			    chunk.MaterialOverride = BiomeShaders.biomeShaders[new(1,1)];
-            }
-            else if(-1 <= x && 1 >= x && -1 <= z && 1 >= z)
-            {
-			    chunk.MaterialOverride = BiomeShaders.biomeShaders[Vector2.Zero];
-            }
-            else
-            {
-			    Vector2 a = new Vector2(x,z).Normalized();
-			    a = new Vector2(Mathf.Round(a.X), Mathf.Round(a.Y));
-			    GD.Print(a);
-			    chunk.MaterialOverride = BiomeShaders.biomeShaders[a];
-            }
+			if(x == 0 && z == 0)
+			{
+				chunk.MaterialOverride = BiomeShaders.biomeShaders[new(1,1)];
+			}
+			else if(-1 <= x && 1 >= x && -1 <= z && 1 >= z)
+			{
+				chunk.MaterialOverride = BiomeShaders.biomeShaders[Vector2.Zero];
+			}
+			else
+			{
+				Vector2 a = new Vector2(x,z).Normalized();
+				a = new Vector2(Mathf.Round(a.X), Mathf.Round(a.Y));
+				GD.Print(a);
+				chunk.MaterialOverride = BiomeShaders.biomeShaders[a];
+			}
 			
 
 
