@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://b43dmqbdv03om" path="res://RayCast3d.cs" id="3_a7feo"]
 [ext_resource type="AudioStream" uid="uid://ckn24tm3t8nr0" path="res://verytuffmusic.mp3" id="4_22gqc"]
 [ext_resource type="AudioStream" uid="uid://cp8kuc3i4bjjr" path="res://freesound_community-medium-explosion-40472.mp3" id="5_5hyyw"]
+[ext_resource type="PackedScene" uid="uid://ddics8whvm7g" path="res://BigBossMen.tscn" id="6_4gu1q"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rr31j"]
 height = 3.0
@@ -62,3 +63,13 @@ autoplay = true
 [node name="SFX_Shoot" type="AudioStreamPlayer2D" parent="." unique_id=1865965877]
 stream = ExtResource("5_5hyyw")
 volume_db = 8.0
+
+[node name="MeshInstance3D2" parent="." unique_id=1259233715 instance=ExtResource("6_4gu1q")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 50, 0)
+top_level = true
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="." unique_id=818461633]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0)
+remote_path = NodePath("../MeshInstance3D2")
+update_rotation = false
+update_scale = false

@@ -7,12 +7,13 @@ public partial class projectile_basic : Area3D
 	bool active = true;
     Timer timer;
     AudioStreamPlayer3D sfx_exploding;
+    GpuParticles3D particle_system;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
         timer = GetNode<Timer>("Timer");
 		sfx_exploding = GetNode<AudioStreamPlayer3D>("ExplodingSFX");
-		var particle_system = GetNode<GpuParticles3D>("GPUParticles3D");
+		particle_system = GetNode<GpuParticles3D>("GPUParticles3D");
 		var mat = particle_system.ProcessMaterial as ParticleProcessMaterial;
 		if (mat != null)
 		{
@@ -35,7 +36,7 @@ public partial class projectile_basic : Area3D
 			if(body is IDamagable target)
 			{
 				target.take_damage();
-				
+                particle_system.Visible = false;
 			}
             sfx_exploding.Play();
 		}

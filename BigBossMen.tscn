@@ -21,7 +21,6 @@ clearcoat_enabled = true
 clearcoat_roughness = 0.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" unique_id=1259233715]
-transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, 0, 0, 0)
 mesh = ExtResource("1_jdcdb")
 surface_material_override/0 = SubResource("StandardMaterial3D_a538i")
 surface_material_override/1 = SubResource("StandardMaterial3D_ioqrc")
