@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bj1j62vojkfln"]
 
 [ext_resource type="Script" uid="uid://cefulwd0bns6" path="res://Level.cs" id="1_s4jgn"]
-[ext_resource type="PackedScene" uid="uid://dl5h63tpvb7m" path="res://player_body_3d.tscn" id="5_oi352"]
+[ext_resource type="PackedScene" uid="uid://cl4cvmkxr02yl" path="res://player_body_3d.tscn" id="5_oi352"]
 [ext_resource type="PackedScene" uid="uid://dqvgnremrjxyn" path="res://Chunk.tscn" id="6_kuye5"]
 [ext_resource type="Script" uid="uid://cyxbh8n51mt1" path="res://Node3d.cs" id="8_qsntj"]
 
