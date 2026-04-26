@@ -84,7 +84,6 @@ roughness = 0.1
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=302860162]
 transform = Transform3D(0.90968513, -0.39042845, 0.1415575, 0.17397693, 0.6677704, 0.7237506, -0.37710065, -0.6337575, 0.67538637, -0.58075714, 6.1517158, 2.3238013)
-light_color = Color(1, 0, 0, 1)
 
 [node name="Group" type="MeshInstance3D" parent="." unique_id=925815198]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9642239, 32.159714, -7.452835)

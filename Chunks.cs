@@ -116,12 +116,19 @@ public partial class Chunks : Node3D
 			float worldX = x * ChunkWidth;
 			float worldZ = z * ChunkHeight;
 
-			Vector2 a = new Vector2(x,z).Normalized();
-			a = new Vector2(Mathf.Round(a.X), Mathf.Round(a.Y));
+            if(-1 <= x && 1 >= x && -1 <= z && 1 >= z)
+            {
+			    chunk.MaterialOverride = BiomeShaders.biomeShaders[Vector2.Zero];
+            }
+            else
+            {
+			    Vector2 a = new Vector2(x,z).Normalized();
+			    a = new Vector2(Mathf.Round(a.X), Mathf.Round(a.Y));
+			    GD.Print(a);
+			    chunk.MaterialOverride = BiomeShaders.biomeShaders[a];
+            }
 			
-			GD.Print(a);
 
-			chunk.MaterialOverride = BiomeShaders.biomeShaders[a];
 
 			AddChild(chunk);
 			chunks[new Vector2I(x, z)] = chunk;
