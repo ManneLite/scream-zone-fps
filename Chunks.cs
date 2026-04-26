@@ -20,7 +20,6 @@ public partial class Chunks : Node3D
 	public int Seed;
 
 	private Dictionary<Vector2I, chunk_mesh_3d> chunks = new();
-	private Dictionary<int, StandardMaterial3D> biomeShaders = new();
 	private RayCast3d Raycast;
 
 	public Node3d BiomeShaders;
@@ -42,14 +41,6 @@ public partial class Chunks : Node3D
 		Raycast.PlayerChangedChunk += OnPlayerChangedChunk;
 
 		BiomeShaders = GetNode<Node3d>("BiomeShaders");
-
-		biomeShaders[0] = BiomeShaders.Greed;
-		biomeShaders[1] = BiomeShaders.Pride;
-		biomeShaders[2] = BiomeShaders.Sloth;
-		biomeShaders[3] = BiomeShaders.Wrath;
-		biomeShaders[4] = BiomeShaders.Gluttony;
-		biomeShaders[5] = BiomeShaders.Envy;
-		biomeShaders[6] = BiomeShaders.Lust;
 
 		Load3x3Chunks(0, 0);
 	}
@@ -125,12 +116,12 @@ public partial class Chunks : Node3D
 			float worldX = x * ChunkWidth;
 			float worldZ = z * ChunkHeight;
 
-			float t = GetBiomeValue((int)worldX, (int)worldZ);
+			Vector2 a = new Vector2(x,z).Normalized();
+			a = new Vector2(Mathf.Round(a.X), Mathf.Round(a.Y));
+			
+			GD.Print(a);
 
-			int biomeIndex = (int)MathF.Floor(t * 7f);
-			biomeIndex = Mathf.Clamp(biomeIndex, 0, 6);
-
-			chunk.MaterialOverride = biomeShaders[biomeIndex];
+			chunk.MaterialOverride = BiomeShaders.biomeShaders[a];
 
 			AddChild(chunk);
 			chunks[new Vector2I(x, z)] = chunk;

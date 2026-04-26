@@ -79,6 +79,15 @@ albedo_color = Color(0.9999997, 0.08609884, 0.69303477, 1)
 metallic = 0.3
 roughness = 0.1
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qnouv"]
+albedo_color = Color(0, 0, 0, 1)
+metallic = 0.3
+roughness = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jgy2h"]
+metallic = 0.3
+roughness = 0.1
+
 [node name="Node3D" type="Node3D" unique_id=1669213060]
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1097115132]
@@ -101,7 +110,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Head3D" unique_id=1753429686]
 
 [node name="SpotLight3D" type="SpotLight3D" parent="CharacterBody3D/Head3D/Camera3D" unique_id=747409916]
-visible = false
 light_energy = 6.603
 light_volumetric_fog_energy = 2.0
 distance_fade_enabled = true
@@ -148,3 +156,5 @@ Wrath = SubResource("StandardMaterial3D_2i1yp")
 Gluttony = SubResource("StandardMaterial3D_mj3mb")
 Envy = SubResource("StandardMaterial3D_qtg8i")
 Lust = SubResource("StandardMaterial3D_p1urb")
+EndGame = SubResource("StandardMaterial3D_qnouv")
+EndGameActivated = SubResource("StandardMaterial3D_jgy2h")
