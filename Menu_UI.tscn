@@ -14,8 +14,10 @@ script = ExtResource("1_tug6h")
 
 [node name="Panel" type="Panel" parent="." unique_id=670683799]
 layout_mode = 0
-offset_right = 1159.0
-offset_bottom = 653.0
+offset_left = -5.0
+offset_top = 3.0
+offset_right = 1154.0
+offset_bottom = 656.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=1291150574]
 layout_mode = 0
@@ -41,5 +43,6 @@ offset_bottom = 620.0
 mouse_filter = 2
 texture = ExtResource("2_ckdgi")
 expand_mode = 1
+stretch_mode = 6
 
 [connection signal="pressed" from="Panel/VBoxContainer/Button" to="." method="_on_button_pressed"]
