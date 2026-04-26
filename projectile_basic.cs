@@ -35,6 +35,7 @@ public partial class projectile_basic : Area3D
 			if(body is IDamagable target)
 			{
 				target.take_damage();
+				
 			}
 		}
 		QueueFree();

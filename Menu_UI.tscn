@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dnof3hrv3281a"]
 
 [ext_resource type="Script" uid="uid://gi3iaaqj4asa" path="res://Menu_UI.gd" id="1_tug6h"]
+[ext_resource type="Texture2D" uid="uid://ehgssiupjoi4" path="res://book ui.png" id="2_ckdgi"]
 
 [node name="Control" type="Control" unique_id=1690358986]
 layout_mode = 3
@@ -18,31 +19,27 @@ offset_bottom = 653.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=1291150574]
 layout_mode = 0
-offset_left = 181.0
-offset_top = 232.0
-offset_right = 357.0
-offset_bottom = 275.0
-scale = Vector2(1.9628664, 1.6832156)
+offset_left = 289.0
+offset_top = 229.0
+offset_right = 465.0
+offset_bottom = 272.0
+scale = Vector2(1.166, 1)
 
 [node name="Button" type="Button" parent="Panel/VBoxContainer" unique_id=729560895]
+self_modulate = Color(1, 1, 1, 0)
+z_index = 1
 layout_mode = 2
-text = "START THE HORRORS!"
+text = "a
+"
 
-[node name="Button2" type="Button" parent="Panel/VBoxContainer" unique_id=671252310]
-layout_mode = 2
-text = "OPTIONS (coming soon!)"
-
-[node name="Button3" type="Button" parent="Panel/VBoxContainer" unique_id=845613728]
-layout_mode = 2
-text = "QUIT!"
-
-[node name="Label" type="Label" parent="." unique_id=194324294]
+[node name="TextureRect" type="TextureRect" parent="Panel" unique_id=567473676]
 layout_mode = 0
-offset_left = 171.0
-offset_top = 52.0
-offset_right = 287.0
-offset_bottom = 75.0
-scale = Vector2(7.248234, 8.046141)
-text = "SCREAM ZONE!"
+offset_left = 32.0
+offset_top = 18.0
+offset_right = 1117.0
+offset_bottom = 620.0
+mouse_filter = 2
+texture = ExtResource("2_ckdgi")
+expand_mode = 1
 
 [connection signal="pressed" from="Panel/VBoxContainer/Button" to="." method="_on_button_pressed"]
