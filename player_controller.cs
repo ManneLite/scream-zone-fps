@@ -7,6 +7,8 @@ public partial class player_controller : CharacterBody3D, IDamagable
 	[Export] public float JumpVelocity = 4.5f;
 	[Export] public float Sensitivity = 0.1f;
 	[Export] public PackedScene Projectile;
+    [Export] public int HP = 10;
+    bool alive = true;
 	Node3D Head;
 
 	public override void _Ready()
@@ -95,6 +97,16 @@ public partial class player_controller : CharacterBody3D, IDamagable
 
 	public void take_damage()
 	{
-		GD.Print("Player took damage");
+        if(alive)
+        {
+            alive = --HP > 0;
+            GD.Print("Current player HP: " + HP);
+            if(!alive)
+            {
+                GD.Print("You Died");
+		        Input.MouseMode = Godot.Input.MouseModeEnum.Visible;
+	            GetTree().ChangeSceneToFile("res://Menu_UI.tscn");
+            }
+        }
 	}
 }

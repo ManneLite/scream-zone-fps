@@ -1,31 +1,52 @@
 [gd_scene format=3 uid="uid://v03bhgpilacx"]
 
-[ext_resource type="ArrayMesh" uid="uid://xi3710rsdpra" path="res://freaky_skull.obj" id="2_5750q"]
-[ext_resource type="Texture2D" uid="uid://cphvn27qm4cgr" path="res://eyee.png" id="3_6wjcn"]
+[ext_resource type="Texture2D" uid="uid://weygtol8fhk7" path="res://assets_2d/eyee.png" id="2_oxlo2"]
+[ext_resource type="Texture2D" uid="uid://c0bod6rruo5ob" path="res://assets_2d/eye2.png" id="3_6wjcn"]
+[ext_resource type="Texture2D" uid="uid://l3e1ol6r1f4x" path="res://assets_2d/eye3.png" id="4_2o74j"]
 [ext_resource type="Script" uid="uid://b8cia6aw2vt4m" path="res://enemy_body_3d.cs" id="5_lr5mn"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_2o74j"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kuye5"]
 
-[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_uac5t"]
-depth_draw_mode = 1
-albedo_color = Color(0.40775722, 7.6407565e-07, 1.6845763e-07, 1)
-emission = Color(0.20905209, 0, 0.011105689, 1)
-clearcoat_enabled = true
-clearcoat_roughness = 1.0
-detail_mask = ExtResource("3_6wjcn")
-detail_blend_mode = 1
-detail_albedo = ExtResource("3_6wjcn")
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xum1i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oxlo2"]
 
 [node name="EnemyBody3D" type="CharacterBody3D" unique_id=750495923]
 collision_layer = 5
 script = ExtResource("5_lr5mn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=16998930]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
-shape = SubResource("SphereShape3D_2o74j")
+shape = SubResource("CapsuleShape3D_kuye5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1043206597]
-mesh = ExtResource("2_5750q")
-surface_material_override/0 = SubResource("ORMMaterial3D_uac5t")
+mesh = SubResource("CapsuleMesh_xum1i")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1822202308]
+
+[node name="Eyes" type="Node3D" parent="." unique_id=1170008391]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.5, -0.5)
+
+[node name="Sprite3D_Eye_Open" type="Sprite3D" parent="Eyes" unique_id=308649090]
+texture = ExtResource("2_oxlo2")
+
+[node name="Sprite3D_Eye_Half" type="Sprite3D" parent="Eyes" unique_id=802454825]
+visible = false
+texture = ExtResource("3_6wjcn")
+
+[node name="Sprite3D_Eye_Closed" type="Sprite3D" parent="Eyes" unique_id=1400859957]
+visible = false
+texture = ExtResource("4_2o74j")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1741640657]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3476327, -0.574822)
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=441236964]
+shape = SubResource("BoxShape3D_oxlo2")
+
+[node name="Timer" type="Timer" parent="." unique_id=1140199754]
+autostart = true
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_body_entered_damage_box"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_body_exited_damage_box"]
+[connection signal="timeout" from="Timer" to="." method="_on_attack_timer_timeout"]

@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://dqhna1hq1t3v4"]
+
+[ext_resource type="PackedScene" path="res://player_body_3d.tscn" id="1_muqm3"]
+[ext_resource type="Script" uid="uid://d0qaipo43sj37" path="res://layer_1_enemy_spawner.cs" id="1_pmddd"]
+[ext_resource type="PackedScene" uid="uid://v03bhgpilacx" path="res://enemy_body_3d.tscn" id="2_pmddd"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_amlsm"]
+vertices = PackedVector3Array(-49.5, 1, -49.5, -49.5, 1, 49.5, 49.5, 1, 49.5, 49.5, 1, -49.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="BoxMesh" id="BoxMesh_gqj7s"]
+size = Vector3(100, 1, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_muqm3"]
+size = Vector3(100, 1, 100)
+
+[sub_resource type="Sky" id="Sky_ky0du"]
+
+[sub_resource type="Environment" id="Environment_muqm3"]
+background_mode = 2
+sky = SubResource("Sky_ky0du")
+glow_levels/1 = 0.26
+glow_levels/4 = 0.36
+glow_levels/5 = 0.17
+glow_levels/6 = 0.09
+glow_levels/7 = 0.09
+glow_intensity = 0.55
+glow_strength = 1.22
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.2871
+volumetric_fog_albedo = Color(0.12225223, 0.12225223, 0.12225223, 1)
+
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_pmddd"]
+
+[node name="Node3D" type="Node3D" unique_id=1566549864 node_paths=PackedStringArray("Player")]
+script = ExtResource("1_pmddd")
+Enemy = ExtResource("2_pmddd")
+Player = NodePath("PlayerBody3D")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=239425926]
+navigation_mesh = SubResource("NavigationMesh_amlsm")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="NavigationRegion3D" unique_id=97005883]
+mesh = SubResource("BoxMesh_gqj7s")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/CSGMesh3D" unique_id=1851449781]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/CSGMesh3D/StaticBody3D" unique_id=1257412372]
+shape = SubResource("BoxShape3D_muqm3")
+
+[node name="PlayerBody3D" parent="." unique_id=2069006518 instance=ExtResource("1_muqm3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.9176397, 0)
+
+[node name="EnemyBody3D" parent="." unique_id=750495923 node_paths=PackedStringArray("Target") instance=ExtResource("2_pmddd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2948036, -21.049356)
+Target = NodePath("../PlayerBody3D")
+hp = 3
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1591690569]
+environment = SubResource("Environment_muqm3")
+camera_attributes = SubResource("CameraAttributesPhysical_pmddd")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2007008569]
+transform = Transform3D(0.90968513, -0.39042845, 0.1415575, 0.17397693, 0.6677704, 0.7237506, -0.37710065, -0.6337575, 0.67538637, -0.58075714, 6.1517158, 2.3238013)
+light_color = Color(1, 0, 0, 1)
+
+[node name="Timer" type="Timer" parent="." unique_id=1052051659]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

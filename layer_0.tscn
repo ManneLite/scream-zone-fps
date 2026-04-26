@@ -1,19 +1,11 @@
 [gd_scene format=3 uid="uid://bj1j62vojkfln"]
 
-[ext_resource type="Script" uid="uid://j8yvoajpob4u" path="res://player_controller.cs" id="1_s4jgn"]
 [ext_resource type="Script" uid="uid://brlfd7g8nlcb4" path="res://navigation_region_3d.cs" id="3_oi352"]
-[ext_resource type="Script" uid="uid://b43dmqbdv03om" path="res://RayCast3d.cs" id="3_xum1i"]
 [ext_resource type="ArrayMesh" uid="uid://b0r6r8a7mt3ee" path="res://Group.obj" id="4_ky0du"]
+[ext_resource type="PackedScene" uid="uid://dl5h63tpvb7m" path="res://player_body_3d.tscn" id="5_oi352"]
 [ext_resource type="PackedScene" uid="uid://dqvgnremrjxyn" path="res://Chunk.tscn" id="6_kuye5"]
-[ext_resource type="PackedScene" uid="uid://bmfwyan0rwqs" path="res://projectile.tscn" id="7_xum1i"]
 [ext_resource type="Script" uid="uid://cyxbh8n51mt1" path="res://Node3d.cs" id="8_qsntj"]
 [ext_resource type="Script" uid="uid://daquo7mt5sg1s" path="res://Chunks.cs" id="8_utuek"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rr31j"]
-height = 3.0
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_rr31j"]
-height = 3.0
 
 [sub_resource type="Sky" id="Sky_ky0du"]
 
@@ -90,40 +82,6 @@ roughness = 0.1
 
 [node name="Node3D" type="Node3D" unique_id=1669213060]
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1097115132]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.836693, 46.01274, 23.823765)
-script = ExtResource("1_s4jgn")
-Base_Speed = 50.0
-JumpVelocity = 9.0
-Sensitivity = 0.003
-Projectile = ExtResource("7_xum1i")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=939289229]
-shape = SubResource("CapsuleShape3D_rr31j")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=1365217279]
-mesh = SubResource("CapsuleMesh_rr31j")
-
-[node name="Head3D" type="Node3D" parent="CharacterBody3D" unique_id=1043310470]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Head3D" unique_id=1753429686]
-
-[node name="SpotLight3D" type="SpotLight3D" parent="CharacterBody3D/Head3D/Camera3D" unique_id=747409916]
-light_energy = 6.603
-light_volumetric_fog_energy = 2.0
-distance_fade_enabled = true
-distance_fade_length = 40.0
-spot_range = 20.0
-spot_angle = 35.91
-
-[node name="FiringPosition" type="Node3D" parent="CharacterBody3D" unique_id=1538641034]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6797142, -0.76109505)
-
-[node name="RayCast3D" type="RayCast3D" parent="CharacterBody3D" unique_id=6382921 groups=["PlayerRaycast"]]
-target_position = Vector3(0, -100, 0)
-script = ExtResource("3_xum1i")
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=302860162]
 transform = Transform3D(0.90968513, -0.39042845, 0.1415575, 0.17397693, 0.6677704, 0.7237506, -0.37710065, -0.6337575, 0.67538637, -0.58075714, 6.1517158, 2.3238013)
 light_color = Color(1, 0, 0, 1)
@@ -158,3 +116,5 @@ Envy = SubResource("StandardMaterial3D_qtg8i")
 Lust = SubResource("StandardMaterial3D_p1urb")
 EndGame = SubResource("StandardMaterial3D_qnouv")
 EndGameActivated = SubResource("StandardMaterial3D_jgy2h")
+
+[node name="PlayerBody3D" parent="." unique_id=2069006518 instance=ExtResource("5_oi352")]

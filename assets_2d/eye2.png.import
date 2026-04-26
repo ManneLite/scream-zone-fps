@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cr7786gw2edgh"
-path.s3tc="res://.godot/imported/Organic.jpg-6c3c021b916c392f263d74833c48ebeb.s3tc.ctex"
+uid="uid://c0bod6rruo5ob"
+path.s3tc="res://.godot/imported/eye2.png-1e05abfe92b0a0e0ad46613ee6fb801c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Organic.jpg"
-dest_files=["res://.godot/imported/Organic.jpg-6c3c021b916c392f263d74833c48ebeb.s3tc.ctex"]
+source_file="res://assets_2d/eye2.png"
+dest_files=["res://.godot/imported/eye2.png-1e05abfe92b0a0e0ad46613ee6fb801c.s3tc.ctex"]
 
 [params]
 
@@ -22,12 +22,12 @@ compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=1
+compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=1
-roughness/src_normal="res://Organic.jpg"
+roughness/mode=0
+roughness/src_normal=""
 process/channel_remap/red=0
 process/channel_remap/green=1
 process/channel_remap/blue=2
