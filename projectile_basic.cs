@@ -4,7 +4,6 @@ using System;
 public partial class projectile_basic : Area3D
 {
 	[Export] public float Speed = 750f;
-	[Export] public Vector3 Direction;
 	bool active = true;
     Timer timer;
     AudioStreamPlayer3D sfx_exploding;
@@ -17,14 +16,14 @@ public partial class projectile_basic : Area3D
 		var mat = particle_system.ProcessMaterial as ParticleProcessMaterial;
 		if (mat != null)
 		{
-			mat.Gravity = Direction.Normalized() * Speed/3.0f;
+			mat.Gravity = -Transform.Basis.Z * Speed/3.0f;
 		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		GlobalPosition += Direction * Speed * (float)delta * (active ? 1 : 0);
+		GlobalPosition += -Transform.Basis.Z * Speed * (float)delta * (active ? 1 : 0);
 	}
 
 	private void _on_body_entered(Node3D body)

@@ -12,12 +12,14 @@ public partial class player_controller : CharacterBody3D, IDamagable
 	bool alive = true;
 	Node3D Head;
     Node3D ProjectileSpawnPos;
+    RayCast3D ProjectileRay;
 
 	public override void _Ready()
 	{
 		Input.MouseMode = Godot.Input.MouseModeEnum.Captured;
 		Head = GetNode<Node3D>("Head3D");
 		ProjectileSpawnPos = Head.GetNode<Node3D>("ProjectileSpawnPosition3D");
+        ProjectileRay = Head.GetNode<RayCast3D>("ProjectileRay3D");
         shoot_sfx = GetNode<AudioStreamPlayer2D>("SFX_Shoot");
 	}
 
@@ -46,9 +48,20 @@ public partial class player_controller : CharacterBody3D, IDamagable
 	{
 		if(Projectile.Instantiate() is projectile_basic p)
 		{
+            Vector3 target;
+            if(ProjectileRay.IsColliding())
+            {
+
+                target = ProjectileRay.GetCollisionPoint();
+            }
+            else
+            {
+                target = Head.GlobalPosition + (Head.GlobalTransform.Basis.Z * ProjectileRay.TargetPosition.Z);
+            }
+
 			GetTree().Root.AddChild(p);
 			p.Transform = ProjectileSpawnPos.GlobalTransform;
-			p.Direction = -Head.GlobalTransform.Basis.Z;
+            p.LookAt(target, Vector3.Up);
 			p.SetCollisionMaskValue(3, true);
 		}
 	}
