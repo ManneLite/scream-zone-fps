@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bmfwyan0rwqs" path="res://projectile.tscn" id="2_a7feo"]
 [ext_resource type="Script" uid="uid://b43dmqbdv03om" path="res://RayCast3d.cs" id="3_a7feo"]
 [ext_resource type="AudioStream" uid="uid://ckn24tm3t8nr0" path="res://verytuffmusic.mp3" id="4_22gqc"]
+[ext_resource type="AudioStream" uid="uid://cp8kuc3i4bjjr" path="res://freesound_community-medium-explosion-40472.mp3" id="5_5hyyw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rr31j"]
 height = 3.0
@@ -39,8 +40,8 @@ distance_fade_length = 40.0
 spot_range = 10.0
 spot_angle = 35.91
 
-[node name="FiringPosition" type="Node3D" parent="." unique_id=165045015]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6797142, -0.76109505)
+[node name="ProjectileSpawnPosition3D" type="Node3D" parent="Head3D" unique_id=1945496008]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, -0.25, -0.8)
 
 [node name="RayCast3D" type="RayCast3D" parent="." unique_id=1322166784 groups=["PlayerRaycast"]]
 target_position = Vector3(0, -100, 0)
@@ -53,3 +54,7 @@ unit_size = 1.0
 max_db = 6.0
 pitch_scale = 0.78
 autoplay = true
+
+[node name="SFX_Shoot" type="AudioStreamPlayer2D" parent="." unique_id=1865965877]
+stream = ExtResource("5_5hyyw")
+volume_db = 8.0

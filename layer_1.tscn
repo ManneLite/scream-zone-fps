@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://dqhna1hq1t3v4"]
 
-[ext_resource type="PackedScene" path="res://player_body_3d.tscn" id="1_muqm3"]
+[ext_resource type="PackedScene" uid="uid://cl4cvmkxr02yl" path="res://player_body_3d.tscn" id="1_muqm3"]
 [ext_resource type="Script" uid="uid://d0qaipo43sj37" path="res://layer_1_enemy_spawner.cs" id="1_pmddd"]
 [ext_resource type="PackedScene" uid="uid://v03bhgpilacx" path="res://enemy_body_3d.tscn" id="2_pmddd"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_amlsm"]
 vertices = PackedVector3Array(-49.5, 1, -49.5, -49.5, 1, 49.5, 49.5, 1, 49.5, 49.5, 1, -49.5)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+geometry_parsed_geometry_type = 1
 
 [sub_resource type="BoxMesh" id="BoxMesh_gqj7s"]
 size = Vector3(100, 1, 100)
@@ -54,7 +55,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.9176397, 0)
 [node name="EnemyBody3D" parent="." unique_id=750495923 node_paths=PackedStringArray("Target") instance=ExtResource("2_pmddd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2948036, -21.049356)
 Target = NodePath("../PlayerBody3D")
-hp = 3
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1591690569]
 environment = SubResource("Environment_muqm3")

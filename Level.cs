@@ -1,12 +1,11 @@
 using Godot;
-using System;
 using System.Collections.Generic;
 
-public partial class Chunks : Node3D
+public partial class Level : Node3D
 {
-	[Signal] public delegate void ChunksLoadedEventHandler();
-
-	[Export] public PackedScene ChunkInstance;
+    NavigationRegion3D nav_region;
+	[Export] public PackedScene ChunkTemplate;
+    [Export] public PackedScene PlayerTemplate;
 
 	[Export] public int ChunkSize = 40;
 	[Export] public float ChunkHeight = 30f;
@@ -17,15 +16,18 @@ public partial class Chunks : Node3D
 	[Export] public float NoiseLacunarity = 2.0f;
 
 	public FastNoiseLite Noise;
-	public int Seed;
+	public int Seed = 0;
 
 	private Dictionary<Vector2I, chunk_mesh_3d> chunks = new();
 	private RayCast3d Raycast;
+    private player_controller player;
 
 	public Node3d BiomeShaders;
 
-	public override void _Ready()
-	{
+    public override void _Ready()
+    {
+        nav_region = GetNode<NavigationRegion3D>("NavigationRegion3D");
+
 		Noise = new FastNoiseLite();
 		Noise.NoiseType = FastNoiseLite.NoiseTypeEnum.Perlin;
 		Noise.Frequency = NoiseFrequency;
@@ -33,22 +35,30 @@ public partial class Chunks : Node3D
 		Noise.FractalGain = NoiseGain;
 		Noise.FractalLacunarity = NoiseLacunarity;
 
-		var rng = new RandomNumberGenerator();
-		Seed = (int)rng.Randi();
+        if(Seed == 0)
+        {
+		    var rng = new RandomNumberGenerator();
+		    Seed = (int)rng.Randi();
+        }
 		Noise.Seed = Seed;
 
-		Raycast = GetTree().GetFirstNodeInGroup("PlayerRaycast") as RayCast3d;
-		Raycast.PlayerChangedChunk += OnPlayerChangedChunk;
+		//Raycast.PlayerChangedChunk += OnPlayerChangedChunk;
 
 		BiomeShaders = GetNode<Node3d>("BiomeShaders");
-
 		Load3x3Chunks(0, 0);
-	}
 
-	private void OnPlayerChangedChunk(Vector2 local)
-	{
-		Load3x3Chunks((int)local.X, (int)local.Y);
-	}
+        if(PlayerTemplate.Instantiate() is player_controller p)
+        {
+            player = p;
+            p.GetNode<RayCast3d>("RayCast3D").PlayerChangedChunk += OnPlayerChangedChunk;
+            float n = Noise.GetNoise2D(0,0);
+            n = (n + 1f) * 0.5f;
+            float y = (n * ChunkHeight + 1);
+            AddChild(player);
+            player.GlobalPosition = new(0, y, 0);
+            GD.Print(player.GlobalPosition);
+        }
+    }
 
 	private float GetBiomeValue(int x, int z)
 	{
@@ -61,7 +71,7 @@ public partial class Chunks : Node3D
 
 	public void Load3x3Chunks(int x, int z)
 	{
-		bool should_rebake = false;
+        bool should_rebake = false;
 
 		HashSet<Vector2I> desired = new();
 
@@ -94,50 +104,46 @@ public partial class Chunks : Node3D
 			if (!chunks.ContainsKey(pos))
 			{
 				LoadChunk(pos);
-				GD.Print("setting bake to true");
-				should_rebake = true;
+                should_rebake = true;
 			}
 		}
 
-		if(should_rebake)
-		{
-			GD.Print("sending bake signal");
-			EmitSignal(SignalName.ChunksLoaded);
-		}
+        if(should_rebake)
+        {
+            nav_region.BakeNavigationMesh(true);
+        }
 	}
 
 	public void LoadChunk(Vector2I pos)
 	{
-		if (ChunkInstance.Instantiate() is chunk_mesh_3d chunk)
+		if (ChunkTemplate.Instantiate() is chunk_mesh_3d chunk)
 		{
 			chunk.Size = ChunkSize;
 			chunk.Height = ChunkHeight;
 			chunk.Pos = pos;
 			chunk.Noise = Noise;
 
-			int x = pos.X;
-			int z = pos.Y;
+            int x = pos.X;
+            int z = pos.Y;
 
-			if(x == 0 && z == 0)
-			{
-				chunk.MaterialOverride = BiomeShaders.biomeShaders[new(1,1)];
-			}
-			else if(-1 <= x && 1 >= x && -1 <= z && 1 >= z)
-			{
-				chunk.MaterialOverride = BiomeShaders.biomeShaders[Vector2.Zero];
-			}
-			else
-			{
-				Vector2 a = new Vector2(x,z).Normalized();
-				a = new Vector2(Mathf.Round(a.X), Mathf.Round(a.Y));
-				GD.Print(a);
-				chunk.MaterialOverride = BiomeShaders.biomeShaders[a];
-			}
-			
+            if(-1 <= x && 1 >= x && -1 <= z && 1 >= z)
+            {
+			    chunk.MaterialOverride = BiomeShaders.biomeShaders[Vector2.Zero];
+            }
+            else
+            {
+			    Vector2 a = new Vector2(x,z).Normalized();
+			    a = new Vector2(Mathf.Round(a.X), Mathf.Round(a.Y));
+			    GD.Print(a);
+			    chunk.MaterialOverride = BiomeShaders.biomeShaders[a];
+            }
 
-
-			AddChild(chunk);
+			nav_region.AddChild(chunk);
 			chunks[new Vector2I(x, z)] = chunk;
 		}
+	}
+	private void OnPlayerChangedChunk(Vector2 local)
+	{
+		Load3x3Chunks((int)local.X, (int)local.Y);
 	}
 }
