@@ -38,11 +38,13 @@ public partial class chunk_mesh_3d : MeshInstance3D
 
 	private void Generate()
 	{
-        // offset is now actually where our center should be
-        Vector2 offset = Pos * (Size);
-		Vector3[] vertices = new Vector3[(Size + 1) * (Size + 1)];
-		Vector2[] uvs = new Vector2[(Size + 1) * (Size + 1)];
-		int[] indices = new int[Size * Size * 6];
+        int vertex_count = (Size + 1) * (Size + 1);
+        int indices_count = Size * Size * 6;
+
+        Vector2 offset = Size * (Pos - new Vector2(0.5f, 0.5f));
+		Vector3[] vertices = new Vector3[vertex_count];
+		Vector2[] uvs = new Vector2[vertex_count];
+		int[] indices = new int[indices_count];
 		for (int z = 0; z <= Size; z++)
 		{
 			for (int x = 0; x <= Size; x++)
@@ -54,7 +56,7 @@ public partial class chunk_mesh_3d : MeshInstance3D
 
 				int i = x + z * (Size + 1);
 
-				vertices[i] = new Vector3(pos_with_offset.X - Size/2, y, pos_with_offset.Y - Size/2);
+				vertices[i] = new Vector3(pos_with_offset.X, y, pos_with_offset.Y);
 				uvs[i] = new Vector2((float)x / (Size - 1), (float)z / (Size - 1));
 			}
 		}

@@ -1,13 +1,9 @@
 [gd_scene format=3 uid="uid://bj1j62vojkfln"]
 
-[ext_resource type="Script" uid="uid://d0qaipo43sj37" path="res://layer_1_enemy_spawner.cs" id="1_utuek"]
-[ext_resource type="PackedScene" uid="uid://v03bhgpilacx" path="res://enemy_body_3d.tscn" id="2_qsntj"]
-[ext_resource type="Script" uid="uid://brlfd7g8nlcb4" path="res://navigation_region_3d.cs" id="3_oi352"]
-[ext_resource type="ArrayMesh" uid="uid://b0r6r8a7mt3ee" path="res://Group.obj" id="4_ky0du"]
+[ext_resource type="Script" uid="uid://cefulwd0bns6" path="res://Level.cs" id="1_s4jgn"]
 [ext_resource type="PackedScene" uid="uid://dl5h63tpvb7m" path="res://player_body_3d.tscn" id="5_oi352"]
 [ext_resource type="PackedScene" uid="uid://dqvgnremrjxyn" path="res://Chunk.tscn" id="6_kuye5"]
 [ext_resource type="Script" uid="uid://cyxbh8n51mt1" path="res://Node3d.cs" id="8_qsntj"]
-[ext_resource type="Script" uid="uid://daquo7mt5sg1s" path="res://Chunks.cs" id="8_utuek"]
 
 [sub_resource type="Sky" id="Sky_ky0du"]
 
@@ -77,17 +73,13 @@ roughness = 0.1
 metallic = 0.3
 roughness = 0.1
 
-[node name="Node3D" type="Node3D" unique_id=1669213060 node_paths=PackedStringArray("Player")]
-script = ExtResource("1_utuek")
-Enemy = ExtResource("2_qsntj")
-Player = NodePath("PlayerBody3D")
+[node name="Node3D" type="Node3D" unique_id=1669213060]
+script = ExtResource("1_s4jgn")
+ChunkTemplate = ExtResource("6_kuye5")
+PlayerTemplate = ExtResource("5_oi352")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=302860162]
 transform = Transform3D(0.90968513, -0.39042845, 0.1415575, 0.17397693, 0.6677704, 0.7237506, -0.37710065, -0.6337575, 0.67538637, -0.58075714, 6.1517158, 2.3238013)
-
-[node name="Group" type="MeshInstance3D" parent="." unique_id=925815198]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9642239, 32.159714, -7.452835)
-mesh = ExtResource("4_ky0du")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=717812520]
 environment = SubResource("Environment_ky0du")
@@ -95,14 +87,9 @@ camera_attributes = SubResource("CameraAttributesPhysical_oi352")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=954722719]
 navigation_mesh = SubResource("NavigationMesh_ky0du")
-script = ExtResource("3_oi352")
 
-[node name="Chunks" type="Node3D" parent="NavigationRegion3D" unique_id=1996889961]
+[node name="BiomeShaders" type="Node3D" parent="." unique_id=757638306]
 transform = Transform3D(0.9999512, -0.0020673205, -0.009658024, 0.0019980785, 0.9999723, -0.0071707633, 0.009672586, 0.0071511087, 0.99992764, 0, 0, 0)
-script = ExtResource("8_utuek")
-ChunkInstance = ExtResource("6_kuye5")
-
-[node name="BiomeShaders" type="Node3D" parent="NavigationRegion3D/Chunks" unique_id=757638306]
 script = ExtResource("8_qsntj")
 Greed = SubResource("StandardMaterial3D_utuek")
 Pride = SubResource("StandardMaterial3D_qsntj")
@@ -113,6 +100,3 @@ Envy = SubResource("StandardMaterial3D_qtg8i")
 Lust = SubResource("StandardMaterial3D_p1urb")
 EndGame = SubResource("StandardMaterial3D_qnouv")
 EndGameActivated = SubResource("StandardMaterial3D_jgy2h")
-
-[node name="PlayerBody3D" parent="." unique_id=2069006518 instance=ExtResource("5_oi352")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.028074, 0)
