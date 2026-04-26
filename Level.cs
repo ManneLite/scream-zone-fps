@@ -47,7 +47,6 @@ public partial class Level : Node3D
 		BiomeShaders = GetNode<Node3d>("BiomeShaders");
 		Load3x3Chunks(0, 0);
 
-        GD.Print("chunks loaded");
         if(PlayerTemplate.Instantiate() is player_controller p)
         {
             player = p;
@@ -55,7 +54,6 @@ public partial class Level : Node3D
             float n = Noise.GetNoise2D(0,0);
             n = (n + 1f) * 0.5f;
             float y = (n * ChunkHeight + 1);
-            GD.Print("player_y from noise: " + y);
             AddChild(player);
             player.GlobalPosition = new(0, y, 0);
             GD.Print(player.GlobalPosition);
