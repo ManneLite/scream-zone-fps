@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://ckn24tm3t8nr0" path="res://assets_music/verytuffmusic.mp3" id="4_22gqc"]
 [ext_resource type="AudioStream" uid="uid://cp8kuc3i4bjjr" path="res://assets_sfx/freesound_community-medium-explosion-40472.mp3" id="5_5hyyw"]
 [ext_resource type="PackedScene" uid="uid://ddics8whvm7g" path="res://BigBossMen.tscn" id="6_4gu1q"]
+[ext_resource type="PackedScene" uid="uid://er3x1onere37" path="res://PlayerHud.tscn" id="7_yvtab"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rr31j"]
 height = 3.0
@@ -13,7 +14,10 @@ height = 3.0
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_rr31j"]
 height = 3.0
 
-[node name="PlayerBody3D" type="CharacterBody3D" unique_id=2069006518]
+[sub_resource type="SphereShape3D" id="SphereShape3D_yvtab"]
+radius = 20.0
+
+[node name="PlayerBody3D" type="CharacterBody3D" unique_id=2069006518 groups=["Player"]]
 collision_layer = 3
 script = ExtResource("1_xv8y8")
 Base_Speed = 7.0
@@ -73,3 +77,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0)
 remote_path = NodePath("../MeshInstance3D2")
 update_rotation = false
 update_scale = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=122620213]
+follow_viewport_enabled = true
+
+[node name="PlayerHud" parent="CanvasLayer" unique_id=1739185044 instance=ExtResource("7_yvtab")]
+
+[node name="EnemyDetectionSphere" type="Area3D" parent="." unique_id=559378722]
+collision_layer = 0
+collision_mask = 4
+input_ray_pickable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyDetectionSphere" unique_id=885821788]
+shape = SubResource("SphereShape3D_yvtab")
+
+[node name="SendPositionTimer" type="Timer" parent="." unique_id=111266716]
+wait_time = 0.2
+autostart = true
+
+[connection signal="PlayerHPChanged" from="." to="CanvasLayer/PlayerHud" method="UpdateHPBar"]

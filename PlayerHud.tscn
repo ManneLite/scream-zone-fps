@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://er3x1onere37"]
+
+[ext_resource type="Script" uid="uid://8ie584m85otb" path="res://PlayerHud.cs" id="1_m4she"]
+[ext_resource type="Texture2D" uid="uid://c4w2ie6cy1agy" path="res://assets_2d/heartt1.png" id="2_ij1e3"]
+
+[node name="PlayerHud" type="Control" unique_id=1739185044]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_m4she")
+HeartTexture = ExtResource("2_ij1e3")
+
+[node name="HeartsGrid" type="GridContainer" parent="." unique_id=747573805]
+layout_mode = 0

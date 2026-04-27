@@ -5,7 +5,6 @@ public partial class EnemyBody3D : CharacterBody3D, IDamagable
 {
 	[Export] public float Speed = 5.0f;
 	[Export] public float RotationSpeed = 5.0f;
-	[Export] public CharacterBody3D Target;
 	[Export] public int HP = 1;
 	[Export] public bool SmoothRotation = false;
 	public Sprite3D eye_open;
@@ -32,39 +31,32 @@ public partial class EnemyBody3D : CharacterBody3D, IDamagable
 		eye_closed = eyes.GetNode<Sprite3D>("Sprite3D_Eye_Closed");
 	}
 
+    public void SetTarget(Vector3 pos)
+    {
+    	nav_agent.SetTargetPosition(pos);
+    }
+
 	public override void _PhysicsProcess(double delta)
 	{
-		Vector3 velocity = Velocity;
-
-		if(Target is not null)
-		{
-			Vector3 global_pos = GlobalPosition;
-			Vector3 target_pos = Target.GlobalPosition;
-			nav_agent.SetTargetPosition(target_pos);
-			Vector3 nav_point_next = nav_agent.GetNextPathPosition();
-
-			Vector3 direction = (nav_point_next - global_pos).Normalized();
-			velocity = direction * Speed;
-			if(SmoothRotation)
-			{
-				Vector3 rotation = Rotation;
-				float rotation_y_new = Mathf.LerpAngle(rotation.Y, Mathf.Atan2(-direction.X, -direction.Z), RotationSpeed * (float)delta);
-				rotation = rotation with {Y = rotation_y_new};
-				Rotation = rotation;
-			}
-			else
-			{
-				Vector3 flat_target = new(global_pos.X + velocity.X, global_pos.Y, global_pos.Z + velocity.Z);
-
-				if(!vec3_zero_approx(flat_target - global_pos))
-				{
-					LookAt(flat_target, Vector3.Up);
-				}
-			}
-
-			Velocity = velocity;
-			MoveAndSlide();
-		}
+        if(!nav_agent.IsNavigationFinished())
+        {
+    		Vector3 nav_point_next = nav_agent.GetNextPathPosition();
+    
+            Vector3 direction = GlobalPosition.DirectionTo(nav_point_next);
+            Velocity = direction * Speed;
+    		Vector3 rotation = Rotation;
+    		rotation.Y = Mathf.LerpAngle(rotation.Y, Mathf.Atan2(-direction.X, -direction.Z), RotationSpeed * (float)delta);
+    		Rotation = rotation;
+            /*
+    		Vector3 flat_target = new(global_pos.X + velocity.X, global_pos.Y, global_pos.Z + velocity.Z);
+    
+    		if(!vec3_zero_approx(flat_target - global_pos))
+    		{
+    			LookAt(flat_target, Vector3.Up);
+    		}
+            */
+            MoveAndSlide();
+        }
 	}
 
 	public bool vec3_zero_approx(Vector3 vec)

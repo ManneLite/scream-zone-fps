@@ -3,19 +3,16 @@ using System.Collections.Generic;
 
 public partial class Layer0 : Node3D
 {
-    NavigationRegion3D nav_region;
+    //[Export] public PackedScene PlayerDiedScene;
 	[Export] public PackedScene ChunkTemplate;
     [Export] public PackedScene PlayerTemplate;
+    [Export] public PackedScene EnemySpawnerTemplate;
 
 	[Export] public int ChunkSize = 40;
 	[Export] public float ChunkHeight = 30f;
 
-	[Export] public float NoiseFrequency = 0.01f;
-	[Export] public int NoiseOctaves = 4;
-	[Export] public float NoiseGain = 0.5f;
-	[Export] public float NoiseLacunarity = 2.0f;
+    NavigationRegion3D nav_region;
 
-	public FastNoiseLite Noise;
 	public int Seed = 0;
 
 	private Dictionary<Vector2I, ChunkMesh3D> chunks = new();
@@ -23,48 +20,43 @@ public partial class Layer0 : Node3D
     private Player3D player;
 
 	public BiomeMaterialMap3D BiomeShaders;
+    bool active = true;
 
     public override void _Ready()
     {
         nav_region = GetNode<NavigationRegion3D>("NavigationRegion3D");
-
-		Noise = new FastNoiseLite();
-		Noise.NoiseType = FastNoiseLite.NoiseTypeEnum.Perlin;
-		Noise.Frequency = NoiseFrequency;
-		Noise.FractalOctaves = NoiseOctaves;
-		Noise.FractalGain = NoiseGain;
-		Noise.FractalLacunarity = NoiseLacunarity;
 
         if(Seed == 0)
         {
 		    var rng = new RandomNumberGenerator();
 		    Seed = (int)rng.Randi();
         }
-		Noise.Seed = Seed;
 
-		//Raycast.PlayerChangedChunk += OnPlayerChangedChunk;
+        GlobalNoise.Instance.SeedSet(Seed);
+        GlobalNoise.Instance.SetChunkSize(ChunkSize);
+        GlobalNoise.Instance.SetChunkHeight(ChunkHeight);
 
 		BiomeShaders = GetNode<BiomeMaterialMap3D>("BiomeMaterialMap3D");
 		Load3x3Chunks(0, 0);
 
         if(PlayerTemplate.Instantiate() is Player3D p)
         {
-            player = p;
+
+            p.PlayerDied += OnPlayerDied;
             p.GetNode<ChunkCheckRay3D>("ChunkCheckRay3D").PlayerChangedChunk += OnPlayerChangedChunk;
-            float n = Noise.GetNoise2D(0,0);
-            n = (n + 1f) * 0.5f;
-            float y = (n * ChunkHeight + 1);
+            float y = GlobalNoise.Instance.GetYAtPos(0, 0) + 1;
+            player = p;
             AddChild(player);
             player.GlobalPosition = new(0, y, 0);
-            GD.Print(player.GlobalPosition);
         }
     }
 
 	private float GetBiomeValue(int x, int z)
 	{
+        GD.Print("Getting biome value");
 		float scale = 0.02f;
-		float n1 = Noise.GetNoise2D(x * scale, z * scale);
-		float n2 = Noise.GetNoise2D((x + 10000) * scale, (z - 10000) * scale);
+		float n1 = GlobalNoise.Instance.Noise.GetNoise2D(x * scale, z * scale);
+		float n2 = GlobalNoise.Instance.Noise.GetNoise2D((x + 10000) * scale, (z - 10000) * scale);
 		float value = n1 * 0.5f + n2 * 0.5f;
 		return (value + 1f) * 0.5f;
 	}
@@ -119,9 +111,7 @@ public partial class Layer0 : Node3D
 		if (ChunkTemplate.Instantiate() is ChunkMesh3D chunk)
 		{
 			chunk.Size = ChunkSize;
-			chunk.Height = ChunkHeight;
 			chunk.Pos = pos;
-			chunk.Noise = Noise;
 
             int x = pos.X;
             int z = pos.Y;
@@ -134,16 +124,35 @@ public partial class Layer0 : Node3D
             {
 			    Vector2 a = new Vector2(x,z).Normalized();
 			    a = new Vector2(Mathf.Round(a.X), Mathf.Round(a.Y));
-			    GD.Print(a);
 			    chunk.MaterialOverride = BiomeShaders.biomeShaders[a];
             }
 
+
 			nav_region.AddChild(chunk);
 			chunks[new Vector2I(x, z)] = chunk;
+
+            if(EnemySpawnerTemplate.Instantiate() is EnemySpawner spawner)
+            {
+                Vector3 spawner_pos = new Vector3(pos.X, 0, pos.Y) * ChunkSize;
+                spawner_pos.Y = GlobalNoise.Instance.GetYAtPosV3(spawner_pos) + 1;
+                chunk.AddChild(spawner);
+                spawner.GlobalPosition = spawner_pos;
+            }
 		}
 	}
 	private void OnPlayerChangedChunk(Vector2 local)
 	{
-		Load3x3Chunks((int)local.X, (int)local.Y);
+        if(active)
+        {
+		    Load3x3Chunks((int)local.X, (int)local.Y);
+        }
 	}
+
+    public void OnPlayerDied()
+    {
+        active = false;
+        
+        // fix this and handle cyclic dependencies
+        GetTree().ChangeSceneToFile("res://MenuMain.tscn");
+    }
 }

@@ -6,35 +6,11 @@ public partial class ChunkMesh3D : MeshInstance3D
 {
 	public int Size;
 	public Vector2I Pos;
-	public float Height;
-
-	public FastNoiseLite Noise;
 
 	public override void _Ready()
 	{
 		Generate();
 	}
-
-	// .-.-0-.-.
-	//
-	// 0-.-.-.
-	// 0-.-.-.-.
-	//
-	// .---.---.---.---.
-	// |
-	// .
-	// |
-	// .
-	// |
-	// .
-	// |
-	// .
-
-	// 2 x 2
-	// 1 x 1 * 6
-	// 3 x 3
-	// 2 x 2 * 6
-
 
 	private void Generate()
 	{
@@ -42,6 +18,7 @@ public partial class ChunkMesh3D : MeshInstance3D
         int indices_count = Size * Size * 6;
 
         Vector2 offset = Size * (Pos - new Vector2(0.5f, 0.5f));
+
 		Vector3[] vertices = new Vector3[vertex_count];
 		Vector2[] uvs = new Vector2[vertex_count];
 		int[] indices = new int[indices_count];
@@ -50,9 +27,7 @@ public partial class ChunkMesh3D : MeshInstance3D
 			for (int x = 0; x <= Size; x++)
 			{
 				Vector2 pos_with_offset = offset + new Vector2I(x,z);
-				float n = Noise.GetNoise2Dv(pos_with_offset);
-				n = (n + 1f) * 0.5f;
-				float y = n * Height;
+                float y = GlobalNoise.Instance.GetYAtPosV2(pos_with_offset);
 
 				int i = x + z * (Size + 1);
 
@@ -111,6 +86,7 @@ public partial class ChunkMesh3D : MeshInstance3D
 		collider.Shape = Mesh.CreateTrimeshShape();
 
 		body.AddChild(collider);
+
 		AddChild(body);
 	}
 }

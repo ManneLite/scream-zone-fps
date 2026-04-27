@@ -3,6 +3,10 @@ using System;
 
 public partial class Player3D : CharacterBody3D, IDamagable
 {
+	[Signal] public delegate void PlayerHPChangedEventHandler(int current_hp);
+	[Signal] public delegate void PlayerDiedEventHandler();
+    [Signal] public delegate void SendPlayerPositionEventHandler(Vector3 pos);
+
 	[Export] public float Base_Speed = 5.0f;
 	[Export] public float JumpVelocity = 4.5f;
 	[Export] public float Sensitivity = 0.1f;
@@ -14,6 +18,8 @@ public partial class Player3D : CharacterBody3D, IDamagable
     Node3D ProjectileSpawnPos;
     RayCast3D ProjectileRay;
 
+    Area3D EnemyDetectionSphere;
+
 	public override void _Ready()
 	{
 		Input.MouseMode = Godot.Input.MouseModeEnum.Captured;
@@ -21,6 +27,12 @@ public partial class Player3D : CharacterBody3D, IDamagable
 		ProjectileSpawnPos = Head.GetNode<Node3D>("ProjectileSpawnPosition3D");
         ProjectileRay = Head.GetNode<RayCast3D>("ProjectileRay3D");
         shoot_sfx = GetNode<AudioStreamPlayer2D>("SFX_Shoot");
+        EnemyDetectionSphere = GetNode<Area3D>("EnemyDetectionSphere");
+        Timer send_position_timer = GetNode<Timer>("SendPositionTimer");
+        send_position_timer.Timeout += OnSendPositionTimerTimeout;
+        EnemyDetectionSphere.BodyEntered += OnEnemyEnteredDetectionRange;
+        EnemyDetectionSphere.BodyExited += OnEnemyLeftDetectionRange;
+
 	}
 
 	public override void _UnhandledInput(InputEvent @event)
@@ -59,7 +71,7 @@ public partial class Player3D : CharacterBody3D, IDamagable
                 target = Head.GlobalPosition + (Head.GlobalTransform.Basis.Z * ProjectileRay.TargetPosition.Z);
             }
 
-			GetTree().Root.AddChild(projectile);
+			GetTree().CurrentScene.AddChild(projectile);
 			projectile.Transform = ProjectileSpawnPos.GlobalTransform;
             projectile.LookAt(target, Vector3.Up);
 			projectile.SetCollisionMaskValue(3, true);
@@ -118,13 +130,36 @@ public partial class Player3D : CharacterBody3D, IDamagable
 		if(alive)
 		{
 			alive = --HP > 0;
-			GD.Print("Current player HP: " + HP);
+            EmitSignal(SignalName.PlayerHPChanged, HP);
 			if(!alive)
 			{
 				GD.Print("You Died");
 				Input.MouseMode = Godot.Input.MouseModeEnum.Visible;
-				GetTree().ChangeSceneToFile("res://Menu_UI.tscn");
+                EmitSignal(SignalName.PlayerDied);
 			}
 		}
 	}
+
+    public void OnEnemyEnteredDetectionRange(Node3D body)
+    {
+        GD.Print(body + " entered");
+        if(body is EnemyBody3D enemy)
+        {
+            SendPlayerPosition += enemy.SetTarget;
+        }
+    }
+
+    public void OnEnemyLeftDetectionRange(Node3D body)
+    {
+        GD.Print(body + " left");
+        if(body is EnemyBody3D enemy)
+        {
+            SendPlayerPosition -= enemy.SetTarget;
+        }
+    }
+
+    public void OnSendPositionTimerTimeout()
+    {
+        EmitSignal(SignalName.SendPlayerPosition, GlobalPosition);
+    }
 }

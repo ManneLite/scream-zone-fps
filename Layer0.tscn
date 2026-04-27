@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dqvgnremrjxyn" path="res://ChunkMesh3D.tscn" id="2_vkmtl"]
 [ext_resource type="PackedScene" uid="uid://cl4cvmkxr02yl" path="res://Player3D.tscn" id="3_2vwx4"]
 [ext_resource type="PackedScene" uid="uid://jneafwh4hd3k" path="res://BiomeMaterialMap3D.tscn" id="4_vkmtl"]
+[ext_resource type="PackedScene" uid="uid://d4ky1txknjxs4" path="res://EnemySpawner.tscn" id="5_0mckk"]
 
 [sub_resource type="Sky" id="Sky_ky0du"]
 
@@ -32,6 +33,7 @@ geometry_parsed_geometry_type = 1
 script = ExtResource("1_bxblg")
 ChunkTemplate = ExtResource("2_vkmtl")
 PlayerTemplate = ExtResource("3_2vwx4")
+EnemySpawnerTemplate = ExtResource("5_0mckk")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=302860162]
 transform = Transform3D(0.90968513, -0.39042845, 0.1415575, 0.17397693, 0.6677704, 0.7237506, -0.37710065, -0.6337575, 0.67538637, -0.58075714, 6.1517158, 2.3238013)

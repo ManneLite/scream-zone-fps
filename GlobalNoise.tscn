@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dykcbd0gtpyow"]
+
+[ext_resource type="Script" uid="uid://c5c7kxeyi4ssv" path="res://GlobalNoise.cs" id="1_juq37"]
+
+[node name="GlobalNoise" type="Node" unique_id=1853117549]
+script = ExtResource("1_juq37")
