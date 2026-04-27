@@ -20,7 +20,6 @@ Base_Speed = 7.0
 JumpVelocity = 9.0
 Sensitivity = 0.003
 Projectile = ExtResource("2_a7feo")
-HP = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1990183192]
 shape = SubResource("CapsuleShape3D_rr31j")
