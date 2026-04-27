@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ddics8whvm7g"]
 
-[ext_resource type="ArrayMesh" uid="uid://d0t72f0mr5xty" path="res://throne.obj" id="1_jdcdb"]
-[ext_resource type="Texture2D" uid="uid://bifw0i6u3yes5" path="res://Sphere Base Color.png" id="2_k0xvu"]
+[ext_resource type="ArrayMesh" uid="uid://d0t72f0mr5xty" path="res://assets_3d/throne.obj" id="1_jdcdb"]
+[ext_resource type="Texture2D" uid="uid://bifw0i6u3yes5" path="res://assets_2d/Sphere Base Color.png" id="2_k0xvu"]
 [ext_resource type="Script" uid="uid://r5d65d1fxxyd" path="res://BigBossMen.cs" id="3_k0xvu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a538i"]

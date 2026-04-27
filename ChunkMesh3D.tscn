@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dqvgnremrjxyn"]
+
+[ext_resource type="Material" uid="uid://r3tngi6i75gx" path="res://assets_materials/fleshy_blob.material" id="1_1ytx4"]
+[ext_resource type="Script" uid="uid://6p7rf46m3wby" path="res://ChunkMesh3D.cs" id="2_n7gul"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" unique_id=1877187332]
+material_override = ExtResource("1_1ytx4")
+script = ExtResource("2_n7gul")

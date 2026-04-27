@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://cl4cvmkxr02yl"]
 
-[ext_resource type="Script" uid="uid://j8yvoajpob4u" path="res://player_controller.cs" id="1_xv8y8"]
-[ext_resource type="PackedScene" uid="uid://bmfwyan0rwqs" path="res://projectile.tscn" id="2_a7feo"]
-[ext_resource type="Script" uid="uid://b43dmqbdv03om" path="res://RayCast3d.cs" id="3_a7feo"]
-[ext_resource type="AudioStream" uid="uid://ckn24tm3t8nr0" path="res://verytuffmusic.mp3" id="4_22gqc"]
-[ext_resource type="AudioStream" uid="uid://cp8kuc3i4bjjr" path="res://freesound_community-medium-explosion-40472.mp3" id="5_5hyyw"]
+[ext_resource type="Script" uid="uid://j8yvoajpob4u" path="res://Player3D.cs" id="1_xv8y8"]
+[ext_resource type="PackedScene" uid="uid://bmfwyan0rwqs" path="res://Projectile3D.tscn" id="2_a7feo"]
+[ext_resource type="Script" uid="uid://b43dmqbdv03om" path="res://ChunkCheckRay3D.cs" id="3_a7feo"]
+[ext_resource type="AudioStream" uid="uid://ckn24tm3t8nr0" path="res://assets_music/verytuffmusic.mp3" id="4_22gqc"]
+[ext_resource type="AudioStream" uid="uid://cp8kuc3i4bjjr" path="res://assets_sfx/freesound_community-medium-explosion-40472.mp3" id="5_5hyyw"]
 [ext_resource type="PackedScene" uid="uid://ddics8whvm7g" path="res://BigBossMen.tscn" id="6_4gu1q"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rr31j"]
@@ -20,6 +20,7 @@ Base_Speed = 7.0
 JumpVelocity = 9.0
 Sensitivity = 0.003
 Projectile = ExtResource("2_a7feo")
+HP = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1990183192]
 shape = SubResource("CapsuleShape3D_rr31j")
@@ -48,7 +49,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, -0.25, -0.8)
 target_position = Vector3(0, 0, -64)
 collision_mask = 4
 
-[node name="RayCast3D" type="RayCast3D" parent="." unique_id=1322166784 groups=["PlayerRaycast"]]
+[node name="ChunkCheckRay3D" type="RayCast3D" parent="." unique_id=1322166784 groups=["PlayerRaycast"]]
 target_position = Vector3(0, -100, 0)
 script = ExtResource("3_a7feo")
 

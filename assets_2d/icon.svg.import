@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cphvn27qm4cgr"
-path.s3tc="res://.godot/imported/eyee.png-7903c8a2a3f663c005ea35301460cc86.s3tc.ctex"
+uid="uid://dgferd3svu3yd"
+path.s3tc="res://.godot/imported/icon.svg-b5f6b46a1689c2bfc7fa2bdceaa810a0.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://eyee.png"
-dest_files=["res://.godot/imported/eyee.png-7903c8a2a3f663c005ea35301460cc86.s3tc.ctex"]
+source_file="res://assets_2d/icon.svg"
+dest_files=["res://.godot/imported/icon.svg-b5f6b46a1689c2bfc7fa2bdceaa810a0.s3tc.ctex"]
 
 [params]
 
@@ -22,7 +22,7 @@ compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=1
+compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
@@ -39,3 +39,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=0
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

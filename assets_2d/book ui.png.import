@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ehgssiupjoi4"
-path="res://.godot/imported/book ui.png-3cc88c906d15782fb9d31d8d911fdc36.ctex"
+path="res://.godot/imported/book ui.png-375b7ee22a4bc5eb9490660102546b1d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://book ui.png"
-dest_files=["res://.godot/imported/book ui.png-3cc88c906d15782fb9d31d8d911fdc36.ctex"]
+source_file="res://assets_2d/book ui.png"
+dest_files=["res://.godot/imported/book ui.png-375b7ee22a4bc5eb9490660102546b1d.ctex"]
 
 [params]
 

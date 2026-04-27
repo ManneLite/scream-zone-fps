@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Threading.Tasks;
 
-public partial class chunk_mesh_3d : MeshInstance3D
+public partial class ChunkMesh3D : MeshInstance3D
 {
 	public int Size;
 	public Vector2I Pos;

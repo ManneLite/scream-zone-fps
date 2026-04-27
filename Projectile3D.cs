@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class projectile_basic : Area3D
+public partial class Projectile3D : Area3D
 {
 	[Export] public float Speed = 750f;
 	bool active = true;

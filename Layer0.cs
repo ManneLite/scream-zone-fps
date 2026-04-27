@@ -1,7 +1,7 @@
 using Godot;
 using System.Collections.Generic;
 
-public partial class Level : Node3D
+public partial class Layer0 : Node3D
 {
     NavigationRegion3D nav_region;
 	[Export] public PackedScene ChunkTemplate;
@@ -18,11 +18,11 @@ public partial class Level : Node3D
 	public FastNoiseLite Noise;
 	public int Seed = 0;
 
-	private Dictionary<Vector2I, chunk_mesh_3d> chunks = new();
-	private RayCast3d Raycast;
-    private player_controller player;
+	private Dictionary<Vector2I, ChunkMesh3D> chunks = new();
+	private ChunkCheckRay3D Raycast;
+    private Player3D player;
 
-	public Node3d BiomeShaders;
+	public BiomeMaterialMap3D BiomeShaders;
 
     public override void _Ready()
     {
@@ -44,13 +44,13 @@ public partial class Level : Node3D
 
 		//Raycast.PlayerChangedChunk += OnPlayerChangedChunk;
 
-		BiomeShaders = GetNode<Node3d>("BiomeShaders");
+		BiomeShaders = GetNode<BiomeMaterialMap3D>("BiomeMaterialMap3D");
 		Load3x3Chunks(0, 0);
 
-        if(PlayerTemplate.Instantiate() is player_controller p)
+        if(PlayerTemplate.Instantiate() is Player3D p)
         {
             player = p;
-            p.GetNode<RayCast3d>("RayCast3D").PlayerChangedChunk += OnPlayerChangedChunk;
+            p.GetNode<ChunkCheckRay3D>("ChunkCheckRay3D").PlayerChangedChunk += OnPlayerChangedChunk;
             float n = Noise.GetNoise2D(0,0);
             n = (n + 1f) * 0.5f;
             float y = (n * ChunkHeight + 1);
@@ -116,7 +116,7 @@ public partial class Level : Node3D
 
 	public void LoadChunk(Vector2I pos)
 	{
-		if (ChunkTemplate.Instantiate() is chunk_mesh_3d chunk)
+		if (ChunkTemplate.Instantiate() is ChunkMesh3D chunk)
 		{
 			chunk.Size = ChunkSize;
 			chunk.Height = ChunkHeight;

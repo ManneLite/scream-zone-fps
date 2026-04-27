@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class enemy_body_3d : CharacterBody3D, IDamagable
+public partial class EnemyBody3D : CharacterBody3D, IDamagable
 {
 	[Export] public float Speed = 5.0f;
 	[Export] public float RotationSpeed = 5.0f;

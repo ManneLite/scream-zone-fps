@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class Node3d : Node3D
+public partial class BiomeMaterialMap3D : Node3D
 {
 	[Export] public StandardMaterial3D Greed;
 	[Export] public StandardMaterial3D Pride;

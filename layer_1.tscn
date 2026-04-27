@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dqhna1hq1t3v4"]
 
-[ext_resource type="PackedScene" uid="uid://cl4cvmkxr02yl" path="res://player_body_3d.tscn" id="1_muqm3"]
+[ext_resource type="PackedScene" uid="uid://cl4cvmkxr02yl" path="res://Player3D.tscn" id="1_muqm3"]
 [ext_resource type="Script" uid="uid://d0qaipo43sj37" path="res://layer_1_enemy_spawner.cs" id="1_pmddd"]
-[ext_resource type="PackedScene" uid="uid://v03bhgpilacx" path="res://enemy_body_3d.tscn" id="2_pmddd"]
+[ext_resource type="PackedScene" uid="uid://v03bhgpilacx" path="res://EnemyBody3D.tscn" id="2_pmddd"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_amlsm"]
 vertices = PackedVector3Array(-49.5, 1, -49.5, -49.5, 1, 49.5, 49.5, 1, 49.5, 49.5, 1, -49.5)

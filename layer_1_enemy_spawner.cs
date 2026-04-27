@@ -17,7 +17,7 @@ public partial class layer_1_enemy_spawner : Node3D
 
 	public void _on_timer_timeout()
 	{
-		if(Enemy.Instantiate() is enemy_body_3d enemy)
+		if(Enemy.Instantiate() is EnemyBody3D enemy)
 		{
 			float pos_x = (float)GD.RandRange(-40f, 40f);
 			float pos_z = (float)GD.RandRange(-40f, 40f);

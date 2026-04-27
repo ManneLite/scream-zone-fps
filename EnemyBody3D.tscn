@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://v03bhgpilacx"]
 
-[ext_resource type="Texture2D" uid="uid://weygtol8fhk7" path="res://assets_2d/eyee.png" id="2_oxlo2"]
-[ext_resource type="Texture2D" uid="uid://c0bod6rruo5ob" path="res://assets_2d/eye2.png" id="3_6wjcn"]
-[ext_resource type="Texture2D" uid="uid://l3e1ol6r1f4x" path="res://assets_2d/eye3.png" id="4_2o74j"]
-[ext_resource type="Script" uid="uid://b8cia6aw2vt4m" path="res://enemy_body_3d.cs" id="5_lr5mn"]
+[ext_resource type="Script" uid="uid://b8cia6aw2vt4m" path="res://EnemyBody3D.cs" id="1_dsp8p"]
+[ext_resource type="Texture2D" uid="uid://weygtol8fhk7" path="res://assets_2d/eyee.png" id="2_5eoir"]
+[ext_resource type="Texture2D" uid="uid://c0bod6rruo5ob" path="res://assets_2d/eye2.png" id="3_ggo1r"]
+[ext_resource type="Texture2D" uid="uid://l3e1ol6r1f4x" path="res://assets_2d/eye3.png" id="4_2xiq1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kuye5"]
 
@@ -13,7 +13,7 @@
 
 [node name="EnemyBody3D" type="CharacterBody3D" unique_id=750495923]
 collision_layer = 5
-script = ExtResource("5_lr5mn")
+script = ExtResource("1_dsp8p")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=16998930]
 shape = SubResource("CapsuleShape3D_kuye5")
@@ -27,15 +27,15 @@ mesh = SubResource("CapsuleMesh_xum1i")
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.5, -0.5)
 
 [node name="Sprite3D_Eye_Open" type="Sprite3D" parent="Eyes" unique_id=308649090]
-texture = ExtResource("2_oxlo2")
+texture = ExtResource("2_5eoir")
 
 [node name="Sprite3D_Eye_Half" type="Sprite3D" parent="Eyes" unique_id=802454825]
 visible = false
-texture = ExtResource("3_6wjcn")
+texture = ExtResource("3_ggo1r")
 
 [node name="Sprite3D_Eye_Closed" type="Sprite3D" parent="Eyes" unique_id=1400859957]
 visible = false
-texture = ExtResource("4_2o74j")
+texture = ExtResource("4_2xiq1")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1741640657]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3476327, -0.574822)

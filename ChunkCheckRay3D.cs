@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class RayCast3d : RayCast3D
+public partial class ChunkCheckRay3D : RayCast3D
 {
 	
 	private Vector2 OldLocal;
@@ -18,7 +18,7 @@ public partial class RayCast3d : RayCast3D
 		if(IsColliding())
 		{
 			if(GetCollider() is Node collider && 
-			   collider.GetParent() is chunk_mesh_3d chunk)
+			   collider.GetParent() is ChunkMesh3D chunk)
 			{
 				Vector2 a = chunk.Pos;
 				if(OldLocal != a)

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class player_controller : CharacterBody3D, IDamagable
+public partial class Player3D : CharacterBody3D, IDamagable
 {
 	[Export] public float Base_Speed = 5.0f;
 	[Export] public float JumpVelocity = 4.5f;
@@ -46,7 +46,7 @@ public partial class player_controller : CharacterBody3D, IDamagable
 
 	public void shoot()
 	{
-		if(Projectile.Instantiate() is projectile_basic p)
+		if(Projectile.Instantiate() is Projectile3D projectile)
 		{
             Vector3 target;
             if(ProjectileRay.IsColliding())
@@ -59,10 +59,10 @@ public partial class player_controller : CharacterBody3D, IDamagable
                 target = Head.GlobalPosition + (Head.GlobalTransform.Basis.Z * ProjectileRay.TargetPosition.Z);
             }
 
-			GetTree().Root.AddChild(p);
-			p.Transform = ProjectileSpawnPos.GlobalTransform;
-            p.LookAt(target, Vector3.Up);
-			p.SetCollisionMaskValue(3, true);
+			GetTree().Root.AddChild(projectile);
+			projectile.Transform = ProjectileSpawnPos.GlobalTransform;
+            projectile.LookAt(target, Vector3.Up);
+			projectile.SetCollisionMaskValue(3, true);
 		}
 	}
 

@@ -1,32 +1,6 @@
-[gd_scene format=3 uid="uid://bj1j62vojkfln"]
+[gd_scene format=3 uid="uid://jneafwh4hd3k"]
 
-[ext_resource type="Script" uid="uid://cefulwd0bns6" path="res://Level.cs" id="1_s4jgn"]
-[ext_resource type="PackedScene" uid="uid://cl4cvmkxr02yl" path="res://player_body_3d.tscn" id="5_oi352"]
-[ext_resource type="PackedScene" uid="uid://dqvgnremrjxyn" path="res://Chunk.tscn" id="6_kuye5"]
-[ext_resource type="Script" uid="uid://cyxbh8n51mt1" path="res://Node3d.cs" id="8_qsntj"]
-
-[sub_resource type="Sky" id="Sky_ky0du"]
-
-[sub_resource type="Environment" id="Environment_ky0du"]
-background_mode = 2
-background_color = Color(1, 1, 1, 1)
-sky = SubResource("Sky_ky0du")
-glow_enabled = true
-glow_levels/1 = 0.26
-glow_levels/4 = 0.36
-glow_levels/5 = 0.17
-glow_levels/6 = 0.09
-glow_levels/7 = 0.09
-glow_intensity = 1.23
-glow_strength = 0.84
-volumetric_fog_enabled = true
-volumetric_fog_density = 0.159
-volumetric_fog_albedo = Color(0.12225223, 0.12225223, 0.12225223, 1)
-
-[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_oi352"]
-
-[sub_resource type="NavigationMesh" id="NavigationMesh_ky0du"]
-geometry_parsed_geometry_type = 1
+[ext_resource type="Script" uid="uid://cyxbh8n51mt1" path="res://BiomeMaterialMap3D.cs" id="1_xab6b"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_utuek"]
 albedo_color = Color(0.8073277, 0.5527501, 1.92523e-07, 1)
@@ -73,24 +47,9 @@ roughness = 0.1
 metallic = 0.3
 roughness = 0.1
 
-[node name="Node3D" type="Node3D" unique_id=1669213060]
-script = ExtResource("1_s4jgn")
-ChunkTemplate = ExtResource("6_kuye5")
-PlayerTemplate = ExtResource("5_oi352")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=302860162]
-transform = Transform3D(0.90968513, -0.39042845, 0.1415575, 0.17397693, 0.6677704, 0.7237506, -0.37710065, -0.6337575, 0.67538637, -0.58075714, 6.1517158, 2.3238013)
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=717812520]
-environment = SubResource("Environment_ky0du")
-camera_attributes = SubResource("CameraAttributesPhysical_oi352")
-
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=954722719]
-navigation_mesh = SubResource("NavigationMesh_ky0du")
-
-[node name="BiomeShaders" type="Node3D" parent="." unique_id=757638306]
+[node name="BiomeMaterialMap3D" type="Node3D" unique_id=1323633058]
 transform = Transform3D(0.9999512, -0.0020673205, -0.009658024, 0.0019980785, 0.9999723, -0.0071707633, 0.009672586, 0.0071511087, 0.99992764, 0, 0, 0)
-script = ExtResource("8_qsntj")
+script = ExtResource("1_xab6b")
 Greed = SubResource("StandardMaterial3D_utuek")
 Pride = SubResource("StandardMaterial3D_qsntj")
 Sloth = SubResource("StandardMaterial3D_1ay10")

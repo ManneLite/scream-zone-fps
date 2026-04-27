@@ -1,16 +1,18 @@
 [gd_scene format=3 uid="uid://dnof3hrv3281a"]
 
-[ext_resource type="Script" uid="uid://gi3iaaqj4asa" path="res://Menu_UI.gd" id="1_tug6h"]
-[ext_resource type="Texture2D" uid="uid://ehgssiupjoi4" path="res://book ui.png" id="2_ckdgi"]
+[ext_resource type="Script" uid="uid://dj0kob20uj10m" path="res://MenuMain.cs" id="1_vq1su"]
+[ext_resource type="Texture2D" uid="uid://ehgssiupjoi4" path="res://assets_2d/book ui.png" id="2_c4mup"]
+[ext_resource type="PackedScene" uid="uid://bj1j62vojkfln" path="res://Layer0.tscn" id="2_vr2up"]
 
-[node name="Control" type="Control" unique_id=1690358986]
+[node name="MenuMain" type="Control" unique_id=1690358986]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_tug6h")
+script = ExtResource("1_vq1su")
+GameLevel = ExtResource("2_vr2up")
 
 [node name="Panel" type="Panel" parent="." unique_id=670683799]
 layout_mode = 0
@@ -21,18 +23,18 @@ offset_bottom = 656.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=1291150574]
 layout_mode = 0
-offset_left = 289.0
-offset_top = 229.0
-offset_right = 465.0
-offset_bottom = 272.0
+offset_left = 340.0
+offset_top = 237.0
+offset_right = 414.6141
+offset_bottom = 297.0
 scale = Vector2(1.166, 1)
 
-[node name="Button" type="Button" parent="Panel/VBoxContainer" unique_id=729560895]
+[node name="PlayButton" type="Button" parent="Panel/VBoxContainer" unique_id=729560895]
 self_modulate = Color(1, 1, 1, 0)
 z_index = 1
 layout_mode = 2
 text = "a
-"
+a"
 
 [node name="TextureRect" type="TextureRect" parent="Panel" unique_id=567473676]
 layout_mode = 0
@@ -41,8 +43,8 @@ offset_top = 18.0
 offset_right = 1117.0
 offset_bottom = 620.0
 mouse_filter = 2
-texture = ExtResource("2_ckdgi")
+texture = ExtResource("2_c4mup")
 expand_mode = 5
 stretch_mode = 6
 
-[connection signal="pressed" from="Panel/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/PlayButton" to="." method="OnPlayButtonPressed"]
