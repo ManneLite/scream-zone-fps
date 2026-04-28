@@ -7,8 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://d4ky1txknjxs4" path="res://EnemySpawner.tscn" id="5_0mckk"]
 [ext_resource type="Script" uid="uid://c0bf2xliqievt" path="res://PlaceableObjects.cs" id="6_0mckk"]
 [ext_resource type="PackedScene" uid="uid://dpxrxah1s1g8a" path="res://Pillar.tscn" id="6_lwb5q"]
-[ext_resource type="Texture2D" uid="uid://cr7786gw2edgh" path="res://assets_2d/Organic.jpg" id="7_lwb5q"]
 [ext_resource type="PackedScene" uid="uid://c4e7l08umlnbc" path="res://FreakySkull.tscn" id="7_obye8"]
+[ext_resource type="Texture2D" uid="uid://dh03ofwwkq4f1" path="res://assets_2d/crosshair.png" id="10_l53c8"]
+[ext_resource type="Texture2D" uid="uid://dbtjejm8o8lv5" path="res://assets_2d/heart-painted.png" id="10_nksci"]
+[ext_resource type="FontFile" uid="uid://docsdbfid02nj" path="res://fonts/COPRGTL.TTF" id="11_lusv3"]
+[ext_resource type="Texture2D" uid="uid://dker5jmsg61rm" path="res://assets_2d/fireball_tool_desc.png" id="12_ls0rl"]
 
 [sub_resource type="Sky" id="Sky_ky0du"]
 
@@ -33,28 +36,6 @@ volumetric_fog_albedo = Color(0.12225223, 0.12225223, 0.12225223, 1)
 [sub_resource type="NavigationMesh" id="NavigationMesh_ky0du"]
 geometry_parsed_geometry_type = 1
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lwb5q"]
-albedo_color = Color(0.6318962, 0.26795968, 1.92523e-07, 1)
-metallic_specular = 1.0
-roughness_texture = ExtResource("7_lwb5q")
-normal_enabled = true
-normal_texture = ExtResource("7_lwb5q")
-clearcoat_roughness = 0.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qnouv"]
-albedo_color = Color(0, 0, 0, 1)
-metallic = 0.3
-roughness = 0.1
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l53c8"]
-metallic_specular = 0.0
-roughness_texture = ExtResource("7_lwb5q")
-emission = Color(1, 1, 1, 1)
-emission_energy_multiplier = 0.1
-normal_enabled = true
-normal_texture = ExtResource("7_lwb5q")
-clearcoat_roughness = 0.0
-
 [node name="Layer0" type="Node3D" unique_id=1669213060]
 script = ExtResource("1_bxblg")
 ChunkTemplate = ExtResource("2_vkmtl")
@@ -74,10 +55,148 @@ camera_attributes = SubResource("CameraAttributesPhysical_oi352")
 navigation_mesh = SubResource("NavigationMesh_ky0du")
 
 [node name="BiomeMaterialMap3D" parent="." unique_id=1323633058 instance=ExtResource("4_vkmtl")]
-Gluttony = SubResource("StandardMaterial3D_lwb5q")
-Empty = SubResource("StandardMaterial3D_qnouv")
-Divine = SubResource("StandardMaterial3D_l53c8")
 
 [node name="PlaceableObjects" type="Node" parent="." unique_id=1821232111]
 script = ExtResource("6_0mckk")
 FreakySkull = ExtResource("7_obye8")
+
+[node name="Crosshair" type="CanvasLayer" parent="." unique_id=700408874]
+
+[node name="TextureRect" type="TextureRect" parent="Crosshair" unique_id=2070112316]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.5
+offset_top = -12.5
+offset_right = 12.5
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_l53c8")
+expand_mode = 1
+
+[node name="Hearts" type="CanvasLayer" parent="." unique_id=2030635642]
+
+[node name="3" type="TextureRect" parent="Hearts" unique_id=944825486 groups=["Hearts"]]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.95
+anchor_right = 0.5
+anchor_bottom = 0.95
+offset_left = -40.0
+offset_top = -83.0
+offset_right = 50.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("10_nksci")
+expand_mode = 1
+
+[node name="2" type="TextureRect" parent="Hearts" unique_id=1802242346 groups=["Hearts"]]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.95
+anchor_right = 0.5
+anchor_bottom = 0.95
+offset_left = -94.0
+offset_top = -58.0
+offset_right = -4.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 0
+rotation = -0.2617994
+texture = ExtResource("10_nksci")
+expand_mode = 1
+
+[node name="1" type="TextureRect" parent="Hearts" unique_id=1375340096 groups=["Hearts"]]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.95
+anchor_right = 0.5
+anchor_bottom = 0.95
+offset_left = -139.0
+offset_top = -18.0
+offset_right = -49.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 0
+rotation = -0.5235988
+texture = ExtResource("10_nksci")
+expand_mode = 1
+
+[node name="4" type="TextureRect" parent="Hearts" unique_id=1131280505 groups=["Hearts"]]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.95
+anchor_right = 0.5
+anchor_bottom = 0.95
+offset_left = 13.999939
+offset_top = -80.0
+offset_right = 103.99994
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 0
+rotation = 0.2617994
+texture = ExtResource("10_nksci")
+expand_mode = 1
+
+[node name="5" type="TextureRect" parent="Hearts" unique_id=96299749 groups=["Hearts"]]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.95
+anchor_right = 0.5
+anchor_bottom = 0.95
+offset_left = 68.0
+offset_top = -62.99994
+offset_right = 158.0
+offset_bottom = 27.000061
+grow_horizontal = 2
+grow_vertical = 0
+rotation = 0.5235988
+texture = ExtResource("10_nksci")
+expand_mode = 1
+
+[node name="BiomeDescription" type="CanvasLayer" parent="." unique_id=734101702]
+visible = false
+
+[node name="Label" type="Label" parent="BiomeDescription" unique_id=135845724]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -86.0
+offset_top = 53.0
+offset_right = 86.0
+offset_bottom = 76.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("11_lusv3")
+theme_override_font_sizes/font_size = 50
+text = "Entering Biome - Sloth"
+
+[node name="Label2" type="Label" parent="BiomeDescription" unique_id=1245255094]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -305.0
+offset_top = 123.0
+offset_right = 308.0
+offset_bottom = 179.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("11_lusv3")
+theme_override_font_sizes/font_size = 40
+text = "You're feeling lazy 0.5x walkspeed"
+
+[node name="ToolDescription" type="CanvasLayer" parent="." unique_id=2110760910]
+
+[node name="TextureRect" type="TextureRect" parent="ToolDescription" unique_id=1137045139]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -93.0
+offset_right = 300.0
+offset_bottom = -33.0
+grow_vertical = 0
+scale = Vector2(0.96000046, 1)
+texture = ExtResource("12_ls0rl")
+expand_mode = 1
