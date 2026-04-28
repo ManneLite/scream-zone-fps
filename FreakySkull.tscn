@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://c4e7l08umlnbc"]
+
+[ext_resource type="ArrayMesh" uid="uid://xi3710rsdpra" path="res://assets_3d/freaky_skull.obj" id="1_exk7n"]
+[ext_resource type="Material" uid="uid://r3tngi6i75gx" path="res://assets_materials/fleshy_blob.material" id="2_jed5c"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_exk7n"]
+
+[node name="StaticBody3D" type="StaticBody3D" unique_id=1962930393]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1565529214]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+shape = SubResource("SphereShape3D_exk7n")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1483971822]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = ExtResource("1_exk7n")
+surface_material_override/0 = ExtResource("2_jed5c")
