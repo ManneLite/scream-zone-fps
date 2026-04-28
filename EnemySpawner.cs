@@ -3,10 +3,13 @@ using System;
 
 public partial class EnemySpawner : Node3D
 {
+
 	[Export] public PackedScene EnemyType;
 	[Export] public float SpawnFrequency = 5.0f;
 	[Export] public float Radius = 20.0f;
 	[Export] public int SpawnCount = 1;
+
+    public SinType Sin;
 
 	public override void _Ready()
 	{
@@ -33,5 +36,7 @@ public partial class EnemySpawner : Node3D
 			}
 		}
 	}
+
+
 
 }

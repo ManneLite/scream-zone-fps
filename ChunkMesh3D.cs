@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 
 public partial class ChunkMesh3D : MeshInstance3D
 {	
+    public SinType Sin;
 	public int Size;
 	public Vector2I Pos;
 

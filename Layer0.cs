@@ -7,7 +7,6 @@ public partial class Layer0 : Node3D
 	[Export] public PackedScene ChunkTemplate;
 	[Export] public PackedScene PlayerTemplate;
 	[Export] public PackedScene EnemySpawnerTemplate;
-	[Export] public PackedScene ObjectSpawner;
 
 	[Export] public int ChunkSize = 40;
 	[Export] public float ChunkHeight = 30f;
@@ -24,7 +23,6 @@ public partial class Layer0 : Node3D
 	private ChunkCheckRay3D Raycast;
 	private Player3D player;
 
-	public BiomeMaterialMap3D BiomeShaders;
 	bool active = true;
 
 	public override void _Ready()
@@ -40,8 +38,7 @@ public partial class Layer0 : Node3D
 		GlobalNoise.Instance.SetChunkSize(ChunkSize);
 		GlobalNoise.Instance.SetChunkHeight(ChunkHeight);
 
-		BiomeShaders = GetNode<BiomeMaterialMap3D>("BiomeMaterialMap3D");
-		Load3x3Chunks(0, 0);
+		Load3x3Chunks(new(0, 0));
 
 		if(PlayerTemplate.Instantiate() is Player3D p)
 		{
@@ -55,7 +52,7 @@ public partial class Layer0 : Node3D
 		}
 	}
 
-	public void Load3x3Chunks(int x, int z)
+	public void Load3x3Chunks(Vector2I center_pos)
 	{
 		bool should_rebake = false;
 
@@ -65,7 +62,7 @@ public partial class Layer0 : Node3D
 		{
 			for (int az = -1; az <= 1; az++)
 			{
-				desired.Add(new Vector2I(x + ax, z + az));
+				desired.Add(new Vector2I(ax, az) + center_pos);
 			}
 		}
 
@@ -112,15 +109,16 @@ public partial class Layer0 : Node3D
 
 			if(-1 <= x && 1 >= x && -1 <= z && 1 >= z)
 			{
-				chunk.MaterialOverride = BiomeShaders.biomeShaders[Vector2.Zero];
+                chunk.Sin = SinType.Divine;
 			}
 			else
 			{
 				Vector2 a = new Vector2(x,z).Normalized();
 				a = new Vector2(Mathf.Round(a.X), Mathf.Round(a.Y));
-				chunk.MaterialOverride = BiomeShaders.biomeShaders[a];
+                chunk.Sin = GlobalSinInfo.Instance.GetSinByChunkPos(a);
 			}
 
+			chunk.MaterialOverride = GlobalSinInfo.Instance.GetShaderBySin(chunk.Sin);
 			nav_region.AddChild(chunk);
 			chunks[new Vector2I(x, z)] = chunk;
 			
@@ -145,16 +143,17 @@ public partial class Layer0 : Node3D
 			{
 				Vector3 spawner_pos = new Vector3(pos.X, 0, pos.Y) * ChunkSize;
 				spawner_pos.Y = GlobalNoise.Instance.GetYAtPosV3(spawner_pos) + 1;
+                spawner.Sin = chunk.Sin;
 				chunk.AddChild(spawner);
 				spawner.GlobalPosition = spawner_pos;
 			}
 		}
 	}
-	private void OnPlayerChangedChunk(Vector2 local)
+	private void OnPlayerChangedChunk(Vector2I ChunkPos, SinType ChunkSin)
 	{
 		if(active)
 		{
-			Load3x3Chunks((int)local.X, (int)local.Y);
+			Load3x3Chunks(ChunkPos);
 		}
 	}
 

@@ -20,6 +20,8 @@ public partial class Player3D : CharacterBody3D, IDamagable
 
 	Area3D EnemyDetectionSphere;
 
+    SinType CurrentSin = SinType.Divine;
+
 	public override void _Ready()
 	{
 		Input.MouseMode = Godot.Input.MouseModeEnum.Captured;
@@ -32,6 +34,7 @@ public partial class Player3D : CharacterBody3D, IDamagable
 		send_position_timer.Timeout += OnSendPositionTimerTimeout;
 		EnemyDetectionSphere.BodyEntered += OnEnemyEnteredDetectionRange;
 		EnemyDetectionSphere.BodyExited += OnEnemyLeftDetectionRange;
+		GetNode<ChunkCheckRay3D>("ChunkCheckRay3D").PlayerChangedChunk += OnChunkChanged;
 
 	}
 
@@ -142,7 +145,6 @@ public partial class Player3D : CharacterBody3D, IDamagable
 
 	public void OnEnemyEnteredDetectionRange(Node3D body)
 	{
-		GD.Print(body + " entered");
 		if(body is EnemyBody3D enemy)
 		{
 			SendPlayerPosition += enemy.SetTarget;
@@ -151,7 +153,6 @@ public partial class Player3D : CharacterBody3D, IDamagable
 
 	public void OnEnemyLeftDetectionRange(Node3D body)
 	{
-		GD.Print(body + " left");
 		if(body is EnemyBody3D enemy)
 		{
 			SendPlayerPosition -= enemy.SetTarget;
@@ -162,4 +163,14 @@ public partial class Player3D : CharacterBody3D, IDamagable
 	{
 		EmitSignal(SignalName.SendPlayerPosition, GlobalPosition);
 	}
+
+    public void OnChunkChanged(Vector2I ChunkPos, SinType ChunkSin)
+    {
+        if(CurrentSin != ChunkSin)
+        {
+            CurrentSin = ChunkSin;
+            GD.Print("You have now commited to the sin of " + ChunkSin);
+        }
+    }
+
 }

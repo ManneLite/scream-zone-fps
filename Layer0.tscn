@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cefulwd0bns6" path="res://Layer0.cs" id="1_bxblg"]
 [ext_resource type="PackedScene" uid="uid://dqvgnremrjxyn" path="res://ChunkMesh3D.tscn" id="2_vkmtl"]
 [ext_resource type="PackedScene" uid="uid://cl4cvmkxr02yl" path="res://Player3D.tscn" id="3_2vwx4"]
-[ext_resource type="PackedScene" uid="uid://jneafwh4hd3k" path="res://BiomeMaterialMap3D.tscn" id="4_vkmtl"]
+[ext_resource type="PackedScene" uid="uid://jneafwh4hd3k" path="res://GlobalSinInfo.tscn" id="4_vkmtl"]
 [ext_resource type="PackedScene" uid="uid://d4ky1txknjxs4" path="res://EnemySpawner.tscn" id="5_0mckk"]
 [ext_resource type="Script" uid="uid://c0bf2xliqievt" path="res://PlaceableObjects.cs" id="6_0mckk"]
 [ext_resource type="PackedScene" uid="uid://dpxrxah1s1g8a" path="res://Pillar.tscn" id="6_lwb5q"]
@@ -41,6 +41,11 @@ normal_enabled = true
 normal_texture = ExtResource("7_lwb5q")
 clearcoat_roughness = 0.0
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qnouv"]
+albedo_color = Color(0, 0, 0, 1)
+metallic = 0.3
+roughness = 0.1
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l53c8"]
 metallic_specular = 0.0
 roughness_texture = ExtResource("7_lwb5q")
@@ -70,7 +75,8 @@ navigation_mesh = SubResource("NavigationMesh_ky0du")
 
 [node name="BiomeMaterialMap3D" parent="." unique_id=1323633058 instance=ExtResource("4_vkmtl")]
 Gluttony = SubResource("StandardMaterial3D_lwb5q")
-EndGameActivated = SubResource("StandardMaterial3D_l53c8")
+Empty = SubResource("StandardMaterial3D_qnouv")
+Divine = SubResource("StandardMaterial3D_l53c8")
 
 [node name="PlaceableObjects" type="Node" parent="." unique_id=1821232111]
 script = ExtResource("6_0mckk")

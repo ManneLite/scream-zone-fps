@@ -18,6 +18,7 @@ config/icon="res://assets_2d/icon.svg"
 [autoload]
 
 GlobalNoise="*uid://dykcbd0gtpyow"
+GlobalSinInfo="*uid://jneafwh4hd3k"
 
 [dotnet]
 

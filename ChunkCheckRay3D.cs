@@ -6,7 +6,7 @@ public partial class ChunkCheckRay3D : RayCast3D
 	
 	private Vector2 OldLocal;
 	
-	[Signal] public delegate void PlayerChangedChunkEventHandler(Vector2 Local);
+	[Signal] public delegate void PlayerChangedChunkEventHandler(Vector2I Local, SinType ChunkSin);
 	
 	public override void _Ready()
 	{
@@ -23,8 +23,7 @@ public partial class ChunkCheckRay3D : RayCast3D
 				Vector2 a = chunk.Pos;
 				if(OldLocal != a)
 				{
-					GD.Print("Updating chunks!");
-					EmitSignal(SignalName.PlayerChangedChunk, a);
+					EmitSignal(SignalName.PlayerChangedChunk, a, (int)chunk.Sin);
 					OldLocal = a;
 				}
 			}

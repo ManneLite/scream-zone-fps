@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://jneafwh4hd3k"]
 
-[ext_resource type="Script" uid="uid://cyxbh8n51mt1" path="res://BiomeMaterialMap3D.cs" id="1_xab6b"]
+[ext_resource type="Script" uid="uid://cyxbh8n51mt1" path="res://GlobalSinInfo.cs" id="1_xab6b"]
+[ext_resource type="Texture2D" uid="uid://cr7786gw2edgh" path="res://assets_2d/Organic.jpg" id="2_mgvpu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_utuek"]
 albedo_color = Color(0.8073277, 0.5527501, 1.92523e-07, 1)
@@ -23,10 +24,13 @@ albedo_color = Color(0.9950941, 0, 0.047957584, 1)
 metallic = 0.3
 roughness = 0.1
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mj3mb"]
-albedo_color = Color(0.8557094, 0.34329855, 0, 1)
-metallic = 0.3
-roughness = 0.1
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lwb5q"]
+albedo_color = Color(0.6318962, 0.26795968, 1.92523e-07, 1)
+metallic_specular = 1.0
+roughness_texture = ExtResource("2_mgvpu")
+normal_enabled = true
+normal_texture = ExtResource("2_mgvpu")
+clearcoat_roughness = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qtg8i"]
 albedo_color = Color(0.29191437, 0.73334223, 1.347661e-06, 1)
@@ -43,19 +47,26 @@ albedo_color = Color(0, 0, 0, 1)
 metallic = 0.3
 roughness = 0.1
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jgy2h"]
-metallic = 0.3
-roughness = 0.1
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l53c8"]
+metallic_specular = 0.0
+roughness_texture = ExtResource("2_mgvpu")
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.1
+normal_enabled = true
+normal_texture = ExtResource("2_mgvpu")
+clearcoat_roughness = 0.0
 
-[node name="BiomeMaterialMap3D" type="Node3D" unique_id=1323633058]
+[node name="GlobalSinInfo" type="Node3D" unique_id=1323633058]
 transform = Transform3D(0.9999512, -0.0020673205, -0.009658024, 0.0019980785, 0.9999723, -0.0071707633, 0.009672586, 0.0071511087, 0.99992764, 0, 0, 0)
 script = ExtResource("1_xab6b")
-Greed = SubResource("StandardMaterial3D_utuek")
-Pride = SubResource("StandardMaterial3D_qsntj")
-Sloth = SubResource("StandardMaterial3D_1ay10")
-Wrath = SubResource("StandardMaterial3D_2i1yp")
-Gluttony = SubResource("StandardMaterial3D_mj3mb")
-Envy = SubResource("StandardMaterial3D_qtg8i")
-Lust = SubResource("StandardMaterial3D_p1urb")
-EndGame = SubResource("StandardMaterial3D_qnouv")
-EndGameActivated = SubResource("StandardMaterial3D_jgy2h")
+SinToShader = Dictionary[int, StandardMaterial3D]({
+0: SubResource("StandardMaterial3D_utuek"),
+1: SubResource("StandardMaterial3D_qsntj"),
+2: SubResource("StandardMaterial3D_1ay10"),
+3: SubResource("StandardMaterial3D_2i1yp"),
+4: SubResource("StandardMaterial3D_lwb5q"),
+5: SubResource("StandardMaterial3D_qtg8i"),
+6: SubResource("StandardMaterial3D_p1urb"),
+7: SubResource("StandardMaterial3D_qnouv"),
+8: SubResource("StandardMaterial3D_l53c8")
+})
