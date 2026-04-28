@@ -6,7 +6,7 @@ public partial class EnemySpawner : Node3D
 	[Export] public PackedScene EnemyType;
 	[Export] public float SpawnFrequency = 5.0f;
 	[Export] public float Radius = 20.0f;
-	[Export] public int SpawnCount = 10;
+	[Export] public int SpawnCount = 1;
 
 	public override void _Ready()
 	{

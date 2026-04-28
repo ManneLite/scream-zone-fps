@@ -59,4 +59,14 @@ public partial class GlobalNoise : Node
 		return result;
 	}
 
+    public float GetNormalized(float x, float y)
+    {
+        float result = Noise.GetNoise2D(x, y);
+
+		result = (result + 1f) * 0.5f;
+        result = Mathf.Clamp(result, 0, 1);
+
+        return result;
+    }
+
 }

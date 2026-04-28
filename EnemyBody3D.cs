@@ -5,8 +5,8 @@ public partial class EnemyBody3D : CharacterBody3D, IDamagable
 {
 	[Export] public float Speed = 5.0f;
 	[Export] public float RotationSpeed = 5.0f;
-	[Export] public int HP = 1;
-	[Export] public bool SmoothRotation = false;
+	[Export] public int HP = 3;
+	[Export] public bool SmoothRotation = true;
 	public Sprite3D eye_open;
 	public Sprite3D eye_half;
 	public Sprite3D eye_closed;

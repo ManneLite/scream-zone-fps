@@ -12,6 +12,10 @@ public partial class Layer0 : Node3D
 	[Export] public int ChunkSize = 40;
 	[Export] public float ChunkHeight = 30f;
 
+    [Export] public PackedScene[] WorldObjects;
+    [Export] public int MaxObjectsPerChunk = 15;
+
+    RandomNumberGenerator rng = new();
 	NavigationRegion3D nav_region;
 
 	public int Seed = 0;
@@ -49,16 +53,6 @@ public partial class Layer0 : Node3D
 			AddChild(player);
 			player.GlobalPosition = new(0, y, 0);
 		}
-	}
-
-	private float GetBiomeValue(int x, int z)
-	{
-		GD.Print("Getting biome value");
-		float scale = 0.02f;
-		float n1 = GlobalNoise.Instance.Noise.GetNoise2D(x * scale, z * scale);
-		float n2 = GlobalNoise.Instance.Noise.GetNoise2D((x + 10000) * scale, (z - 10000) * scale);
-		float value = n1 * 0.5f + n2 * 0.5f;
-		return (value + 1f) * 0.5f;
 	}
 
 	public void Load3x3Chunks(int x, int z)
@@ -127,16 +121,25 @@ public partial class Layer0 : Node3D
 				chunk.MaterialOverride = BiomeShaders.biomeShaders[a];
 			}
 
-
 			nav_region.AddChild(chunk);
 			chunks[new Vector2I(x, z)] = chunk;
 			
-			if(ObjectSpawner.Instantiate() is ObjectSpawner objectSpawner)
-			{
-				Vector3 spawner_pos = new Vector3(pos.X, 0, pos.Y) * ChunkSize;
-				objectSpawner.GlobalPosition = spawner_pos;
-				chunk.AddChild(objectSpawner);
-			}
+            rng.Seed = (uint)(("x"+x+"z"+z).Hash() + Seed);
+            for(int i = 0; i < MaxObjectsPerChunk; ++i)
+            {
+
+				int object_type =  (int)(rng.Randi() % WorldObjects.Length);
+                int global_chunk_pos_x = x * ChunkSize;
+                int global_chunk_pos_z = z * ChunkSize;
+                if(WorldObjects[object_type].Instantiate() is Node3D world_object)
+                {
+                    float pos_x = (((rng.Randi() % ChunkSize) - (ChunkSize/2)) + 0.5f) + (x * ChunkSize);
+                    float pos_z = (((rng.Randi() % ChunkSize) - (ChunkSize/2)) + 0.5f) + (z * ChunkSize);
+				    float pos_y = GlobalNoise.Instance.GetYAtPos(pos_x, pos_z);
+				    chunk.AddChild(world_object);
+				    world_object.GlobalPosition = new(pos_x, pos_y, pos_z);
+                }
+            }
 
 			if(EnemySpawnerTemplate.Instantiate() is EnemySpawner spawner)
 			{
@@ -159,7 +162,6 @@ public partial class Layer0 : Node3D
 	{
 		active = false;
 		
-		// fix this and handle cyclic dependencies
 		GetTree().ChangeSceneToFile("res://MenuMain.tscn");
 	}
 }

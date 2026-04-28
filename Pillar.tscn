@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dpxrxah1s1g8a"]
+
+[ext_resource type="ArrayMesh" uid="uid://bbvr4fqtrohdp" path="res://assets_3d/pillar.obj" id="1_lr3l8"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_lr3l8"]
+height = 1.5
+radius = 0.25
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xwou5"]
+
+[node name="StaticBody3D" type="StaticBody3D" unique_id=1962930393]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1565529214]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.8844961, 0)
+shape = SubResource("CylinderShape3D_lr3l8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1483971822]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.3203377, 0)
+material_override = SubResource("StandardMaterial3D_xwou5")
+mesh = ExtResource("1_lr3l8")
