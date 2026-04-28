@@ -5,6 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://cl4cvmkxr02yl" path="res://Player3D.tscn" id="3_2vwx4"]
 [ext_resource type="PackedScene" uid="uid://jneafwh4hd3k" path="res://BiomeMaterialMap3D.tscn" id="4_vkmtl"]
 [ext_resource type="PackedScene" uid="uid://d4ky1txknjxs4" path="res://EnemySpawner.tscn" id="5_0mckk"]
+[ext_resource type="PackedScene" uid="uid://cbieyhiky7x43" path="res://ObjectSpawner.tscn" id="5_sfma1"]
+[ext_resource type="Script" uid="uid://c0bf2xliqievt" path="res://PlaceableObjects.cs" id="6_0mckk"]
+[ext_resource type="Texture2D" uid="uid://cr7786gw2edgh" path="res://assets_2d/Organic.jpg" id="7_lwb5q"]
+[ext_resource type="PackedScene" uid="uid://c4e7l08umlnbc" path="res://FreakySkull.tscn" id="7_obye8"]
 
 [sub_resource type="Sky" id="Sky_ky0du"]
 
@@ -29,11 +33,29 @@ volumetric_fog_albedo = Color(0.12225223, 0.12225223, 0.12225223, 1)
 [sub_resource type="NavigationMesh" id="NavigationMesh_ky0du"]
 geometry_parsed_geometry_type = 1
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lwb5q"]
+albedo_color = Color(0.6318962, 0.26795968, 1.92523e-07, 1)
+metallic_specular = 1.0
+roughness_texture = ExtResource("7_lwb5q")
+normal_enabled = true
+normal_texture = ExtResource("7_lwb5q")
+clearcoat_roughness = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l53c8"]
+metallic_specular = 0.0
+roughness_texture = ExtResource("7_lwb5q")
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.1
+normal_enabled = true
+normal_texture = ExtResource("7_lwb5q")
+clearcoat_roughness = 0.0
+
 [node name="Layer0" type="Node3D" unique_id=1669213060]
 script = ExtResource("1_bxblg")
 ChunkTemplate = ExtResource("2_vkmtl")
 PlayerTemplate = ExtResource("3_2vwx4")
 EnemySpawnerTemplate = ExtResource("5_0mckk")
+ObjectSpawner = ExtResource("5_sfma1")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=302860162]
 transform = Transform3D(0.90968513, -0.39042845, 0.1415575, 0.17397693, 0.6677704, 0.7237506, -0.37710065, -0.6337575, 0.67538637, -0.58075714, 6.1517158, 2.3238013)
@@ -46,3 +68,9 @@ camera_attributes = SubResource("CameraAttributesPhysical_oi352")
 navigation_mesh = SubResource("NavigationMesh_ky0du")
 
 [node name="BiomeMaterialMap3D" parent="." unique_id=1323633058 instance=ExtResource("4_vkmtl")]
+Gluttony = SubResource("StandardMaterial3D_lwb5q")
+EndGameActivated = SubResource("StandardMaterial3D_l53c8")
+
+[node name="PlaceableObjects" type="Node" parent="." unique_id=1821232111]
+script = ExtResource("6_0mckk")
+FreakySkull = ExtResource("7_obye8")

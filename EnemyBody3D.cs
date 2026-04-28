@@ -31,32 +31,32 @@ public partial class EnemyBody3D : CharacterBody3D, IDamagable
 		eye_closed = eyes.GetNode<Sprite3D>("Sprite3D_Eye_Closed");
 	}
 
-    public void SetTarget(Vector3 pos)
-    {
-    	nav_agent.SetTargetPosition(pos);
-    }
+	public void SetTarget(Vector3 pos)
+	{
+		nav_agent.SetTargetPosition(pos);
+	}
 
 	public override void _PhysicsProcess(double delta)
 	{
-        if(!nav_agent.IsNavigationFinished())
-        {
-    		Vector3 nav_point_next = nav_agent.GetNextPathPosition();
-    
-            Vector3 direction = GlobalPosition.DirectionTo(nav_point_next);
-            Velocity = direction * Speed;
-    		Vector3 rotation = Rotation;
-    		rotation.Y = Mathf.LerpAngle(rotation.Y, Mathf.Atan2(-direction.X, -direction.Z), RotationSpeed * (float)delta);
-    		Rotation = rotation;
-            /*
-    		Vector3 flat_target = new(global_pos.X + velocity.X, global_pos.Y, global_pos.Z + velocity.Z);
-    
-    		if(!vec3_zero_approx(flat_target - global_pos))
-    		{
-    			LookAt(flat_target, Vector3.Up);
-    		}
-            */
-            MoveAndSlide();
-        }
+		if(!nav_agent.IsNavigationFinished())
+		{
+			Vector3 nav_point_next = nav_agent.GetNextPathPosition();
+	
+			Vector3 direction = GlobalPosition.DirectionTo(nav_point_next);
+			Velocity = direction * Speed;
+			Vector3 rotation = Rotation;
+			rotation.Y = Mathf.LerpAngle(rotation.Y, Mathf.Atan2(-direction.X, -direction.Z), RotationSpeed * (float)delta);
+			Rotation = rotation;
+			/*
+			Vector3 flat_target = new(global_pos.X + velocity.X, global_pos.Y, global_pos.Z + velocity.Z);
+	
+			if(!vec3_zero_approx(flat_target - global_pos))
+			{
+				LookAt(flat_target, Vector3.Up);
+			}
+			*/
+			MoveAndSlide();
+		}
 	}
 
 	public bool vec3_zero_approx(Vector3 vec)
