@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cl4cvmkxr02yl" path="res://Player3D.tscn" id="1_muqm3"]
 [ext_resource type="Script" uid="uid://d0qaipo43sj37" path="res://layer_1_enemy_spawner.cs" id="1_pmddd"]
 [ext_resource type="PackedScene" uid="uid://v03bhgpilacx" path="res://EnemyBody3D.tscn" id="2_pmddd"]
+[ext_resource type="PackedScene" uid="uid://ddics8whvm7g" path="res://BigBossMen.tscn" id="4_g6q28"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_amlsm"]
 vertices = PackedVector3Array(-49.5, 1, -49.5, -49.5, 1, 49.5, 49.5, 1, 49.5, 49.5, 1, -49.5)
@@ -52,10 +53,6 @@ shape = SubResource("BoxShape3D_muqm3")
 [node name="PlayerBody3D" parent="." unique_id=2069006518 instance=ExtResource("1_muqm3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.9176397, 0)
 
-[node name="EnemyBody3D" parent="." unique_id=750495923 node_paths=PackedStringArray("Target") instance=ExtResource("2_pmddd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2948036, -21.049356)
-Target = NodePath("../PlayerBody3D")
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1591690569]
 environment = SubResource("Environment_muqm3")
 camera_attributes = SubResource("CameraAttributesPhysical_pmddd")
@@ -66,5 +63,8 @@ light_color = Color(1, 0, 0, 1)
 
 [node name="Timer" type="Timer" parent="." unique_id=1052051659]
 autostart = true
+
+[node name="MeshInstance3D" parent="." unique_id=1259233715 instance=ExtResource("4_g6q28")]
+transform = Transform3D(3.44, 0, 0, 0, 3.44, 0, 0, 0, 3.44, 0, 19.662434, -34.272324)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

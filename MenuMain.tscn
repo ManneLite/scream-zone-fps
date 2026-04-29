@@ -3,7 +3,9 @@
 [ext_resource type="Script" uid="uid://dj0kob20uj10m" path="res://MenuMain.cs" id="1_vq1su"]
 [ext_resource type="PackedScene" uid="uid://bj1j62vojkfln" path="res://Layer0.tscn" id="2_vr2up"]
 [ext_resource type="Texture2D" uid="uid://chjby2e2j2xkx" path="res://assets_2d/book.png" id="4_vr2up"]
+[ext_resource type="AudioStream" uid="uid://cp8kuc3i4bjjr" path="res://assets_sfx/freesound_community-medium-explosion-40472.mp3" id="5_hbcoy"]
 [ext_resource type="FontFile" uid="uid://1htr11qocrl6" path="res://fonts/GOUDOSB.TTF" id="5_vxfkm"]
+[ext_resource type="Texture2D" uid="uid://weygtol8fhk7" path="res://assets_2d/eyee.png" id="5_wy2jp"]
 
 [sub_resource type="Theme" id="Theme_vr2up"]
 
@@ -12,6 +14,12 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vxfkm"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hbcoy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wy2jp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_42ch4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lbmtp"]
 
 [node name="MenuMain" type="Control" unique_id=1690358986]
 layout_mode = 3
@@ -265,8 +273,8 @@ alignment = 0
 [node name="CreditsSpecialThanks" type="VBoxContainer" parent="Book/CreditsScreen" unique_id=602020090]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.625
-anchor_top = 0.936
+anchor_left = 0.555
+anchor_top = 0.817
 anchor_right = 0.639
 anchor_bottom = 0.936
 
@@ -286,16 +294,26 @@ theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_vxfkm")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxEmpty_vr2up")
-text = "Droopy The Dragon"
+text = "Manda (saved us around 
+              500k vertices)"
 
-[node name="Button" type="Button" parent="Book/CreditsScreen" unique_id=142632222]
-layout_mode = 0
-offset_left = 378.80002
-offset_top = 355.0
-offset_right = 586.80005
-offset_bottom = 387.0
+[node name="DroopyButton" type="Button" parent="Book/CreditsScreen/CreditsSpecialThanks" unique_id=142632222]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.5058824, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.5058824, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_vxfkm")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wy2jp")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_42ch4")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_lbmtp")
+text = "        Droopy The Dragon"
+alignment = 0
 
-[node name="Spooky_JPG" type="TextureRect" parent="Book" unique_id=466769727]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Book/CreditsScreen/CreditsSpecialThanks/DroopyButton" unique_id=1555494306]
+
+[node name="Spooky_JPG" type="TextureRect" parent="." unique_id=466769727]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -303,12 +321,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("4_vr2up")
+texture = ExtResource("5_wy2jp")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Book/Spooky_JPG" unique_id=1519989193]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Spooky_JPG" unique_id=1519989193]
+stream = ExtResource("5_hbcoy")
 
+[connection signal="pressed" from="Book/TitleButton" to="." method="OnTitlePressed"]
 [connection signal="pressed" from="Book/MenuButtons/PlayButton" to="." method="OnPlayButtonPressed"]
 [connection signal="pressed" from="Book/MenuButtons/ShowCreditsButton" to="." method="OnShowCreditsButtonPressed"]
 [connection signal="pressed" from="Book/MenuButtons/QuitButton" to="." method="OnQuitButtonPressed"]
