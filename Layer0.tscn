@@ -49,8 +49,6 @@ camera_attributes = SubResource("CameraAttributesPhysical_oi352")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=954722719]
 navigation_mesh = SubResource("NavigationMesh_ky0du")
-enabled = false
-use_edge_connections = false
 
 [node name="BiomeMaterialMap3D" parent="." unique_id=1323633058 instance=ExtResource("4_vkmtl")]
 
@@ -58,4 +56,4 @@ use_edge_connections = false
 script = ExtResource("6_0mckk")
 FreakySkull = ExtResource("7_obye8")
 
-[node name="ChunksRoot" type="Node3D" parent="." unique_id=914560962]
+[node name="ChunksRoot" type="Node3D" parent="." unique_id=1789580469]

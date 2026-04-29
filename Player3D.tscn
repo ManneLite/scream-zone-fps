@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://j8yvoajpob4u" path="res://Player3D.cs" id="1_xv8y8"]
 [ext_resource type="PackedScene" uid="uid://bmfwyan0rwqs" path="res://Projectile3D.tscn" id="2_a7feo"]
 [ext_resource type="Script" uid="uid://b43dmqbdv03om" path="res://ChunkCheckRay3D.cs" id="3_a7feo"]
-[ext_resource type="AudioStream" uid="uid://ckn24tm3t8nr0" path="res://assets_music/verytuffmusic.mp3" id="4_22gqc"]
+[ext_resource type="AudioStream" uid="uid://dockl6y82deoy" path="res://assets_music/Hell Walk.mp3" id="4_yvtab"]
 [ext_resource type="AudioStream" uid="uid://cp8kuc3i4bjjr" path="res://assets_sfx/freesound_community-medium-explosion-40472.mp3" id="5_5hyyw"]
 [ext_resource type="PackedScene" uid="uid://ddics8whvm7g" path="res://BigBossMen.tscn" id="6_4gu1q"]
 [ext_resource type="PackedScene" uid="uid://er3x1onere37" path="res://PlayerHud.tscn" id="7_yvtab"]
@@ -57,12 +57,13 @@ target_position = Vector3(0, -100, 0)
 script = ExtResource("3_a7feo")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=673702321]
-stream = ExtResource("4_22gqc")
+stream = ExtResource("4_yvtab")
 volume_db = -5.0
 unit_size = 1.0
 max_db = 6.0
 pitch_scale = 0.78
 autoplay = true
+parameters/looping = true
 
 [node name="SFX_Shoot" type="AudioStreamPlayer2D" parent="." unique_id=1865965877]
 stream = ExtResource("5_5hyyw")
