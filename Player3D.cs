@@ -18,6 +18,8 @@ public partial class Player3D : CharacterBody3D, IDamagable
 	Node3D ProjectileSpawnPos;
 	RayCast3D ProjectileRay;
 
+    Node3D ProjectileMesh;
+
 	Area3D EnemyDetectionSphere;
 
     SinType CurrentSin = SinType.Divine;
@@ -26,6 +28,7 @@ public partial class Player3D : CharacterBody3D, IDamagable
 	{
 		Input.MouseMode = Godot.Input.MouseModeEnum.Captured;
 		Head = GetNode<Node3D>("Head3D");
+        ProjectileMesh = Head.GetNode<Node3D>("ProjectileMesh");
 		ProjectileSpawnPos = Head.GetNode<Node3D>("ProjectileSpawnPosition3D");
 		ProjectileRay = Head.GetNode<RayCast3D>("ProjectileRay3D");
 		shoot_sfx = GetNode<AudioStreamPlayer2D>("SFX_Shoot");
@@ -61,24 +64,24 @@ public partial class Player3D : CharacterBody3D, IDamagable
 
 	public void shoot()
 	{
-		if(Projectile.Instantiate() is Projectile3D projectile)
-		{
 			Vector3 target;
 			if(ProjectileRay.IsColliding())
 			{
 
 				target = ProjectileRay.GetCollisionPoint();
+                if(ProjectileRay.GetCollider() is IDamagable enemy)
+                {
+                    enemy.take_damage();
+                }
 			}
 			else
 			{
 				target = Head.GlobalPosition + (Head.GlobalTransform.Basis.Z * ProjectileRay.TargetPosition.Z);
 			}
 
-			GetTree().CurrentScene.AddChild(projectile);
-			projectile.Transform = ProjectileSpawnPos.GlobalTransform;
-			projectile.LookAt(target, Vector3.Up);
-			projectile.SetCollisionMaskValue(3, true);
-		}
+            Vector3 scale_new = new(0.05f, 0.05f ,ProjectileMesh.GlobalPosition.DistanceTo(target)/2);
+            ProjectileMesh.Scale = scale_new;
+            ProjectileMesh.LookAt(target);
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -86,6 +89,16 @@ public partial class Player3D : CharacterBody3D, IDamagable
 		Vector3 velocity = Velocity;
 		float speed = Base_Speed;
 
+
+        if(ProjectileMesh.Scale.X < 0.03)
+        {
+            ProjectileMesh.Scale = Vector3.Zero;
+        }
+        else if(ProjectileMesh.Scale.X != 0)
+        {
+            float z_scale = ProjectileMesh.Scale.Z;
+            ProjectileMesh.Scale = ProjectileMesh.Scale.Lerp(Vector3.Zero, (float)delta*5) with {Z = z_scale};
+        }
 
 		// Add the gravity.
 		if (!IsOnFloor())

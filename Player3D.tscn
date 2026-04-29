@@ -14,6 +14,14 @@ height = 3.0
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_rr31j"]
 height = 3.0
 
+[sub_resource type="BoxMesh" id="BoxMesh_yvtab"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yvtab"]
+albedo_color = Color(0.5858467, 1.8049031e-06, 4.3317675e-07, 1)
+emission_enabled = true
+emission = Color(0.3264674, 0, 0.008825062, 1)
+emission_energy_multiplier = 10.18
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_yvtab"]
 radius = 20.0
 
@@ -50,7 +58,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, -0.25, -0.8)
 
 [node name="ProjectileRay3D" type="RayCast3D" parent="Head3D" unique_id=66789561]
 target_position = Vector3(0, 0, -64)
-collision_mask = 4
+collision_mask = 5
+
+[node name="ProjectileMesh" type="Node3D" parent="Head3D" unique_id=1546123679]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 1, 0.79083383, -0.23565924, -0.6962519)
+
+[node name="ProjectileMesh" type="MeshInstance3D" parent="Head3D/ProjectileMesh" unique_id=992706325]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+mesh = SubResource("BoxMesh_yvtab")
+surface_material_override/0 = SubResource("StandardMaterial3D_yvtab")
 
 [node name="ChunkCheckRay3D" type="RayCast3D" parent="." unique_id=1322166784 groups=["PlayerRaycast"]]
 target_position = Vector3(0, -100, 0)
