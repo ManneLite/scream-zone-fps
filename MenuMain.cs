@@ -11,6 +11,9 @@ public partial class MenuMain : Control
     {
         CreditsScreen = GetNode<Control>("Book/CreditsScreen");
         MenuButtons = GetNode<Control>("Book/MenuButtons");
+
+        CreditsScreen.Hide();
+        MenuButtons.Show();
     }
 
     public void OnPlayButtonPressed()
