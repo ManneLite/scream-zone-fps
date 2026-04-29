@@ -57,7 +57,6 @@ public partial class Player3D : CharacterBody3D, IDamagable
 
 		if(Input.IsActionJustPressed("Action_Attack"))
 		{
-			shoot_sfx.Play(0.5f);
 			shoot();
 		}
 	}
@@ -67,7 +66,6 @@ public partial class Player3D : CharacterBody3D, IDamagable
 			Vector3 target;
 			if(ProjectileRay.IsColliding())
 			{
-
 				target = ProjectileRay.GetCollisionPoint();
 				if(ProjectileRay.GetCollider() is IDamagable enemy)
 				{
@@ -79,7 +77,8 @@ public partial class Player3D : CharacterBody3D, IDamagable
 				target = Head.GlobalPosition + (Head.GlobalTransform.Basis.Z * ProjectileRay.TargetPosition.Z);
 			}
 
-			Vector3 scale_new = new(0.05f, 0.05f ,ProjectileMesh.GlobalPosition.DistanceTo(target)/2);
+			shoot_sfx.Play(0.5f);
+			Vector3 scale_new = new(0.05f, 0.05f ,ProjectileMesh.GlobalPosition.DistanceTo(target));
 			ProjectileMesh.Scale = scale_new;
 			ProjectileMesh.LookAt(target);
 	}
@@ -88,7 +87,6 @@ public partial class Player3D : CharacterBody3D, IDamagable
 	{
 		Vector3 velocity = Velocity;
 		float speed = Base_Speed;
-
 
 		if(ProjectileMesh.Scale.X < 0.03)
 		{

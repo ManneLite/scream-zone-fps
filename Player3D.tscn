@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://j8yvoajpob4u" path="res://Player3D.cs" id="1_xv8y8"]
 [ext_resource type="PackedScene" uid="uid://bmfwyan0rwqs" path="res://Projectile3D.tscn" id="2_a7feo"]
 [ext_resource type="Script" uid="uid://b43dmqbdv03om" path="res://ChunkCheckRay3D.cs" id="3_a7feo"]
-[ext_resource type="PackedScene" uid="uid://yvifl7xm0btb" path="res://SatanArm.tscn" id="3_f5rht"]
+[ext_resource type="PackedScene" path="res://SatanArm.tscn" id="3_f5rht"]
 [ext_resource type="AudioStream" uid="uid://dockl6y82deoy" path="res://assets_music/Hell Walk.mp3" id="4_yvtab"]
 [ext_resource type="AudioStream" uid="uid://cp8kuc3i4bjjr" path="res://assets_sfx/freesound_community-medium-explosion-40472.mp3" id="5_5hyyw"]
 [ext_resource type="PackedScene" uid="uid://ddics8whvm7g" path="res://BigBossMen.tscn" id="6_4gu1q"]
@@ -63,12 +63,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, -0.25, -0.8)
 [node name="ProjectileRay3D" type="RayCast3D" parent="Head3D" unique_id=66789561]
 target_position = Vector3(0, 0, -64)
 collision_mask = 5
+debug_shape_custom_color = Color(0.31061712, 0.31061712, 0.3106171, 1)
 
 [node name="ProjectileMesh" type="Node3D" parent="Head3D" unique_id=1546123679]
-transform = Transform3D(0.049819715, 0, 0.08484305, 0, 0.049999997, 0, -0.004242153, 0, 0.99639434, 0.79083383, -0.31807256, -0.6962519)
+transform = Transform3D(0.05, 0, 0, 0, 0.049999997, 0, 0, 0, 1, 0.7482523, -0.31807256, -1.4707673)
 
-[node name="ProjectileMesh" type="MeshInstance3D" parent="Head3D/ProjectileMesh" unique_id=992706325]
-transform = Transform3D(0.9999995, 0, 0, 0, 0.9999995, 0, 0, 0, 1, 0, -3.1108875, -0.26830298)
+[node name="LaserBeam" type="MeshInstance3D" parent="Head3D/ProjectileMesh" unique_id=992706325]
+transform = Transform3D(0.9999995, 0, 0, 0, 0.9999995, 0, 0, 0, 1, 0, 0, -0.5)
 mesh = SubResource("BoxMesh_yvtab")
 surface_material_override/0 = SubResource("StandardMaterial3D_yvtab")
 
