@@ -26,7 +26,7 @@ theme = SubResource("Theme_vr2up")
 script = ExtResource("1_vq1su")
 GameLevel = ExtResource("2_vr2up")
 
-[node name="TextureRect2" type="TextureRect" parent="." unique_id=824825673]
+[node name="Book" type="TextureRect" parent="." unique_id=824825673]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,7 +37,7 @@ texture = ExtResource("4_vr2up")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="TitleButton" type="Button" parent="TextureRect2" unique_id=1043012015]
+[node name="TitleButton" type="Button" parent="Book" unique_id=1043012015]
 z_index = 1
 layout_mode = 1
 anchors_preset = -1
@@ -57,7 +57,7 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_hbcoy")
 text = "Game Title"
 alignment = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect2" unique_id=1291150574]
+[node name="MenuButtons" type="VBoxContainer" parent="Book" unique_id=1291150574]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.265
@@ -66,7 +66,7 @@ anchor_right = 0.265
 anchor_bottom = 0.4
 theme_override_constants/separation = 7
 
-[node name="PlayButton" type="Button" parent="TextureRect2/VBoxContainer" unique_id=729560895]
+[node name="PlayButton" type="Button" parent="Book/MenuButtons" unique_id=729560895]
 z_index = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
@@ -80,7 +80,7 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_hbcoy")
 text = "Enter Hell"
 alignment = 0
 
-[node name="CreditsButton" type="Button" parent="TextureRect2/VBoxContainer" unique_id=1496820714]
+[node name="ShowCreditsButton" type="Button" parent="Book/MenuButtons" unique_id=1496820714]
 z_index = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
@@ -94,7 +94,7 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_hbcoy")
 text = "Show Devils"
 alignment = 0
 
-[node name="QuitButton" type="Button" parent="TextureRect2/VBoxContainer" unique_id=748850675]
+[node name="QuitButton" type="Button" parent="Book/MenuButtons" unique_id=748850675]
 z_index = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
@@ -108,4 +108,161 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_hbcoy")
 text = "Escape"
 alignment = 0
 
-[connection signal="pressed" from="TextureRect2/VBoxContainer/PlayButton" to="." method="OnPlayButtonPressed"]
+[node name="CreditsScreen" type="Control" parent="Book" unique_id=116148734]
+visible = false
+layout_mode = 1
+anchor_left = 0.265
+anchor_top = 0.3
+anchor_right = 0.265
+anchor_bottom = 0.3
+offset_right = 609.80005
+offset_bottom = 336.0
+
+[node name="CreditsProgramming" type="VBoxContainer" parent="Book/CreditsScreen" unique_id=843808286]
+layout_mode = 0
+offset_right = 181.0
+offset_bottom = 336.0
+
+[node name="CreditsProgrammingTitle" type="Label" parent="Book/CreditsScreen/CreditsProgramming" unique_id=1341016440]
+z_index = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_vxfkm")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vr2up")
+text = "Programming"
+
+[node name="CreditsProgrammingNames" type="Label" parent="Book/CreditsScreen/CreditsProgramming" unique_id=393698861]
+z_index = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_vxfkm")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vr2up")
+text = "Manne
+Veltrixion
+Qwasker"
+
+[node name="Credits3D" type="VBoxContainer" parent="Book/CreditsScreen" unique_id=898668683]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.463
+anchor_bottom = 0.463
+
+[node name="Credits3DTitle" type="Label" parent="Book/CreditsScreen/Credits3D" unique_id=1760332750]
+z_index = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_vxfkm")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vr2up")
+text = "3D Modelling"
+
+[node name="Credits3DNames" type="Label" parent="Book/CreditsScreen/Credits3D" unique_id=1426446288]
+z_index = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_vxfkm")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vr2up")
+text = "Bonedragon4563
+Veltrixion"
+
+[node name="CreditsArt" type="VBoxContainer" parent="Book/CreditsScreen" unique_id=552551512]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.6
+anchor_right = 0.606
+
+[node name="CreditsArtTitle" type="Label" parent="Book/CreditsScreen/CreditsArt" unique_id=14894603]
+z_index = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_vxfkm")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vr2up")
+text = "Art"
+
+[node name="CreditsArtNames" type="Label" parent="Book/CreditsScreen/CreditsArt" unique_id=2056193869]
+z_index = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_vxfkm")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vr2up")
+text = "Strange Dino"
+
+[node name="CreditsMusic" type="VBoxContainer" parent="Book/CreditsScreen" unique_id=1151156717]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.6
+anchor_top = 0.311
+anchor_right = 0.6
+anchor_bottom = 0.463
+
+[node name="CreditsMusicTitle" type="Label" parent="Book/CreditsScreen/CreditsMusic" unique_id=653939648]
+z_index = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_vxfkm")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vr2up")
+text = "Music & SFX"
+
+[node name="CreditsMusicNames" type="Label" parent="Book/CreditsScreen/CreditsMusic" unique_id=1630383270]
+z_index = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_vxfkm")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vr2up")
+text = "Merluna"
+
+[node name="CreditsUI" type="VBoxContainer" parent="Book/CreditsScreen" unique_id=1507793183]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.6
+anchor_top = 0.597
+anchor_right = 0.6
+anchor_bottom = 0.597
+
+[node name="CreditsUITitle" type="Label" parent="Book/CreditsScreen/CreditsUI" unique_id=2024025823]
+z_index = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_vxfkm")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vr2up")
+text = "UI & VFX"
+
+[node name="CreditsUINames" type="Label" parent="Book/CreditsScreen/CreditsUI" unique_id=891171092]
+z_index = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_vxfkm")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vr2up")
+text = "Manne
+Veltrixion"
+
+[node name="HideCreditsButton" type="Button" parent="Book/CreditsScreen" unique_id=1039745912]
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.916
+anchor_bottom = 0.916
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.5072435, 1.2694486e-06, 1.92523e-07, 1)
+theme_override_colors/font_hover_color = Color(0.5058824, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_vxfkm")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vr2up")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vxfkm")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hbcoy")
+text = "Return"
+alignment = 0
+
+[connection signal="pressed" from="Book/MenuButtons/PlayButton" to="." method="OnPlayButtonPressed"]
+[connection signal="pressed" from="Book/MenuButtons/ShowCreditsButton" to="." method="OnShowCreditsButtonPressed"]
+[connection signal="pressed" from="Book/MenuButtons/QuitButton" to="." method="OnQuitButtonPressed"]
+[connection signal="pressed" from="Book/CreditsScreen/HideCreditsButton" to="." method="OnHideCreditsButtonPressed"]

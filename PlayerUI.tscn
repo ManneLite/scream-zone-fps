@@ -1,13 +1,29 @@
 [gd_scene format=3 uid="uid://1xinucvytqll"]
 
+[ext_resource type="Script" uid="uid://d4gao72y8nct2" path="res://PlayerUI.cs" id="1_b1whj"]
 [ext_resource type="PackedScene" uid="uid://er3x1onere37" path="res://PlayerHud.tscn" id="1_pf331"]
+[ext_resource type="Script" uid="uid://bf5o68u4kyuaq" path="res://PlayerUiRoot.cs" id="2_3tn7b"]
 [ext_resource type="PackedScene" uid="uid://dilwstbeuom31" path="res://MenuEscape.tscn" id="2_b1whj"]
 
 [node name="PlayerUI" type="CanvasLayer" unique_id=2073225827]
 follow_viewport_enabled = true
+script = ExtResource("1_b1whj")
 
-[node name="PlayerHud" parent="." unique_id=1739185044 instance=ExtResource("1_pf331")]
+[node name="PlayerUIRoot" type="Control" parent="." unique_id=620094736]
+process_mode = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_3tn7b")
+
+[node name="PlayerHud" parent="PlayerUIRoot" unique_id=1739185044 instance=ExtResource("1_pf331")]
+layout_mode = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="MenuEscape" parent="." unique_id=1690358986 instance=ExtResource("2_b1whj")]
+[node name="MenuEscape" parent="PlayerUIRoot" unique_id=1690358986 instance=ExtResource("2_b1whj")]
+process_mode = 2
 visible = false
+layout_mode = 1

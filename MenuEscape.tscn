@@ -74,7 +74,7 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_hbcoy")
 text = "Resume"
 alignment = 0
 
-[node name="ReturnButton" type="Button" parent="TextureRect2/VBoxContainer" unique_id=748850675]
+[node name="GiveUpButton" type="Button" parent="TextureRect2/VBoxContainer" unique_id=748850675]
 z_index = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
@@ -85,7 +85,8 @@ theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxEmpty_vr2up")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_vxfkm")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_hbcoy")
-text = "Return"
+text = "Give Up"
 alignment = 0
 
-[connection signal="pressed" from="TextureRect2/VBoxContainer/ResumeButton" to="." method="OnPlayButtonPressed"]
+[connection signal="pressed" from="TextureRect2/VBoxContainer/ResumeButton" to="." method="OnResumeButtonPressed"]
+[connection signal="pressed" from="TextureRect2/VBoxContainer/GiveUpButton" to="." method="OnGiveUpButtonPressed"]
