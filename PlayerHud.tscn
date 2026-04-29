@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dh03ofwwkq4f1" path="res://assets_2d/crosshair.png" id="1_xvtpr"]
 [ext_resource type="Texture2D" uid="uid://dbtjejm8o8lv5" path="res://assets_2d/heart-painted.png" id="2_ekjx3"]
+[ext_resource type="Script" uid="uid://rr5si18pappp" path="res://Hearts.cs" id="2_yppvv"]
 [ext_resource type="FontFile" uid="uid://docsdbfid02nj" path="res://fonts/COPRGTL.TTF" id="3_yppvv"]
 [ext_resource type="Texture2D" uid="uid://dker5jmsg61rm" path="res://assets_2d/fireball_tool_desc.png" id="4_jkrtb"]
 
@@ -33,6 +34,7 @@ expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Hearts" type="CanvasLayer" parent="." unique_id=1388865715]
+script = ExtResource("2_yppvv")
 
 [node name="3" type="TextureRect" parent="Hearts" unique_id=1497134206 groups=["Hearts"]]
 anchors_preset = -1

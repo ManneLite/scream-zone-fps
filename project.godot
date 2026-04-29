@@ -19,6 +19,8 @@ config/icon="res://assets_2d/icon.svg"
 
 GlobalNoise="*uid://dykcbd0gtpyow"
 GlobalSinInfo="*uid://jneafwh4hd3k"
+Clock="*uid://mi3wny735qmw"
+Easing="*uid://bj2b0oy07xuau"
 
 [display]
 

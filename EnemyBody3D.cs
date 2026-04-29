@@ -29,6 +29,7 @@ public partial class EnemyBody3D : CharacterBody3D, IDamagable
 		eye_open = eyes.GetNode<Sprite3D>("Sprite3D_Eye_Open");
 		eye_half = eyes.GetNode<Sprite3D>("Sprite3D_Eye_Half");
 		eye_closed = eyes.GetNode<Sprite3D>("Sprite3D_Eye_Closed");
+		EnableDashing(3.0f);
 	}
 
 	public void SetTarget(Vector3 pos)
@@ -135,6 +136,26 @@ public partial class EnemyBody3D : CharacterBody3D, IDamagable
 			can_attack = false;
 			attack_target.take_damage();
 			attack_timer.Start();
+		}
+	}
+	
+	public async void EnableDashing(float TimeBetweenDashes)
+	{
+		float OriginalSpeed = Speed;
+		GpuParticles3D AfterShadows = GetNode<GpuParticles3D>("AfterShadows");
+		while(true)
+		{
+			await Clock.Instance.AsyncWait(TimeBetweenDashes);
+			
+			if (nav_agent.IsNavigationFinished()) {continue;};
+			
+			AfterShadows.Emitting = true;
+			Speed = Speed * 5;
+			
+			await Clock.Instance.AsyncWait(0.3f);
+			
+			AfterShadows.Emitting = false;
+			Speed = OriginalSpeed;
 		}
 	}
 
