@@ -14,21 +14,24 @@ public partial class Layer0 : Node3D
     [Export] public PackedScene[] WorldObjects;
     [Export] public int MaxObjectsPerChunk = 15;
 
+    public NavigationMeshSourceGeometryData3D navigation_geometry = new();
+
     RandomNumberGenerator rng = new();
-	NavigationRegion3D nav_region;
 
 	public int Seed = 0;
 
+    private Dictionary<Vector2I, NavigationRegion3D> chunk_pos_to_region = new();
 	private Dictionary<Vector2I, ChunkMesh3D> chunks = new();
 	private ChunkCheckRay3D Raycast;
 	private Player3D player;
+
+    public Node3D ChunksRoot;
 
 	bool active = true;
 
 	public override void _Ready()
 	{
-		nav_region = GetNode<NavigationRegion3D>("NavigationRegion3D");
-
+        ChunksRoot = GetNode<Node3D>("ChunksRoot");
 		if(Seed == 0)
 		{
 			var rng = new RandomNumberGenerator();
@@ -38,7 +41,12 @@ public partial class Layer0 : Node3D
 		GlobalNoise.Instance.SetChunkSize(ChunkSize);
 		GlobalNoise.Instance.SetChunkHeight(ChunkHeight);
 
+        var map = GetWorld3D().NavigationMap;
+        NavigationServer3D.MapSetCellSize(map, 0.25f);
+        NavigationServer3D.MapSetUseEdgeConnections(map, true);
+
 		Load3x3Chunks(new(0, 0));
+
 
 		if(PlayerTemplate.Instantiate() is Player3D p)
 		{
@@ -54,8 +62,6 @@ public partial class Layer0 : Node3D
 
 	public void Load3x3Chunks(Vector2I center_pos)
 	{
-		bool should_rebake = false;
-
 		HashSet<Vector2I> desired = new();
 
 		for (int ax = -1; ax <= 1; ax++)
@@ -79,6 +85,10 @@ public partial class Layer0 : Node3D
 
 		foreach (var r in toRemove)
 		{
+            if(chunk_pos_to_region.TryGetValue(r, out NavigationRegion3D region))
+            {
+                region.Enabled = false;
+            }
 			chunks.Remove(r);
 		}
 
@@ -87,13 +97,7 @@ public partial class Layer0 : Node3D
 			if (!chunks.ContainsKey(pos))
 			{
 				LoadChunk(pos);
-				should_rebake = true;
 			}
-		}
-
-		if(should_rebake)
-		{
-			nav_region.BakeNavigationMesh(true);
 		}
 	}
 
@@ -118,17 +122,45 @@ public partial class Layer0 : Node3D
                 chunk.Sin = GlobalSinInfo.Instance.GetSinByChunkPos(a);
 			}
 
+            int global_chunk_pos_x = x * ChunkSize;
+            int global_chunk_pos_z = z * ChunkSize;
+            if(!chunk_pos_to_region.ContainsKey(pos))
+            {
+                chunk.add_geometry_to_navigation_data = true;
+                chunk.navigation_geometry = navigation_geometry;
+            }
+
 			chunk.MaterialOverride = GlobalSinInfo.Instance.GetShaderBySin(chunk.Sin);
-			nav_region.AddChild(chunk);
-			chunks[new Vector2I(x, z)] = chunk;
+			ChunksRoot.AddChild(chunk);
+			chunks[pos] = chunk;
+
+            if(chunk_pos_to_region.TryGetValue(pos, out NavigationRegion3D region))
+            {
+                region.Enabled = true;
+            }
+            else
+            {
+                NavigationMesh nav_mesh = new();
+                nav_mesh.GeometryParsedGeometryType = NavigationMesh.ParsedGeometryType.StaticColliders;
+                nav_mesh.FilterBakingAabb = new(
+                        new((global_chunk_pos_x - (ChunkSize/2)), 0, (global_chunk_pos_z - (ChunkSize/2))),
+                        new(ChunkSize, ChunkHeight, ChunkSize)
+                        );
+                nav_mesh.FilterBakingAabb = nav_mesh.FilterBakingAabb.Grow(1);
+
+                Callable callable = Callable.From(() => AddBakedRegion(pos, nav_mesh));
+	            NavigationRegion3D region_new = new();
+                chunk_pos_to_region[pos] = region_new;
+
+                NavigationServer3D.BakeFromSourceGeometryDataAsync(nav_mesh, navigation_geometry, callable);
+
+            }
 			
             rng.Seed = (uint)(("x"+x+"z"+z).Hash() + Seed);
             for(int i = 0; i < MaxObjectsPerChunk; ++i)
             {
 
 				int object_type =  (int)(rng.Randi() % WorldObjects.Length);
-                int global_chunk_pos_x = x * ChunkSize;
-                int global_chunk_pos_z = z * ChunkSize;
                 if(WorldObjects[object_type].Instantiate() is Node3D world_object)
                 {
                     float pos_x = (((rng.Randi() % ChunkSize) - (ChunkSize/2)) + 0.5f) + (x * ChunkSize);
@@ -147,8 +179,35 @@ public partial class Layer0 : Node3D
 				chunk.AddChild(spawner);
 				spawner.GlobalPosition = spawner_pos;
 			}
+
 		}
 	}
+
+    public void AddBakedRegion(Vector2I pos, NavigationMesh nav_mesh)
+    {
+        NavigationRegion3D region = chunk_pos_to_region[pos];
+        nav_mesh.FilterBakingAabb = new();
+        var navmesh_vertices = nav_mesh.Vertices;
+        GD.Print(nav_mesh.GetPolygonCount());
+
+        GD.Print(navmesh_vertices.Length);
+        for(int i = 0; i < navmesh_vertices.Length; ++i)
+        {
+            Vector3 vertex = navmesh_vertices[i];
+            if(i == 0)
+            {
+                GD.Print(vertex);
+                GD.Print(vertex.Snapped(1 * 0.1f));
+            }
+            navmesh_vertices[i] = vertex.Snapped(0.25f * 0.1f);
+        }
+        nav_mesh.Vertices = navmesh_vertices;
+
+        region.NavigationMesh = nav_mesh;
+
+        AddChild(region);
+    }
+
 	private void OnPlayerChangedChunk(Vector2I ChunkPos, SinType ChunkSin)
 	{
 		if(active)

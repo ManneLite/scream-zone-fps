@@ -4,9 +4,13 @@ using System.Threading.Tasks;
 
 public partial class ChunkMesh3D : MeshInstance3D
 {	
-    public SinType Sin;
+	public SinType Sin;
 	public int Size;
 	public Vector2I Pos;
+    public NavigationMeshSourceGeometryData3D navigation_geometry;
+    public bool add_geometry_to_navigation_data = false;
+
+
 
 	public override void _Ready()
 	{
@@ -32,7 +36,7 @@ public partial class ChunkMesh3D : MeshInstance3D
 
 				int i = x + z * (Size + 1);
 
-				vertices[i] = new Vector3(pos_with_offset.X, y, pos_with_offset.Y);
+				vertices[i] = new Vector3(pos_with_offset.X, y, pos_with_offset.Y).Snapped(0.25f * 0.1f);
 				uvs[i] = new Vector2((float)x / (Size - 1), (float)z / (Size - 1));
 			}
 		}
@@ -67,6 +71,11 @@ public partial class ChunkMesh3D : MeshInstance3D
 		arrays[(int)Mesh.ArrayType.TexUV] = uvs;
 		arrays[(int)Mesh.ArrayType.Index] = indices;
 
+        if(add_geometry_to_navigation_data)
+        {
+            navigation_geometry.AddMeshArray(arrays, Transform3D.Identity);
+        }
+
 		var mesh = new ArrayMesh();
 		mesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, arrays);
 
@@ -89,5 +98,6 @@ public partial class ChunkMesh3D : MeshInstance3D
 		body.AddChild(collider);
 
 		AddChild(body);
+
 	}
 }

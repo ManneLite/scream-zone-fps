@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://d4ky1txknjxs4" path="res://EnemySpawner.tscn" id="5_0mckk"]
 [ext_resource type="Script" uid="uid://c0bf2xliqievt" path="res://PlaceableObjects.cs" id="6_0mckk"]
 [ext_resource type="PackedScene" uid="uid://dpxrxah1s1g8a" path="res://Pillar.tscn" id="6_lwb5q"]
-[ext_resource type="Texture2D" uid="uid://cr7786gw2edgh" path="res://assets_2d/Organic.jpg" id="7_lwb5q"]
 [ext_resource type="PackedScene" uid="uid://c4e7l08umlnbc" path="res://FreakySkull.tscn" id="7_obye8"]
 
 [sub_resource type="Sky" id="Sky_ky0du"]
@@ -33,28 +32,6 @@ volumetric_fog_albedo = Color(0.12225223, 0.12225223, 0.12225223, 1)
 [sub_resource type="NavigationMesh" id="NavigationMesh_ky0du"]
 geometry_parsed_geometry_type = 1
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lwb5q"]
-albedo_color = Color(0.6318962, 0.26795968, 1.92523e-07, 1)
-metallic_specular = 1.0
-roughness_texture = ExtResource("7_lwb5q")
-normal_enabled = true
-normal_texture = ExtResource("7_lwb5q")
-clearcoat_roughness = 0.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qnouv"]
-albedo_color = Color(0, 0, 0, 1)
-metallic = 0.3
-roughness = 0.1
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l53c8"]
-metallic_specular = 0.0
-roughness_texture = ExtResource("7_lwb5q")
-emission = Color(1, 1, 1, 1)
-emission_energy_multiplier = 0.1
-normal_enabled = true
-normal_texture = ExtResource("7_lwb5q")
-clearcoat_roughness = 0.0
-
 [node name="Layer0" type="Node3D" unique_id=1669213060]
 script = ExtResource("1_bxblg")
 ChunkTemplate = ExtResource("2_vkmtl")
@@ -72,12 +49,13 @@ camera_attributes = SubResource("CameraAttributesPhysical_oi352")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=954722719]
 navigation_mesh = SubResource("NavigationMesh_ky0du")
+enabled = false
+use_edge_connections = false
 
 [node name="BiomeMaterialMap3D" parent="." unique_id=1323633058 instance=ExtResource("4_vkmtl")]
-Gluttony = SubResource("StandardMaterial3D_lwb5q")
-Empty = SubResource("StandardMaterial3D_qnouv")
-Divine = SubResource("StandardMaterial3D_l53c8")
 
 [node name="PlaceableObjects" type="Node" parent="." unique_id=1821232111]
 script = ExtResource("6_0mckk")
 FreakySkull = ExtResource("7_obye8")
+
+[node name="ChunksRoot" type="Node3D" parent="." unique_id=914560962]
