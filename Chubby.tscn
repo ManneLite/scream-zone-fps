@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://ci4jpdim3tj4e"]
+
+[ext_resource type="ArrayMesh" uid="uid://dtj4lcqdiu1ru" path="res://assets_3d/FlyingChub.obj" id="1_m51g6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ila8i"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 2.3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7pys0"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 2.3
+
+[node name="MeshInstance3D" type="MeshInstance3D" unique_id=1497432357]
+mesh = ExtResource("1_m51g6")
+surface_material_override/8 = SubResource("StandardMaterial3D_ila8i")
+surface_material_override/9 = SubResource("StandardMaterial3D_7pys0")
