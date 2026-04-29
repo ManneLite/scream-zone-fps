@@ -58,6 +58,7 @@ text = "Game Title"
 alignment = 0
 
 [node name="MenuButtons" type="VBoxContainer" parent="Book" unique_id=1291150574]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.265
@@ -109,7 +110,6 @@ text = "Escape"
 alignment = 0
 
 [node name="CreditsScreen" type="Control" parent="Book" unique_id=116148734]
-visible = false
 layout_mode = 1
 anchor_left = 0.265
 anchor_top = 0.3
@@ -196,7 +196,7 @@ text = "Strange Dino"
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.6
-anchor_top = 0.311
+anchor_top = 0.242
 anchor_right = 0.6
 anchor_bottom = 0.463
 
@@ -222,7 +222,7 @@ text = "Merluna"
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.6
-anchor_top = 0.597
+anchor_top = 0.528
 anchor_right = 0.6
 anchor_bottom = 0.597
 
@@ -261,6 +261,52 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_vxfkm")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_hbcoy")
 text = "Return"
 alignment = 0
+
+[node name="CreditsSpecialThanks" type="VBoxContainer" parent="Book/CreditsScreen" unique_id=602020090]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.625
+anchor_top = 0.936
+anchor_right = 0.639
+anchor_bottom = 0.936
+
+[node name="CreditsSpecialThanksTitle" type="Label" parent="Book/CreditsScreen/CreditsSpecialThanks" unique_id=1013165438]
+z_index = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_vxfkm")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vr2up")
+text = "Special Thanks To"
+
+[node name="CreditsSepcialThanksNames" type="Label" parent="Book/CreditsScreen/CreditsSpecialThanks" unique_id=1421421557]
+z_index = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_vxfkm")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vr2up")
+text = "Droopy The Dragon"
+
+[node name="Button" type="Button" parent="Book/CreditsScreen" unique_id=142632222]
+layout_mode = 0
+offset_left = 378.80002
+offset_top = 355.0
+offset_right = 586.80005
+offset_bottom = 387.0
+
+[node name="Spooky_JPG" type="TextureRect" parent="Book" unique_id=466769727]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_vr2up")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Book/Spooky_JPG" unique_id=1519989193]
 
 [connection signal="pressed" from="Book/MenuButtons/PlayButton" to="." method="OnPlayButtonPressed"]
 [connection signal="pressed" from="Book/MenuButtons/ShowCreditsButton" to="." method="OnShowCreditsButtonPressed"]
