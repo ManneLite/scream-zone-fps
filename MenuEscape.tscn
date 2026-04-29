@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://dilwstbeuom31"]
 
-[ext_resource type="Script" uid="uid://dj0kob20uj10m" path="res://MenuMain.cs" id="1_jjl5d"]
-[ext_resource type="PackedScene" uid="uid://bj1j62vojkfln" path="res://Layer0.tscn" id="2_104qv"]
+[ext_resource type="Script" uid="uid://b52b5kpldbrio" path="res://MenuEscape.cs" id="1_5p2qi"]
 [ext_resource type="Texture2D" uid="uid://chjby2e2j2xkx" path="res://assets_2d/book.png" id="3_7cp4g"]
 [ext_resource type="FontFile" uid="uid://1htr11qocrl6" path="res://fonts/GOUDOSB.TTF" id="4_dt4kq"]
 
@@ -23,8 +22,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = SubResource("Theme_vr2up")
-script = ExtResource("1_jjl5d")
-GameLevel = ExtResource("2_104qv")
+script = ExtResource("1_5p2qi")
 
 [node name="TextureRect2" type="TextureRect" parent="." unique_id=824825673]
 layout_mode = 1
