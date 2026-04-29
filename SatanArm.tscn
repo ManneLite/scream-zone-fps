@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://yvifl7xm0btb"]
+
+[ext_resource type="ArrayMesh" uid="uid://y3q63nx5yob5" path="res://assets_3d/SatanArm.obj" id="1_y3cns"]
+[ext_resource type="Material" uid="uid://r3tngi6i75gx" path="res://assets_materials/fleshy_blob.material" id="2_3eanb"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" unique_id=1505638251]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.36462483, 0, 0, 0)
+mesh = ExtResource("1_y3cns")
+surface_material_override/0 = ExtResource("2_3eanb")

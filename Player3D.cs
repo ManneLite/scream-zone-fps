@@ -18,17 +18,17 @@ public partial class Player3D : CharacterBody3D, IDamagable
 	Node3D ProjectileSpawnPos;
 	RayCast3D ProjectileRay;
 
-    Node3D ProjectileMesh;
+	Node3D ProjectileMesh;
 
 	Area3D EnemyDetectionSphere;
 
-    SinType CurrentSin = SinType.Divine;
+	SinType CurrentSin = SinType.Divine;
 
 	public override void _Ready()
 	{
 		Input.MouseMode = Godot.Input.MouseModeEnum.Captured;
 		Head = GetNode<Node3D>("Head3D");
-        ProjectileMesh = Head.GetNode<Node3D>("ProjectileMesh");
+		ProjectileMesh = Head.GetNode<Node3D>("ProjectileMesh");
 		ProjectileSpawnPos = Head.GetNode<Node3D>("ProjectileSpawnPosition3D");
 		ProjectileRay = Head.GetNode<RayCast3D>("ProjectileRay3D");
 		shoot_sfx = GetNode<AudioStreamPlayer2D>("SFX_Shoot");
@@ -69,19 +69,19 @@ public partial class Player3D : CharacterBody3D, IDamagable
 			{
 
 				target = ProjectileRay.GetCollisionPoint();
-                if(ProjectileRay.GetCollider() is IDamagable enemy)
-                {
-                    enemy.take_damage();
-                }
+				if(ProjectileRay.GetCollider() is IDamagable enemy)
+				{
+					enemy.take_damage();
+				}
 			}
 			else
 			{
 				target = Head.GlobalPosition + (Head.GlobalTransform.Basis.Z * ProjectileRay.TargetPosition.Z);
 			}
 
-            Vector3 scale_new = new(0.05f, 0.05f ,ProjectileMesh.GlobalPosition.DistanceTo(target)/2);
-            ProjectileMesh.Scale = scale_new;
-            ProjectileMesh.LookAt(target);
+			Vector3 scale_new = new(0.05f, 0.05f ,ProjectileMesh.GlobalPosition.DistanceTo(target)/2);
+			ProjectileMesh.Scale = scale_new;
+			ProjectileMesh.LookAt(target);
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -90,15 +90,15 @@ public partial class Player3D : CharacterBody3D, IDamagable
 		float speed = Base_Speed;
 
 
-        if(ProjectileMesh.Scale.X < 0.03)
-        {
-            ProjectileMesh.Scale = Vector3.Zero;
-        }
-        else if(ProjectileMesh.Scale.X != 0)
-        {
-            float z_scale = ProjectileMesh.Scale.Z;
-            ProjectileMesh.Scale = ProjectileMesh.Scale.Lerp(Vector3.Zero, (float)delta*5) with {Z = z_scale};
-        }
+		if(ProjectileMesh.Scale.X < 0.03)
+		{
+			ProjectileMesh.Scale = Vector3.Zero;
+		}
+		else if(ProjectileMesh.Scale.X != 0)
+		{
+			float z_scale = ProjectileMesh.Scale.Z;
+			ProjectileMesh.Scale = ProjectileMesh.Scale.Lerp(Vector3.Zero, (float)delta*5) with {Z = z_scale};
+		}
 
 		// Add the gravity.
 		if (!IsOnFloor())
@@ -177,13 +177,13 @@ public partial class Player3D : CharacterBody3D, IDamagable
 		EmitSignal(SignalName.SendPlayerPosition, GlobalPosition);
 	}
 
-    public void OnChunkChanged(Vector2I ChunkPos, SinType ChunkSin)
-    {
-        if(CurrentSin != ChunkSin)
-        {
-            CurrentSin = ChunkSin;
-            GD.Print("You have now commited to the sin of " + ChunkSin);
-        }
-    }
+	public void OnChunkChanged(Vector2I ChunkPos, SinType ChunkSin)
+	{
+		if(CurrentSin != ChunkSin)
+		{
+			CurrentSin = ChunkSin;
+			GD.Print("You have now commited to the sin of " + ChunkSin);
+		}
+	}
 
 }
