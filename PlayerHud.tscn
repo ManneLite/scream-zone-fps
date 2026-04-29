@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://er3x1onere37"]
 
-[ext_resource type="Script" uid="uid://8ie584m85otb" path="res://PlayerHud.cs" id="1_m4she"]
-[ext_resource type="Texture2D" uid="uid://c4w2ie6cy1agy" path="res://assets_2d/heartt1.png" id="2_ij1e3"]
+[ext_resource type="Texture2D" uid="uid://dh03ofwwkq4f1" path="res://assets_2d/crosshair.png" id="1_xvtpr"]
+[ext_resource type="Texture2D" uid="uid://dbtjejm8o8lv5" path="res://assets_2d/heart-painted.png" id="2_ekjx3"]
+[ext_resource type="FontFile" uid="uid://docsdbfid02nj" path="res://fonts/COPRGTL.TTF" id="3_yppvv"]
+[ext_resource type="Texture2D" uid="uid://dker5jmsg61rm" path="res://assets_2d/fireball_tool_desc.png" id="4_jkrtb"]
 
 [node name="PlayerHud" type="Control" unique_id=1739185044]
 layout_mode = 3
@@ -11,8 +13,151 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_m4she")
-HeartTexture = ExtResource("2_ij1e3")
 
-[node name="HeartsGrid" type="GridContainer" parent="." unique_id=747573805]
-layout_mode = 0
+[node name="Crosshair" type="CanvasLayer" parent="." unique_id=1979664672]
+
+[node name="TextureRect" type="TextureRect" parent="Crosshair" unique_id=1594736043]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.5
+offset_top = -12.5
+offset_right = 12.5
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_xvtpr")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Hearts" type="CanvasLayer" parent="." unique_id=1388865715]
+
+[node name="3" type="TextureRect" parent="Hearts" unique_id=1497134206 groups=["Hearts"]]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.95
+anchor_right = 0.5
+anchor_bottom = 0.95
+offset_left = -40.0
+offset_top = -83.0
+offset_right = 50.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_ekjx3")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="2" type="TextureRect" parent="Hearts" unique_id=237434023 groups=["Hearts"]]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.95
+anchor_right = 0.5
+anchor_bottom = 0.95
+offset_left = -94.0
+offset_top = -58.0
+offset_right = -4.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 0
+rotation = -0.2617994
+texture = ExtResource("2_ekjx3")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="1" type="TextureRect" parent="Hearts" unique_id=2101715104 groups=["Hearts"]]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.95
+anchor_right = 0.5
+anchor_bottom = 0.95
+offset_left = -139.0
+offset_top = -18.0
+offset_right = -49.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 0
+rotation = -0.5235988
+texture = ExtResource("2_ekjx3")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="4" type="TextureRect" parent="Hearts" unique_id=932859327 groups=["Hearts"]]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.95
+anchor_right = 0.5
+anchor_bottom = 0.95
+offset_left = 13.999939
+offset_top = -80.0
+offset_right = 103.99994
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 0
+rotation = 0.2617994
+texture = ExtResource("2_ekjx3")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="5" type="TextureRect" parent="Hearts" unique_id=1309801314 groups=["Hearts"]]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.95
+anchor_right = 0.5
+anchor_bottom = 0.95
+offset_left = 68.0
+offset_top = -62.99994
+offset_right = 158.0
+offset_bottom = 27.000061
+grow_horizontal = 2
+grow_vertical = 0
+rotation = 0.5235988
+texture = ExtResource("2_ekjx3")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="BiomeDescription" type="CanvasLayer" parent="." unique_id=251451803]
+visible = false
+
+[node name="Label" type="Label" parent="BiomeDescription" unique_id=1021739224]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -86.0
+offset_top = 53.0
+offset_right = 86.0
+offset_bottom = 76.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_yppvv")
+theme_override_font_sizes/font_size = 50
+text = "Entering Biome - Sloth"
+
+[node name="Label2" type="Label" parent="BiomeDescription" unique_id=1435231275]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -305.0
+offset_top = 123.0
+offset_right = 308.0
+offset_bottom = 179.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_yppvv")
+theme_override_font_sizes/font_size = 40
+text = "You're feeling lazy 0.5x walkspeed"
+
+[node name="ToolDescription" type="CanvasLayer" parent="." unique_id=312903228]
+
+[node name="TextureRect" type="TextureRect" parent="ToolDescription" unique_id=1131774330]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -93.0
+offset_right = 300.0
+offset_bottom = -33.0
+grow_vertical = 0
+scale = Vector2(0.96000046, 1)
+texture = ExtResource("4_jkrtb")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true

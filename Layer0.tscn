@@ -48,4 +48,4 @@ camera_attributes = SubResource("CameraAttributesPhysical_oi352")
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=954722719]
 navigation_mesh = SubResource("NavigationMesh_ky0du")
 
-[node name="ChunksRoot" type="Node3D" parent="." unique_id=1789580469]
+[node name="ChunksRoot" type="Node3D" parent="." unique_id=723150322]
