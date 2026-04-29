@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://1xinucvytqll"]
+
+[ext_resource type="PackedScene" uid="uid://er3x1onere37" path="res://PlayerHud.tscn" id="1_pf331"]
+[ext_resource type="PackedScene" uid="uid://dilwstbeuom31" path="res://MenuEscape.tscn" id="2_b1whj"]
+
+[node name="PlayerUI" type="CanvasLayer" unique_id=2073225827]
+follow_viewport_enabled = true
+
+[node name="PlayerHud" parent="." unique_id=1739185044 instance=ExtResource("1_pf331")]
+metadata/_edit_use_anchors_ = true
+
+[node name="MenuEscape" parent="." unique_id=1690358986 instance=ExtResource("2_b1whj")]
+visible = false

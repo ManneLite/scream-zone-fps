@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://dnof3hrv3281a"]
 
 [ext_resource type="Script" uid="uid://dj0kob20uj10m" path="res://MenuMain.cs" id="1_vq1su"]
-[ext_resource type="Texture2D" uid="uid://ehgssiupjoi4" path="res://assets_2d/book ui.png" id="2_c4mup"]
 [ext_resource type="PackedScene" uid="uid://bj1j62vojkfln" path="res://Layer0.tscn" id="2_vr2up"]
 [ext_resource type="Texture2D" uid="uid://chjby2e2j2xkx" path="res://assets_2d/book.png" id="4_vr2up"]
 [ext_resource type="FontFile" uid="uid://1htr11qocrl6" path="res://fonts/GOUDOSB.TTF" id="5_vxfkm"]
@@ -27,22 +26,6 @@ theme = SubResource("Theme_vr2up")
 script = ExtResource("1_vq1su")
 GameLevel = ExtResource("2_vr2up")
 
-[node name="Panel" type="Panel" parent="." unique_id=670683799]
-visible = false
-layout_mode = 0
-
-[node name="TextureRect" type="TextureRect" parent="Panel" unique_id=567473676]
-visible = false
-layout_mode = 0
-offset_left = 32.0
-offset_top = 18.0
-offset_right = 1117.0
-offset_bottom = 620.0
-mouse_filter = 2
-texture = ExtResource("2_c4mup")
-expand_mode = 5
-stretch_mode = 6
-
 [node name="TextureRect2" type="TextureRect" parent="." unique_id=824825673]
 layout_mode = 1
 anchors_preset = 15
@@ -54,15 +37,33 @@ texture = ExtResource("4_vr2up")
 expand_mode = 3
 stretch_mode = 5
 
+[node name="TitleButton" type="Button" parent="TextureRect2" unique_id=1043012015]
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.19
+anchor_right = 0.265
+anchor_bottom = 0.19
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_vxfkm")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vr2up")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vxfkm")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hbcoy")
+text = "Game Title"
+alignment = 0
+
 [node name="VBoxContainer" type="VBoxContainer" parent="TextureRect2" unique_id=1291150574]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.266
-anchor_top = 0.291
-anchor_right = 0.266
-anchor_bottom = 0.291
-offset_right = 41.000008
-offset_bottom = 54.0
+anchor_left = 0.265
+anchor_top = 0.35
+anchor_right = 0.265
+anchor_bottom = 0.4
 theme_override_constants/separation = 7
 
 [node name="PlayButton" type="Button" parent="TextureRect2/VBoxContainer" unique_id=729560895]

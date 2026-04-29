@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://dilwstbeuom31"]
+
+[ext_resource type="Script" uid="uid://dj0kob20uj10m" path="res://MenuMain.cs" id="1_jjl5d"]
+[ext_resource type="PackedScene" uid="uid://bj1j62vojkfln" path="res://Layer0.tscn" id="2_104qv"]
+[ext_resource type="Texture2D" uid="uid://chjby2e2j2xkx" path="res://assets_2d/book.png" id="3_7cp4g"]
+[ext_resource type="FontFile" uid="uid://1htr11qocrl6" path="res://fonts/GOUDOSB.TTF" id="4_dt4kq"]
+
+[sub_resource type="Theme" id="Theme_vr2up"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vr2up"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vxfkm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hbcoy"]
+
+[node name="MenuEscape" type="Control" unique_id=1690358986]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource("Theme_vr2up")
+script = ExtResource("1_jjl5d")
+GameLevel = ExtResource("2_104qv")
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=824825673]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_7cp4g")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TitleButton" type="Label" parent="TextureRect2" unique_id=2143774835]
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.19
+anchor_right = 0.265
+anchor_bottom = 0.19
+offset_right = 274.80002
+offset_bottom = 74.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_dt4kq")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vr2up")
+text = "Paused"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect2" unique_id=1291150574]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.265
+anchor_top = 0.35
+anchor_right = 0.265
+anchor_bottom = 0.4
+theme_override_constants/separation = 7
+
+[node name="ResumeButton" type="Button" parent="TextureRect2/VBoxContainer" unique_id=729560895]
+z_index = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.5072435, 1.2694486e-06, 1.92523e-07, 1)
+theme_override_colors/font_hover_color = Color(0.5058824, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_dt4kq")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vr2up")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vxfkm")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hbcoy")
+text = "Resume"
+alignment = 0
+
+[node name="ReturnButton" type="Button" parent="TextureRect2/VBoxContainer" unique_id=748850675]
+z_index = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.5072435, 1.2694486e-06, 1.92523e-07, 1)
+theme_override_colors/font_hover_color = Color(0.5058824, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_dt4kq")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vr2up")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vxfkm")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hbcoy")
+text = "Return"
+alignment = 0
+
+[connection signal="pressed" from="TextureRect2/VBoxContainer/ResumeButton" to="." method="OnPlayButtonPressed"]
