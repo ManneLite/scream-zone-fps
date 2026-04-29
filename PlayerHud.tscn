@@ -4,7 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://dbtjejm8o8lv5" path="res://assets_2d/heart-painted.png" id="2_ekjx3"]
 [ext_resource type="Script" uid="uid://rr5si18pappp" path="res://Hearts.cs" id="2_yppvv"]
 [ext_resource type="FontFile" uid="uid://docsdbfid02nj" path="res://fonts/COPRGTL.TTF" id="3_yppvv"]
-[ext_resource type="Texture2D" uid="uid://dker5jmsg61rm" path="res://assets_2d/fireball_tool_desc.png" id="4_jkrtb"]
+[ext_resource type="FontFile" uid="uid://bfqumeg2xptda" path="res://fonts/COPRGTB.TTF" id="5_ekjx3"]
+[ext_resource type="Script" uid="uid://4ift883i830n" path="res://BiomeLabel.cs" id="5_yppvv"]
 
 [node name="PlayerHud" type="Control" unique_id=1739185044]
 layout_mode = 3
@@ -121,45 +122,38 @@ expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="BiomeDescription" type="CanvasLayer" parent="." unique_id=251451803]
-visible = false
 
 [node name="Label" type="Label" parent="BiomeDescription" unique_id=1021739224]
+modulate = Color(1, 1, 1, 0)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -86.0
-offset_top = 53.0
+offset_top = 35.0
 offset_right = 86.0
-offset_bottom = 76.0
+offset_bottom = 91.0
 grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/shadow_outline_size = 4
 theme_override_fonts/font = ExtResource("3_yppvv")
 theme_override_font_sizes/font_size = 50
-text = "Entering Biome - Sloth"
-
-[node name="Label2" type="Label" parent="BiomeDescription" unique_id=1435231275]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -305.0
-offset_top = 123.0
-offset_right = 308.0
-offset_bottom = 179.0
-grow_horizontal = 2
-theme_override_fonts/font = ExtResource("3_yppvv")
-theme_override_font_sizes/font_size = 40
-text = "You're feeling lazy 0.5x walkspeed"
+text = "Divine"
+script = ExtResource("5_yppvv")
 
 [node name="ToolDescription" type="CanvasLayer" parent="." unique_id=312903228]
 
-[node name="TextureRect" type="TextureRect" parent="ToolDescription" unique_id=1131774330]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -93.0
-offset_right = 300.0
-offset_bottom = -33.0
-grow_vertical = 0
-scale = Vector2(0.96000046, 1)
-texture = ExtResource("4_jkrtb")
-expand_mode = 1
-metadata/_edit_use_anchors_ = true
+[node name="Label" type="Label" parent="ToolDescription" unique_id=555203935]
+offset_left = 3.0
+offset_top = 680.0
+offset_right = 301.0
+offset_bottom = 717.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5372549)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/font = ExtResource("5_ekjx3")
+theme_override_font_sizes/font_size = 32
+text = "[M1] Blood Beam"

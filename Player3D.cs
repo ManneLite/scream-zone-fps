@@ -6,6 +6,7 @@ public partial class Player3D : CharacterBody3D, IDamagable
 	[Signal] public delegate void PlayerHPChangedEventHandler(int current_hp);
 	[Signal] public delegate void PlayerDiedEventHandler();
 	[Signal] public delegate void SendPlayerPositionEventHandler(Vector3 pos);
+	[Signal] public delegate void PlayerChangedChunksEventHandler(string sin);
 
 	[Export] public float Base_Speed = 5.0f;
 	[Export] public float JumpVelocity = 4.5f;
@@ -180,7 +181,7 @@ public partial class Player3D : CharacterBody3D, IDamagable
 		if(CurrentSin != ChunkSin)
 		{
 			CurrentSin = ChunkSin;
-			GD.Print("You have now commited to the sin of " + ChunkSin);
+			EmitSignal(SignalName.PlayerChangedChunks, ChunkSin.ToString());
 		}
 	}
 

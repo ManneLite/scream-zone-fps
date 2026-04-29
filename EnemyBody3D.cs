@@ -147,7 +147,7 @@ public partial class EnemyBody3D : CharacterBody3D, IDamagable
 		{
 			await Clock.Instance.AsyncWait(TimeBetweenDashes);
 			
-			if (nav_agent.IsNavigationFinished()) {continue;};
+			if (!GodotObject.IsInstanceValid(nav_agent) || nav_agent.IsNavigationFinished()) {continue;};
 			
 			AfterShadows.Emitting = true;
 			Speed = Speed * 5;

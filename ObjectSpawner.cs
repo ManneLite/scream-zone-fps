@@ -34,7 +34,7 @@ public partial class ObjectSpawner : Node
 	private Vector3 RandomPosition(int size)
 	{
 		Vector3 Position = GlobalPosition;
-        float bordered_half_size = (size/2) - 2;
+		float bordered_half_size = (size/2) - 2;
 		Position.X += (float)GD.RandRange(-bordered_half_size, bordered_half_size);
 		Position.Z += (float)GD.RandRange(-bordered_half_size, bordered_half_size);
 		Position.Y = GlobalNoise.Instance.GetYAtPosV3(Position);

@@ -160,14 +160,15 @@ public partial class Layer0 : Node3D
 			for(int i = 0; i < MaxObjectsPerChunk; ++i)
 			{
 
-				int object_type =  (int)(rng.Randi() % WorldObjects.Length);
+				int object_type = (int)(rng.Randi() % WorldObjects.Length);
 				if(WorldObjects[object_type].Instantiate() is Node3D world_object)
 				{
 					float pos_x = (((rng.Randi() % ChunkSize) - (ChunkSize/2)) + 0.5f) + (x * ChunkSize);
 					float pos_z = (((rng.Randi() % ChunkSize) - (ChunkSize/2)) + 0.5f) + (z * ChunkSize);
 					float pos_y = GlobalNoise.Instance.GetYAtPos(pos_x, pos_z);
+					world_object.Rotation = new Vector3(GD.RandRange(-1,1) / 1.8f, GD.RandRange(-1,1) / 1.8f, GD.RandRange(-1,1) / 1.8f);
 					chunk.AddChild(world_object);
-					world_object.GlobalPosition = new(pos_x, pos_y, pos_z);
+					world_object.GlobalPosition = new(pos_x, pos_y - world_object.GetNode<MeshInstance3D>("MeshInstance3D").Mesh.GetAabb().Size.Y * 0.05f, pos_z);
 				}
 			}
 
@@ -176,6 +177,7 @@ public partial class Layer0 : Node3D
 				Vector3 spawner_pos = new Vector3(pos.X, 0, pos.Y) * ChunkSize;
 				spawner_pos.Y = GlobalNoise.Instance.GetYAtPosV3(spawner_pos) - 1;
 				spawner.Sin = chunk.Sin;
+				spawner.Rotation = new Vector3(GD.RandRange(-1,1) / 1.8f, GD.RandRange(-1,1) / 1.8f, GD.RandRange(-1,1) / 1.8f);
 				chunk.AddChild(spawner);
 				spawner.GlobalPosition = spawner_pos;
 			}

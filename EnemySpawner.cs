@@ -9,7 +9,7 @@ public partial class EnemySpawner : Node3D
 	[Export] public float Radius = 20.0f;
 	[Export] public int SpawnCount = 1;
 
-    public SinType Sin;
+	public SinType Sin;
 
 	public override void _Ready()
 	{
