@@ -3,6 +3,7 @@
 [ext_resource type="ArrayMesh" uid="uid://d0t72f0mr5xty" path="res://assets_3d/throne.obj" id="1_jdcdb"]
 [ext_resource type="Texture2D" uid="uid://bifw0i6u3yes5" path="res://assets_2d/Sphere Base Color.png" id="2_k0xvu"]
 [ext_resource type="Script" uid="uid://r5d65d1fxxyd" path="res://BigBossMen.cs" id="3_k0xvu"]
+[ext_resource type="PackedScene" uid="uid://bbhw288rqv6vb" path="res://HittableEye.tscn" id="4_m3ng5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a538i"]
 metallic = 1.0
@@ -20,8 +21,492 @@ roughness = 0.0
 clearcoat_enabled = true
 clearcoat_roughness = 0.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" unique_id=1259233715]
+[node name="BigBossMen" type="MeshInstance3D" unique_id=1259233715]
 mesh = ExtResource("1_jdcdb")
 surface_material_override/0 = SubResource("StandardMaterial3D_a538i")
 surface_material_override/1 = SubResource("StandardMaterial3D_ioqrc")
 script = ExtResource("3_k0xvu")
+
+[node name="HittableEye1" parent="." unique_id=1667217732 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7202654, 0.015657425, -0.13961983)
+visible = false
+
+[node name="HittableEye2" parent="." unique_id=114040013 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7840881, 0.003278315, 0.43740255)
+visible = false
+
+[node name="HittableEye3" parent="." unique_id=1084621670 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.721104, 0.003278315, 1.0152351)
+visible = false
+
+[node name="HittableEye4" parent="." unique_id=407694853 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5450985, 0.003278315, 1.5748428)
+visible = false
+
+[node name="HittableEye5" parent="." unique_id=244335386 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2493758, 0.003278315, 2.0755138)
+visible = false
+
+[node name="HittableEye6" parent="." unique_id=1897112610 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8636105, 0.003278315, 2.5078983)
+visible = false
+
+[node name="HittableEye7" parent="." unique_id=743559494 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5456905, 0.003278315, -0.6958812)
+visible = false
+
+[node name="HittableEye8" parent="." unique_id=1261009599 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2530527, 0.003278315, -1.1980505)
+visible = false
+
+[node name="HittableEye9" parent="." unique_id=1338195488 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8624663, 0.003278315, -1.6332362)
+visible = false
+
+[node name="HittableEye10" parent="." unique_id=2089997862 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4040587, 0.003278315, -1.982176)
+visible = false
+
+[node name="HittableEye11" parent="." unique_id=540196353 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8670721, 0.003278315, -2.2122967)
+visible = false
+
+[node name="HittableEye12" parent="." unique_id=2144930071 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.29602277, 0.003278315, -2.342866)
+visible = false
+
+[node name="HittableEye13" parent="." unique_id=2034475682 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3911119, 0.003278315, 2.8508334)
+visible = false
+
+[node name="HittableEye14" parent="." unique_id=1509753359 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.85361063, 0.003278315, 3.0886204)
+visible = false
+
+[node name="HittableEye15" parent="." unique_id=257108764 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28681058, 0.003278315, 3.2024415)
+visible = false
+
+[node name="HittableEye16" parent="." unique_id=1267727341 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3007238, 0.003278315, 3.202724)
+visible = false
+
+[node name="HittableEye17" parent="." unique_id=1281201553 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.86287, 0.003278315, 3.085775)
+visible = false
+
+[node name="HittableEye18" parent="." unique_id=2129973713 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4034078, 0.003278315, 2.848255)
+visible = false
+
+[node name="HittableEye19" parent="." unique_id=1651347692 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8736738, 0.003278315, 2.496654)
+visible = false
+
+[node name="HittableEye20" parent="." unique_id=1532419186 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.256174, 0.003278315, 2.0712352)
+visible = false
+
+[node name="HittableEye21" parent="." unique_id=144750454 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5478845, 0.003278315, 1.5659167)
+visible = false
+
+[node name="HittableEye22" parent="." unique_id=1029972256 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7313895, 0.003278315, 1.0089524)
+visible = false
+
+[node name="HittableEye23" parent="." unique_id=824850473 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.794102, 0.003278315, 0.43206275)
+visible = false
+
+[node name="HittableEye24" parent="." unique_id=847295007 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.727459, 0.003278315, -0.14918208)
+visible = false
+
+[node name="HittableEye25" parent="." unique_id=1637896061 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.54576, 0.003278315, -0.70393085)
+visible = false
+
+[node name="HittableEye26" parent="." unique_id=976192909 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2530746, 0.003278315, -1.2037964)
+visible = false
+
+[node name="HittableEye27" parent="." unique_id=804829968 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8584629, 0.003278315, -1.6448942)
+visible = false
+
+[node name="HittableEye28" parent="." unique_id=29914923 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3998444, 0.003278315, -1.9847741)
+visible = false
+
+[node name="HittableEye29" parent="." unique_id=503833526 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8586345, 0.003278315, -2.2160215)
+visible = false
+
+[node name="HittableEye30" parent="." unique_id=83231345 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.29328167, 0.003278315, -2.329383)
+visible = false
+
+[node name="HittableEye31" parent="." unique_id=260938687 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.17401531, 0.21136549, -2.3743494)
+visible = false
+
+[node name="HittableEye32" parent="." unique_id=908816676 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.58085763, 0.4989221, -2.2670827)
+visible = false
+
+[node name="HittableEye33" parent="." unique_id=1725578714 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.95949286, 0.76350147, -2.058514)
+visible = false
+
+[node name="HittableEye34" parent="." unique_id=94272411 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 1.3025419, 0.994472, -1.7614849)
+visible = false
+
+[node name="HittableEye35" parent="." unique_id=1223226548 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 1.5816286, 1.188006, -1.387639)
+visible = false
+
+[node name="HittableEye36" parent="." unique_id=534155587 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 1.7914642, 1.3306748, -0.95131254)
+visible = false
+
+[node name="HittableEye37" parent="." unique_id=213727739 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 1.9224576, 1.422635, -0.4668978)
+visible = false
+
+[node name="HittableEye38" parent="." unique_id=312677081 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 1.9582813, 1.4536223, 0.030042946)
+visible = false
+
+[node name="HittableEye39" parent="." unique_id=5502104 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 1.9196553, 1.4208403, 0.5340523)
+visible = false
+
+[node name="HittableEye40" parent="." unique_id=313690141 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 1.7928491, 1.335647, 1.0153906)
+visible = false
+
+[node name="HittableEye41" parent="." unique_id=1904882015 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 1.5807844, 1.1882052, 1.4504639)
+visible = false
+
+[node name="HittableEye42" parent="." unique_id=741224125 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 1.3034697, 1.0004014, 1.8299702)
+visible = false
+
+[node name="HittableEye43" parent="." unique_id=1466930685 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.96788013, 0.76523906, 2.1282592)
+visible = false
+
+[node name="HittableEye44" parent="." unique_id=403819066 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.5873449, 0.50763595, 2.332885)
+visible = false
+
+[node name="HittableEye45" parent="." unique_id=136418557 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.17771053, 0.21976405, 2.4378436)
+visible = false
+
+[node name="HittableEye46" parent="." unique_id=338005466 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -0.24127217, -0.06469297, 2.434036)
+visible = false
+
+[node name="HittableEye47" parent="." unique_id=1369112544 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -0.6470949, -0.34501076, 2.3402684)
+visible = false
+
+[node name="HittableEye48" parent="." unique_id=1589397033 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -1.0306919, -0.60587, 2.1336224)
+visible = false
+
+[node name="HittableEye49" parent="." unique_id=916765093 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -1.3600707, -0.83765215, 1.8334322)
+visible = false
+
+[node name="HittableEye50" parent="." unique_id=271475074 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -1.6448244, -1.0340025, 1.4612902)
+visible = false
+
+[node name="HittableEye51" parent="." unique_id=1305968812 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -1.6448244, -1.0340025, 1.4612902)
+visible = false
+
+[node name="HittableEye52" parent="." unique_id=710171631 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -1.8546665, -1.1747344, 1.0193254)
+visible = false
+
+[node name="HittableEye53" parent="." unique_id=1696833230 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -1.9819216, -1.2668569, 0.5504561)
+visible = false
+
+[node name="HittableEye54" parent="." unique_id=1692423599 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -2.0332406, -1.3023183, 0.035071373)
+visible = false
+
+[node name="HittableEye55" parent="." unique_id=1928781540 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -1.9823987, -1.2637349, -0.47077602)
+visible = false
+
+[node name="HittableEye56" parent="." unique_id=808537342 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -1.8588612, -1.1790307, -0.9443602)
+visible = false
+
+[node name="HittableEye57" parent="." unique_id=1399505909 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -1.650859, -1.0410917, -1.3886076)
+visible = false
+
+[node name="HittableEye58" parent="." unique_id=2142149069 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -1.369003, -0.8454316, -1.7581756)
+visible = false
+
+[node name="HittableEye59" parent="." unique_id=908541198 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -1.034489, -0.6136693, -2.0684829)
+visible = false
+
+[node name="HittableEye60" parent="." unique_id=316415976 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -0.650194, -0.34666982, -2.2685034)
+visible = false
+
+[node name="HittableEye61" parent="." unique_id=1220683482 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -0.24422765, -0.06665215, -2.367535)
+visible = false
+
+[node name="HittableEye62" parent="." unique_id=101779389 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.06157987, 2.3909192, -0.31176743)
+visible = false
+
+[node name="HittableEye63" parent="." unique_id=773032956 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.06573416, 2.444039, 0.18672669)
+visible = false
+
+[node name="HittableEye64" parent="." unique_id=1548599492 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.06298253, 2.3946273, 0.68884563)
+visible = false
+
+[node name="HittableEye65" parent="." unique_id=493179258 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.055576444, 2.2346678, 1.1641042)
+visible = false
+
+[node name="HittableEye66" parent="." unique_id=471795406 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.04459905, 1.9856601, 1.6045747)
+visible = false
+
+[node name="HittableEye67" parent="." unique_id=1846679540 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.030611582, 1.6540942, 1.9696538)
+visible = false
+
+[node name="HittableEye68" parent="." unique_id=473382330 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.011531629, 1.250318, 2.2660508)
+visible = false
+
+[node name="HittableEye69" parent="." unique_id=1230068215 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -0.009606734, 0.78993595, 2.4726906)
+visible = false
+
+[node name="HittableEye70" parent="." unique_id=1910737220 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -0.032316774, 0.3036911, 2.5715067)
+visible = false
+
+[node name="HittableEye71" parent="." unique_id=1150676038 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -0.050134555, -0.20950687, 2.585671)
+visible = false
+
+[node name="HittableEye72" parent="." unique_id=36527294 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -0.07608463, -0.6975489, 2.4795446)
+visible = false
+
+[node name="HittableEye73" parent="." unique_id=556056148 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -0.09730017, -1.1479968, 2.2747223)
+visible = false
+
+[node name="HittableEye74" parent="." unique_id=889118997 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -0.11590183, -1.5595568, 1.9775212)
+visible = false
+
+[node name="HittableEye75" parent="." unique_id=980830873 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -0.13455194, -1.8943626, 1.6007384)
+visible = false
+
+[node name="HittableEye76" parent="." unique_id=964875638 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -0.145473, -2.146366, 1.1659412)
+visible = false
+
+[node name="HittableEye77" parent="." unique_id=1530539079 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -0.15080109, -2.2973347, 0.6870004)
+visible = false
+
+[node name="HittableEye78" parent="." unique_id=1018129586 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -0.15355255, -2.3539703, 0.1931693)
+visible = false
+
+[node name="HittableEye79" parent="." unique_id=1363737141 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -0.14990424, -2.3034725, -0.31616455)
+visible = false
+
+[node name="HittableEye80" parent="." unique_id=449241566 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -0.1434324, -2.1490748, -0.7903683)
+visible = false
+
+[node name="HittableEye81" parent="." unique_id=914560891 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -0.13223651, -1.9034297, -1.218579)
+visible = false
+
+[node name="HittableEye82" parent="." unique_id=315799421 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -0.11618003, -1.5621282, -1.5977107)
+visible = false
+
+[node name="HittableEye83" parent="." unique_id=357685242 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -0.09890193, -1.1551769, -1.8973256)
+visible = false
+
+[node name="HittableEye84" parent="." unique_id=1756418014 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -0.07818198, -0.69179964, -2.090465)
+visible = false
+
+[node name="HittableEye85" parent="." unique_id=722389533 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -0.055823624, -0.20946446, -2.1953313)
+visible = false
+
+[node name="HittableEye86" parent="." unique_id=101745702 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -0.03420186, 0.3080484, -2.1953313)
+visible = false
+
+[node name="HittableEye87" parent="." unique_id=474146828 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -0.010133088, 0.78324986, -2.09488)
+visible = false
+
+[node name="HittableEye88" parent="." unique_id=1000817794 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.010802269, 1.2493192, -1.8993593)
+visible = false
+
+[node name="HittableEye89" parent="." unique_id=2032418388 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.02821055, 1.6472925, -1.599126)
+visible = false
+
+[node name="HittableEye90" parent="." unique_id=588421409 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.046014518, 1.9869397, -1.2195072)
+visible = false
+
+[node name="HittableEye91" parent="." unique_id=302250026 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.054719716, 2.2414708, -0.7890588)
+visible = false
+
+[node name="HittableEye92" parent="." unique_id=826843263 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -1.5518503, 2.0676048, -0.58216035)
+visible = false
+
+[node name="HittableEye93" parent="." unique_id=1221304527 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -1.5927321, 2.1172898, -0.03948611)
+visible = false
+
+[node name="HittableEye94" parent="." unique_id=1607650912 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -1.5518503, 2.0676048, 0.5001875)
+visible = false
+
+[node name="HittableEye95" parent="." unique_id=1396611493 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -1.4662957, 1.9454873, 1.039997)
+visible = false
+
+[node name="HittableEye96" parent="." unique_id=609633806 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -1.2959248, 1.7293775, 1.5057173)
+visible = false
+
+[node name="HittableEye97" parent="." unique_id=1377571290 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -1.0703115, 1.4330841, 1.8984292)
+visible = false
+
+[node name="HittableEye98" parent="." unique_id=1921455405 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -0.8154093, 1.080368, 2.2237394)
+visible = false
+
+[node name="HittableEye99" parent="." unique_id=221376300 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -0.5186919, 0.67599237, 2.4367113)
+visible = false
+
+[node name="HittableEye100" parent="." unique_id=2094080199 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -0.20490828, 0.24590611, 2.5480673)
+visible = false
+
+[node name="HittableEye101" parent="." unique_id=196520361 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.14380763, -0.19066715, 2.5528393)
+visible = false
+
+[node name="HittableEye102" parent="." unique_id=1241034489 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.44029197, -0.624236, 2.444021)
+visible = false
+
+[node name="HittableEye103" parent="." unique_id=972075238 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.73931444, -1.0236573, 2.2305017)
+visible = false
+
+[node name="HittableEye104" parent="." unique_id=99383404 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 1.0001724, -1.3697616, 1.9086313)
+visible = false
+
+[node name="HittableEye105" parent="." unique_id=979704911 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 1.2159901, -1.6694599, 1.5007166)
+visible = false
+
+[node name="HittableEye106" parent="." unique_id=728491743 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 1.374155, -1.8901602, 1.0305462)
+visible = false
+
+[node name="HittableEye107" parent="." unique_id=1146779561 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 1.4803321, -2.0267282, 0.51444286)
+visible = false
+
+[node name="HittableEye108" parent="." unique_id=904968351 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 1.5299017, -2.0666573, -0.021452248)
+visible = false
+
+[node name="HittableEye109" parent="." unique_id=1974162680 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 1.4894389, -2.0240908, -0.56970084)
+visible = false
+
+[node name="HittableEye110" parent="." unique_id=328996338 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 1.3875505, -1.8988358, -1.0828483)
+visible = false
+
+[node name="HittableEye111" parent="." unique_id=584431333 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 1.2211906, -1.674727, -1.5712936)
+visible = false
+
+[node name="HittableEye112" parent="." unique_id=791804293 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 1.0061604, -1.3796873, -1.9729749)
+visible = false
+
+[node name="HittableEye113" parent="." unique_id=275902505 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.74257857, -1.0316348, -2.2882986)
+visible = false
+
+[node name="HittableEye114" parent="." unique_id=1302899084 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.44800967, -0.6264591, -2.514612)
+visible = false
+
+[node name="HittableEye115" parent="." unique_id=1704576428 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.12607777, -0.19029424, -2.6376772)
+visible = false
+
+[node name="HittableEye116" parent="." unique_id=1934249763 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -0.18941036, 0.2426982, -2.6233246)
+visible = false
+
+[node name="HittableEye117" parent="." unique_id=1132647292 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -0.50748706, 0.6729658, -2.516677)
+visible = false
+
+[node name="HittableEye118" parent="." unique_id=1639352020 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -0.80479246, 1.0731437, -2.3059509)
+visible = false
+
+[node name="HittableEye119" parent="." unique_id=1099706272 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -1.0680339, 1.4255062, -1.9739228)
+visible = false
+
+[node name="HittableEye120" parent="." unique_id=1792413316 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -1.2940265, 1.7232152, -1.5840935)
+visible = false
+
+[node name="HittableEye121" parent="." unique_id=1161348162 instance=ExtResource("4_m3ng5")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -1.4605362, 1.9483141, -1.1052862)
+visible = false
