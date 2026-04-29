@@ -13,11 +13,18 @@ public partial class Easing : Node
 		Instance = this;
 	}
 	
-	public async Task AsyncTween(GodotObject ObjectToTween, string Property, Variant Goal, float TweenTime)
+	public async Task AsyncTween(GodotObject ObjectToTween, string Property, Variant Goal, float TweenTime, Tween.TransitionType Transition, Tween.EaseType EaseType, bool Looped=false)
 	{
 		var tween = CreateTween();
 		
-		tween.TweenProperty(ObjectToTween, Property, Goal, TweenTime);
+		if (Looped)
+		{
+			tween.SetLoops();
+		}
+		
+		tween.TweenProperty(ObjectToTween, Property, Goal, TweenTime)
+		.SetTrans(Transition)
+		.SetEase(EaseType);
 		
 		await ToSignal(tween, Tween.SignalName.Finished);
 	}
