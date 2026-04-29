@@ -174,7 +174,7 @@ public partial class Layer0 : Node3D
 			if(EnemySpawnerTemplate.Instantiate() is EnemySpawner spawner)
 			{
 				Vector3 spawner_pos = new Vector3(pos.X, 0, pos.Y) * ChunkSize;
-				spawner_pos.Y = GlobalNoise.Instance.GetYAtPosV3(spawner_pos) + 1;
+				spawner_pos.Y = GlobalNoise.Instance.GetYAtPosV3(spawner_pos) - 1;
 				spawner.Sin = chunk.Sin;
 				chunk.AddChild(spawner);
 				spawner.GlobalPosition = spawner_pos;

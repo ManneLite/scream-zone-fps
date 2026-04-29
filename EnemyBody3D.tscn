@@ -11,6 +11,16 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oxlo2"]
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dsp8p"]
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dsp8p"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.13725491)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5eoir"]
+material = SubResource("StandardMaterial3D_dsp8p")
+
 [node name="EnemyBody3D" type="CharacterBody3D" unique_id=750495923]
 collision_layer = 5
 script = ExtResource("1_dsp8p")
@@ -46,6 +56,12 @@ shape = SubResource("BoxShape3D_oxlo2")
 
 [node name="Timer" type="Timer" parent="." unique_id=1140199754]
 autostart = true
+
+[node name="AfterShadows" type="GPUParticles3D" parent="." unique_id=2053123726]
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_dsp8p")
+draw_pass_1 = SubResource("CapsuleMesh_5eoir")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_body_entered_damage_box"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_body_exited_damage_box"]
