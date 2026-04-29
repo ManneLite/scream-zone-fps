@@ -1,8 +1,9 @@
 using Godot;
 using System;
 
-public partial class HittableEye : Area3D
+public partial class HittableEye : Area3D, IDamagable
 {
+	[Signal] public delegate void EyeGotHitEventHandler();
     Timer timer;
 
     [Export] PackedScene ProjectileInstance;
@@ -12,6 +13,7 @@ public partial class HittableEye : Area3D
 
 	public override void _Ready()
 	{
+        Hide();
         timer = GetNode<Timer>("Timer");
         timer.Timeout += OnTimeout;
         if(activated)
@@ -29,7 +31,7 @@ public partial class HittableEye : Area3D
             {
                 if(ProjectileInstance.Instantiate() is Projectile3D projectile)
                 {
-                    projectile.Speed = 50f;
+                    projectile.Speed = 75f;
                     GetTree().CurrentScene.AddChild(projectile);
                     projectile.GlobalPosition = GlobalPosition;
                     projectile.LookAt(player.GlobalPosition);
@@ -40,15 +42,24 @@ public partial class HittableEye : Area3D
 
     public void Activate()
     {
-        if(!activated)
+        if(!activated && !damaged)
         {
+            Show();
             activated = true;
+            timer.Start();
         }
     }
 
-    public void Disable()
+    public void take_damage()
     {
-        damaged = true;
+        // switch hide to changing color
+        if(!damaged && activated)
+        {
+            Hide();
+            damaged = true;
+            timer.Stop();
+		    EmitSignal(SignalName.EyeGotHit);
+        }
     }
 
 }

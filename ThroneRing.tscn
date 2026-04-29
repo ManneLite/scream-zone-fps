@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://cvhj2crmddg52"]
+
+[ext_resource type="ArrayMesh" uid="uid://b175w0yaw5aqj" path="res://assets_3d/RingEyes.obj" id="1_1fodk"]
+[ext_resource type="Texture2D" uid="uid://cdpgxy13c24m4" path="res://assets_2d/RingEyesUVpaint.png" id="2_u25yq"]
+[ext_resource type="Script" uid="uid://c64i65m7h6cs7" path="res://ThroneRing.cs" id="3_arjmt"]
+[ext_resource type="PackedScene" uid="uid://bbhw288rqv6vb" path="res://HittableEye.tscn" id="3_u25yq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_arjmt"]
+albedo_texture = ExtResource("2_u25yq")
+
+[node name="ThroneRing" type="MeshInstance3D" unique_id=1817037959]
+mesh = ExtResource("1_1fodk")
+surface_material_override/0 = SubResource("StandardMaterial3D_arjmt")
+surface_material_override/1 = SubResource("StandardMaterial3D_arjmt")
+script = ExtResource("3_arjmt")
+
+[node name="HittableEye" parent="." unique_id=1667217732 instance=ExtResource("3_u25yq")]
+transform = Transform3D(6.26, 0, 0, 0, 6.26, 0, 0, 0, 6.26, 0, 0, 14.108267)
+
+[node name="HittableEye2" parent="." unique_id=2146608193 instance=ExtResource("3_u25yq")]
+transform = Transform3D(6.26, 0, 0, 0, 6.26, 0, 0, 0, 6.26, 0, 0, -14.100018)
+
+[node name="HittableEye3" parent="." unique_id=306604052 instance=ExtResource("3_u25yq")]
+transform = Transform3D(6.26, 0, 0, 0, 6.26, 0, 0, 0, 6.26, 3.6585636, 0, 13.641062)
+
+[node name="HittableEye4" parent="." unique_id=1781479607 instance=ExtResource("3_u25yq")]
+transform = Transform3D(6.26, 0, 0, 0, 6.26, 0, 0, 0, 6.26, -3.663348, 9.536743e-07, -13.638309)
+
+[node name="HittableEye5" parent="." unique_id=1743736539 instance=ExtResource("3_u25yq")]
+transform = Transform3D(6.26, 0, 0, 0, 6.26, 0, 0, 0, 6.26, -7.0576963, 9.536743e-07, -12.213506)
+
+[node name="HittableEye6" parent="." unique_id=1845365231 instance=ExtResource("3_u25yq")]
+transform = Transform3D(6.26, 0, 0, 0, 6.26, 0, 0, 0, 6.26, -9.997941, 9.536743e-07, -9.981422)
+
+[node name="HittableEye7" parent="." unique_id=1545096465 instance=ExtResource("3_u25yq")]
+transform = Transform3D(6.26, 0, 0, 0, 6.26, 0, 0, 0, 6.26, -12.205604, 9.536743e-07, -7.055682)
+
+[node name="HittableEye8" parent="." unique_id=532863757 instance=ExtResource("3_u25yq")]
+transform = Transform3D(6.26, 0, 0, 0, 6.26, 0, 0, 0, 6.26, -13.636183, 1.9073486e-06, -3.6612144)
+
+[node name="HittableEye9" parent="." unique_id=15481529 instance=ExtResource("3_u25yq")]
+transform = Transform3D(6.26, 0, 0, 0, 6.26, 0, 0, 0, 6.26, -14.1133995, 2.861023e-06, -0.00033283234)
+
+[node name="HittableEye10" parent="." unique_id=42037814 instance=ExtResource("3_u25yq")]
+transform = Transform3D(6.26, 0, 0, 0, 6.26, 0, 0, 0, 6.26, -13.627424, 9.536743e-07, 3.6581678)
+
+[node name="HittableEye11" parent="." unique_id=937442791 instance=ExtResource("3_u25yq")]
+transform = Transform3D(6.26, 0, 0, 0, 6.26, 0, 0, 0, 6.26, -12.216777, 0, 7.0357237)
+
+[node name="HittableEye12" parent="." unique_id=1756354113 instance=ExtResource("3_u25yq")]
+transform = Transform3D(6.26, 0, 0, 0, 6.26, 0, 0, 0, 6.26, -9.987414, 9.536743e-07, 9.993733)
+
+[node name="HittableEye13" parent="." unique_id=1123257618 instance=ExtResource("3_u25yq")]
+transform = Transform3D(6.26, 0, 0, 0, 6.26, 0, 0, 0, 6.26, -7.0573378, 1.9073486e-06, 12.199151)
+
+[node name="HittableEye14" parent="." unique_id=633780329 instance=ExtResource("3_u25yq")]
+transform = Transform3D(6.26, 0, 0, 0, 6.26, 0, 0, 0, 6.26, -3.6656728, 1.9073486e-06, 13.624751)
+
+[node name="HittableEye15" parent="." unique_id=1098604338 instance=ExtResource("3_u25yq")]
+transform = Transform3D(6.26, 0, 0, 0, 6.26, 0, 0, 0, 6.26, 7.0670543, 1.9073486e-06, 12.206612)
+
+[node name="HittableEye16" parent="." unique_id=198637666 instance=ExtResource("3_u25yq")]
+transform = Transform3D(6.26, 0, 0, 0, 6.26, 0, 0, 0, 6.26, 10.000212, 1.9073486e-06, 9.988619)
+
+[node name="HittableEye17" parent="." unique_id=894588433 instance=ExtResource("3_u25yq")]
+transform = Transform3D(6.26, 0, 0, 0, 6.26, 0, 0, 0, 6.26, 12.226216, 1.9073486e-06, 7.0461245)
+
+[node name="HittableEye18" parent="." unique_id=1164525766 instance=ExtResource("3_u25yq")]
+transform = Transform3D(6.26, 0, 0, 0, 6.26, 0, 0, 0, 6.26, 13.632395, 1.9073486e-06, 3.620482)
+
+[node name="HittableEye19" parent="." unique_id=2145334425 instance=ExtResource("3_u25yq")]
+transform = Transform3D(6.26, 0, 0, 0, 6.26, 0, 0, 0, 6.26, 14.135295, 1.9073486e-06, -0.0029923916)
+
+[node name="HittableEye20" parent="." unique_id=373878552 instance=ExtResource("3_u25yq")]
+transform = Transform3D(6.26, 0, 0, 0, 6.26, 0, 0, 0, 6.26, 13.650763, 1.9073486e-06, -3.6480322)
+
+[node name="HittableEye21" parent="." unique_id=783794417 instance=ExtResource("3_u25yq")]
+transform = Transform3D(6.26, 0, 0, 0, 6.26, 0, 0, 0, 6.26, 12.243911, 1.9073486e-06, -7.0747266)
+
+[node name="HittableEye22" parent="." unique_id=1558860107 instance=ExtResource("3_u25yq")]
+transform = Transform3D(6.26, 0, 0, 0, 6.26, 0, 0, 0, 6.26, 9.972864, 1.9073486e-06, -10.011783)
+
+[node name="HittableEye23" parent="." unique_id=1911268880 instance=ExtResource("3_u25yq")]
+transform = Transform3D(6.26, 0, 0, 0, 6.26, 0, 0, 0, 6.26, 7.0603046, 1.9073486e-06, -12.241461)
+
+[node name="HittableEye24" parent="." unique_id=385096288 instance=ExtResource("3_u25yq")]
+transform = Transform3D(6.26, 0, 0, 0, 6.26, 0, 0, 0, 6.26, 3.6463776, 1.9073486e-06, -13.652068)

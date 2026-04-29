@@ -510,3 +510,8 @@ visible = false
 [node name="HittableEye121" parent="." unique_id=1161348162 instance=ExtResource("4_m3ng5")]
 transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -1.4605362, 1.9483141, -1.1052862)
 visible = false
+
+[node name="Timer" type="Timer" parent="." unique_id=901991604]
+wait_time = 0.1
+
+[connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]

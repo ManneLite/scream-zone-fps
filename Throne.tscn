@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://beh5kcibhsob0"]
+
+[ext_resource type="ArrayMesh" uid="uid://umc8kj23bq7w" path="res://assets_3d/BigEye.obj" id="1_bcaun"]
+[ext_resource type="Texture2D" uid="uid://cdpgxy13c24m4" path="res://assets_2d/RingEyesUVpaint.png" id="2_o37fn"]
+[ext_resource type="PackedScene" uid="uid://cvhj2crmddg52" path="res://ThroneRing.tscn" id="3_o37fn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_67uoj"]
+albedo_texture = ExtResource("2_o37fn")
+
+[node name="Throne" type="MeshInstance3D" unique_id=1474383698]
+transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, 0, 0, 0)
+mesh = ExtResource("1_bcaun")
+surface_material_override/0 = SubResource("StandardMaterial3D_67uoj")
+
+[node name="ThroneRing" parent="." unique_id=1817037959 instance=ExtResource("3_o37fn")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -1.6761589, 0, 0)
+
+[node name="ThroneRing2" parent="." unique_id=858875149 instance=ExtResource("3_o37fn")]
+transform = Transform3D(1.2, 0, 0, 0, -0.4823374, -1.0987952, 0, 1.0987952, -0.4823374, 2.1306934, 0, 0)
+
+[node name="ThroneRing3" parent="." unique_id=1206584249 instance=ExtResource("3_o37fn")]
+transform = Transform3D(-0.83809847, -0.8588312, 7.283093e-08, -0.3452054, 0.3368718, -1.0987952, 0.7863996, -0.76741534, -0.48233742, 0.44103432, -2.815071, -4.25663)
+
+[node name="ThroneRing4" parent="." unique_id=1628846519 instance=ExtResource("3_o37fn")]
+transform = Transform3D(0.87762445, -0.81839806, 4.2167287e-08, -0.3289534, -0.35275936, -1.098795, 0.7493765, 0.8036078, -0.4823375, -1.2425404, -3.9258006, -0.97016245)

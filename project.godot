@@ -37,6 +37,7 @@ project/assembly_name="scream-zone-fps"
 [global_group]
 
 Player=""
+HittableEye=""
 
 [input]
 

@@ -15,7 +15,7 @@ emission_enabled = true
 emission = Color(0.43570614, 0.34994984, 0, 1)
 emission_energy_multiplier = 10.0
 
-[node name="HittableEye" type="Area3D" unique_id=1667217732]
+[node name="HittableEye" type="Area3D" unique_id=1667217732 groups=["HittableEye"]]
 collision_layer = 4
 script = ExtResource("1_01bh3")
 ProjectileInstance = ExtResource("2_ifg7b")
