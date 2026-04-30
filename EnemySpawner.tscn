@@ -27,3 +27,6 @@ wait_time = 5.0
 mesh = ExtResource("3_v140b")
 surface_material_override/0 = SubResource("StandardMaterial3D_uumaq")
 surface_material_override/1 = SubResource("StandardMaterial3D_jgxlc")
+
+[node name="MobInside" type="MeshInstance3D" parent="." unique_id=1034843205]
+transform = Transform3D(-0.00212889, -0.0010147358, -0.29999074, 0.003894411, 0.29997286, -0.0010423088, 0.29996714, -0.0039016977, -0.0021155274, 0.03834498, 2.2988045, 0)

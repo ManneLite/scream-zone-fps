@@ -15,7 +15,7 @@ public partial class Layer0 : Node3D
 	[Export] public PackedScene[] WorldObjects;
 	[Export] public int MaxObjectsPerChunk = 15;
 
-    public int EnemiesKilled = 0;
+	public int EnemiesKilled = 0;
 
 	public NavigationMeshSourceGeometryData3D navigation_geometry = new();
 
@@ -49,7 +49,6 @@ public partial class Layer0 : Node3D
 		NavigationServer3D.MapSetUseEdgeConnections(map, true);
 
 		Load3x3Chunks(new(0, 0));
-
 
 		if(PlayerTemplate.Instantiate() is Player3D p)
 		{
@@ -228,25 +227,25 @@ public partial class Layer0 : Node3D
 		GetTree().ChangeSceneToFile("res://MenuMain.tscn");
 	}
 
-    public void OnEnemyDied()
-    {
-        if(++EnemiesKilled == 100)
-        {
-            player.DisableStaticBoss();
+	public void OnEnemyDied()
+	{
+		if(++EnemiesKilled == 20)
+		{
+			player.DisableStaticBoss();
 			float y = GlobalNoise.Instance.GetYAtPos(40, 40) + 2;
 			player.GlobalPosition = new(40, y, 40);
-            Load3x3Chunks(new(0, 0));
+			Load3x3Chunks(new(0, 0));
 
-            if(FinalBossTemplate.Instantiate() is BigBossMen boss)
-            {
+			if(FinalBossTemplate.Instantiate() is BigBossMen boss)
+			{
 
-			    y = GlobalNoise.Instance.GetYAtPos(0, 0) + 20;
-                AddChild(boss);
-			    boss.GlobalPosition = new(0, y, 0);
-                boss.Scale = new(5, 5, 5);
-                boss.Activate();
-                player.LookAt(boss.GlobalPosition);
-            }
-        }
-    }
+				y = GlobalNoise.Instance.GetYAtPos(0, 0) + 20;
+				AddChild(boss);
+				boss.GlobalPosition = new(0, y, 0);
+				boss.Scale = new(5, 5, 5);
+				boss.Activate();
+				player.LookAt(boss.GlobalPosition);
+			}
+		}
+	}
 }

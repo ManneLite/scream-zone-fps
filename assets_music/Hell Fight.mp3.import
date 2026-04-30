@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dvrdopafq4mtd"
+path="res://.godot/imported/Hell Fight.mp3-246c1c4f68f2d6e32ed942904ce1bd7f.mp3str"
+
+[deps]
+
+source_file="res://assets_music/Hell Fight.mp3"
+dest_files=["res://.godot/imported/Hell Fight.mp3-246c1c4f68f2d6e32ed942904ce1bd7f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

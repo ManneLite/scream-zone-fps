@@ -4,6 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://bifw0i6u3yes5" path="res://assets_2d/Sphere Base Color.png" id="2_k0xvu"]
 [ext_resource type="Script" uid="uid://r5d65d1fxxyd" path="res://BigBossMen.cs" id="3_k0xvu"]
 [ext_resource type="PackedScene" uid="uid://bbhw288rqv6vb" path="res://HittableEye.tscn" id="4_m3ng5"]
+[ext_resource type="AudioStream" uid="uid://dvrdopafq4mtd" path="res://assets_music/Hell Fight.mp3" id="5_3a5dh"]
+[ext_resource type="Texture2D" uid="uid://cyxc62ie0o2b1" path="res://assets_2d/rectangle109.png" id="6_a2xiq"]
+[ext_resource type="FontFile" uid="uid://bfqumeg2xptda" path="res://fonts/COPRGTB.TTF" id="7_674yl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a538i"]
 metallic = 1.0
@@ -513,5 +516,51 @@ visible = false
 
 [node name="Timer" type="Timer" parent="." unique_id=901991604]
 wait_time = 0.1
+
+[node name="BossMusic" type="AudioStreamPlayer3D" parent="." unique_id=364463648]
+stream = ExtResource("5_3a5dh")
+volume_db = 80.0
+unit_size = 100.0
+max_db = 6.0
+parameters/looping = true
+
+[node name="HealthBar" type="CanvasLayer" parent="." unique_id=183743984]
+visible = false
+
+[node name="TextureRect" type="TextureRect" parent="HealthBar" unique_id=1114500247]
+modulate = Color(0, 0, 0, 0.39607844)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -379.5
+offset_top = 119.0
+offset_right = 379.5
+offset_bottom = 195.0
+grow_horizontal = 2
+texture = ExtResource("6_a2xiq")
+
+[node name="HealthRect" type="TextureRect" parent="HealthBar" unique_id=301974891]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -399.5
+offset_top = 119.0
+offset_right = 399.5
+offset_bottom = 195.0
+grow_horizontal = 2
+texture = ExtResource("6_a2xiq")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="HealthBar" unique_id=1672776011]
+offset_left = 426.0
+offset_top = 133.0
+offset_right = 869.0
+offset_bottom = 179.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/font = ExtResource("7_674yl")
+theme_override_font_sizes/font_size = 40
+text = "The Final Judgment"
 
 [connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]

@@ -17,6 +17,11 @@ public partial class EnemySpawner : Node3D
 		spawn_timer.WaitTime = SpawnFrequency;
 		spawn_timer.Timeout += OnTimerTimeout;
 		spawn_timer.Start();
+		if (EnemyType.Instantiate() is EnemyBody3D enemy)
+		{
+			GetNode<MeshInstance3D>("MobInside").Mesh = enemy.GetNode<MeshInstance3D>("MeshInstance3D").Mesh;
+			enemy.QueueFree();
+		}
 	}
 
 	public void OnTimerTimeout()

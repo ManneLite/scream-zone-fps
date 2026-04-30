@@ -24,10 +24,10 @@ public partial class EnemyBody3D : CharacterBody3D, IDamagable
 
 	public override void _Ready()
 	{
-        if(GetTree().CurrentScene is Layer0 root)
-        {
-            EnemyDied += root.OnEnemyDied;
-        }
+		if(GetTree().CurrentScene is Layer0 root)
+		{
+			EnemyDied += root.OnEnemyDied;
+		}
 		nav_agent = GetNode<NavigationAgent3D>("NavigationAgent3D");
 		attack_timer = GetNode<Timer>("Timer");
 		Node3D eyes = GetNode<Node3D>("Eyes");
@@ -101,7 +101,7 @@ public partial class EnemyBody3D : CharacterBody3D, IDamagable
 		if(HP <= 0 && active)
 		{
 			active = false;
-            EmitSignal(SignalName.EnemyDied);
+			EmitSignal(SignalName.EnemyDied);
 
 			
 			// play death animation here

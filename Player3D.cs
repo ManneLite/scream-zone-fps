@@ -72,10 +72,10 @@ public partial class Player3D : CharacterBody3D, IDamagable
 				{
 					enemy.take_damage();
 				}
-                else
-                {
-                    GD.Print(ProjectileRay.GetCollider());
-                }
+				else
+				{
+					GD.Print(ProjectileRay.GetCollider());
+				}
 			}
 			else
 			{
@@ -109,14 +109,7 @@ public partial class Player3D : CharacterBody3D, IDamagable
 			velocity += GetGravity() * (float)delta;
 		}
 
-		// Handle Jump.
-		/*
 		if (Input.IsActionJustPressed("Move_Jump") && IsOnFloor())
-		{
-			velocity.Y = JumpVelocity;
-		}
-		*/
-		if (Input.IsActionJustPressed("Move_Jump"))
 		{
 			velocity.Y = JumpVelocity;
 		}
@@ -189,9 +182,9 @@ public partial class Player3D : CharacterBody3D, IDamagable
 		}
 	}
 
-    public void DisableStaticBoss()
-    {
-        GetNode<Node3D>("LocalBoss").Hide();
-    }
+	public void DisableStaticBoss()
+	{
+		GetNode<Node3D>("LocalBoss").Hide();
+	}
 
 }

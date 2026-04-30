@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://j8yvoajpob4u" path="res://Player3D.cs" id="1_xv8y8"]
 [ext_resource type="PackedScene" uid="uid://bmfwyan0rwqs" path="res://Projectile3D.tscn" id="2_a7feo"]
 [ext_resource type="Script" uid="uid://b43dmqbdv03om" path="res://ChunkCheckRay3D.cs" id="3_a7feo"]
-[ext_resource type="PackedScene" path="res://SatanArm.tscn" id="3_f5rht"]
+[ext_resource type="PackedScene" uid="uid://yvifl7xm0btb" path="res://SatanArm.tscn" id="3_f5rht"]
 [ext_resource type="AudioStream" uid="uid://dockl6y82deoy" path="res://assets_music/Hell Walk.mp3" id="4_yvtab"]
 [ext_resource type="AudioStream" uid="uid://cp8kuc3i4bjjr" path="res://assets_sfx/freesound_community-medium-explosion-40472.mp3" id="5_5hyyw"]
 [ext_resource type="PackedScene" uid="uid://ddics8whvm7g" path="res://BigBossMen.tscn" id="6_4gu1q"]
