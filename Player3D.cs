@@ -72,6 +72,10 @@ public partial class Player3D : CharacterBody3D, IDamagable
 				{
 					enemy.take_damage();
 				}
+                else
+                {
+                    GD.Print(ProjectileRay.GetCollider());
+                }
 			}
 			else
 			{
@@ -184,5 +188,10 @@ public partial class Player3D : CharacterBody3D, IDamagable
 			EmitSignal(SignalName.PlayerChangedChunks, ChunkSin.ToString());
 		}
 	}
+
+    public void DisableStaticBoss()
+    {
+        GetNode<Node3D>("LocalBoss").Hide();
+    }
 
 }

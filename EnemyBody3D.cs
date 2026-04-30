@@ -3,6 +3,7 @@ using System;
 
 public partial class EnemyBody3D : CharacterBody3D, IDamagable
 {
+	[Signal] public delegate void EnemyDiedEventHandler();
 	[Export] public float Speed = 5.0f;
 	[Export] public float RotationSpeed = 5.0f;
 	[Export] public int HP = 3;
@@ -23,6 +24,10 @@ public partial class EnemyBody3D : CharacterBody3D, IDamagable
 
 	public override void _Ready()
 	{
+        if(GetTree().CurrentScene is Layer0 root)
+        {
+            EnemyDied += root.OnEnemyDied;
+        }
 		nav_agent = GetNode<NavigationAgent3D>("NavigationAgent3D");
 		attack_timer = GetNode<Timer>("Timer");
 		Node3D eyes = GetNode<Node3D>("Eyes");
@@ -96,6 +101,8 @@ public partial class EnemyBody3D : CharacterBody3D, IDamagable
 		if(HP <= 0 && active)
 		{
 			active = false;
+            EmitSignal(SignalName.EnemyDied);
+
 			
 			// play death animation here
 
